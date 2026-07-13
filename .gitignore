@@ -4,3 +4,4 @@ private/
 client-records/
 candidate-records/
 *.private.json
+__pycache__/

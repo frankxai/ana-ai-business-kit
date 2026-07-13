@@ -36,6 +36,23 @@ Start a new Codex task after installation. Ask:
 
 The plugin does not make candidate decisions, invent prices, edit Ana's master template, or send anything automatically.
 
+## Built-in SOP help system
+
+The plugin selects and receipts one named procedure instead of improvising:
+
+| SOP | Procedure |
+| --- | --- |
+| `SOP-00` | Daily multi-client control board and approval queue |
+| `SOP-01` | Time-boxed 20–30 minute first client call |
+| `SOP-02` | Client kickoff and engagement activation |
+| `SOP-03` | Role scorecard and inclusive job description |
+| `SOP-04` | Time-boxed service offer and pricing approval |
+| `SOP-05` | Recruiting launch, delivery, weekly status, and change control |
+| `SOP-06` | Invoice draft and financial reconciliation |
+| `SOP-07` | Approved document, email, or administrative handoff |
+
+Each SOP defines entry criteria, numbered actions, exit criteria, required evidence, and exception codes. See the [SOP routing index](plugins/ana-hr-operations/skills/ana-hr-operations/references/sop-index.md).
+
 ## One plugin and two optional ZIPs
 
 These are three different tools, not three versions of the same thing.
@@ -78,7 +95,7 @@ Google Drive is optional for the first local draft. If it is not connected, the 
 ## Repository map
 
 ```text
-plugins/ana-hr-operations/   # installable Codex plugin and HR workflow
+plugins/ana-hr-operations/   # installable Codex plugin, SOPs, gates, and templates
 packages/ana-operator-kit/   # private operator ZIP source
 packages/ana-client-session-kit/ # client-safe ZIP source
 docs/                        # Ana's install and operating guides

@@ -1,6 +1,17 @@
 {
   "engagement_id": "ANA-DEMO-001",
   "status": "draft",
+  "administration": {
+    "client_alias": "EXAMPLE-OPS",
+    "record_owner": "Ana",
+    "current_stage": "recruiting",
+    "next_action": "Prepare the weekly aggregate recruiting update.",
+    "next_owner": "Ana",
+    "next_due_date": "2026-07-20",
+    "last_reviewed_at": "2026-07-13",
+    "risk_level": "GREEN",
+    "blockers": []
+  },
   "template": {
     "google_doc_url": "https://docs.google.com/document/d/REPLACE_WITH_APPROVED_TEMPLATE/edit",
     "comparable_doc_url": "https://docs.google.com/document/d/REPLACE_WITH_COMPARABLE_DOC/edit"
@@ -12,6 +23,13 @@
     "billing_name": "Example Company B.V.",
     "billing_address": "Example Street 1, 0000 AA Example City",
     "billing_email": "billing@example.invalid"
+  },
+  "privacy": {
+    "client_system": "APPROVED-PRIVATE-CLIENT-WORKSPACE",
+    "candidate_system": "APPROVED-ATS",
+    "retention_owner": "Example Contact",
+    "deletion_rule": "Follow the client's approved ATS retention schedule.",
+    "incident_contact": "Example Contact"
   },
   "kickoff": {
     "company_context": "A growing company needs a repeatable hiring process for a business-critical role.",
@@ -35,6 +53,26 @@
     "nice_to_have": ["Experience with professional-services teams"],
     "compensation": "Client-approved range to be inserted before publication.",
     "recruitment_process": "Intro call, structured interview, practical case, final interview."
+  },
+  "recruiting": {
+    "ats_reference": "ATS-REQ-DEMO-001",
+    "requisition_status": "active",
+    "scorecard_reference": "PRIVATE-SCORECARD-DEMO-001",
+    "structured_process": "Scorecard, structured screening, client interview, references.",
+    "pipeline_counts": {
+      "sourced": 12,
+      "contacted": 8,
+      "responded": 4,
+      "screened": 2,
+      "client_review": 1,
+      "interview": 0,
+      "reference": 0,
+      "offer": 0,
+      "placed": 0
+    },
+    "pipeline_snapshot_at": "2026-07-13",
+    "next_client_update": "2026-07-20",
+    "change_requests": []
   },
   "offer": {
     "service_name": "Recruiting engagement — Senior Operations Lead",
@@ -64,9 +102,15 @@
     "payment_terms": "14 days",
     "payment_details_reference": "APPROVED-FINANCE-PROFILE"
   },
+  "handoff": {
+    "artifact_type": "invoice",
+    "artifact_reference": "PRIVATE-INVOICE-DRAFT-ANA-DEMO-001",
+    "artifact_revision": "rev-1"
+  },
   "approvals": {
     "kickoff": {"approved_by": "Ana", "approved_at": "2026-07-13"},
     "job_description": {"approved_by": "Ana", "approved_at": "2026-07-13"},
+    "recruiting_launch": {"approved_by": "Ana", "approved_at": "2026-07-13"},
     "price": {"approved_by": "Ana", "approved_at": "2026-07-13"},
     "offer": {"approved_by": "Ana", "approved_at": "2026-07-13"},
     "invoice": {"approved_by": "Ana", "approved_at": "2026-07-13"},

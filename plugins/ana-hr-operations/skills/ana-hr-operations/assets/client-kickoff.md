@@ -1,5 +1,7 @@
 # Client kickoff capture
 
+Operational procedure: `references/sops/SOP-01-first-client-call.md` followed by `references/sops/SOP-02-client-kickoff.md`.
+
 ## First call — 20–30 minutes
 
 1. Why now? What changed or became urgent?

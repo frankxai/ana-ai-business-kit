@@ -1,4 +1,4 @@
 interface:
   display_name: "Ana HR Operations"
-  short_description: "Run recruiting and client admin workflows"
-  default_prompt: "Use $ana-hr-operations to run a new client kickoff and prepare the approved HR documents."
+  short_description: "Run Ana's auditable HR operating SOPs"
+  default_prompt: "Use $ana-hr-operations to select and execute the exact SOP, validation gate, approval, and evidence receipt."

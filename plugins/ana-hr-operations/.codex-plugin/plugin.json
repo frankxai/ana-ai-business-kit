@@ -1,6 +1,6 @@
 {
   "name": "ana-hr-operations",
-  "version": "0.1.0",
+  "version": "0.1.0+codex.20260713155214",
   "description": "High-standard client, recruiting, document, pricing, and invoice operations for Ana's HR company.",
   "author": {
     "name": "FrankX",
@@ -9,20 +9,29 @@
   "homepage": "https://github.com/frankxai/ana-ai-business-kit",
   "repository": "https://github.com/frankxai/ana-ai-business-kit",
   "license": "CC-BY-4.0",
-  "keywords": ["hr", "recruiting", "google-docs", "offers", "invoicing"],
+  "keywords": [
+    "hr",
+    "recruiting",
+    "google-docs",
+    "offers",
+    "invoicing"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Ana HR Operations",
-    "shortDescription": "Run recruiting and client administration.",
-    "longDescription": "Capture a first client call once, then create approved kickoffs, job descriptions, offers, pricing, and invoice drafts with Google Docs template fidelity and human gates.",
+    "shortDescription": "Run Ana's auditable HR operating SOPs.",
+    "longDescription": "Execute named SOPs for multi-client control, first calls, kickoffs, job descriptions, recruiting delivery, offers, pricing, invoice drafts, and approved handoffs.",
     "developerName": "FrankX",
     "category": "Productivity",
-    "capabilities": ["Interactive", "Write"],
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
     "websiteURL": "https://github.com/frankxai/ana-ai-business-kit",
     "defaultPrompt": [
-      "Run a first client kickoff and create the engagement record.",
-      "Create a job description in Ana's approved Google Docs template.",
-      "Draft the offer, price breakdown, and invoice for Ana's review."
+      "Show today's multi-client HR board and approval queue.",
+      "Run the 20\u201330 minute first-client-call SOP.",
+      "Run the approved offer, pricing, and invoice SOPs."
     ]
   }
 }

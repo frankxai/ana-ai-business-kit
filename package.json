@@ -4,7 +4,7 @@
   "private": true,
   "description": "Privacy-first AI business templates for reflective practitioners and their clients.",
   "scripts": {
-    "test": "node scripts/validate-kit.mjs && python plugins/ana-hr-operations/skills/ana-hr-operations/scripts/test_engagement.py",
+    "test": "node scripts/validate-kit.mjs && python plugins/ana-hr-operations/skills/ana-hr-operations/scripts/test_engagement.py && python plugins/ana-hr-operations/skills/ana-hr-operations/scripts/test_sops.py",
     "package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/New-Release.ps1"
   }
 }
