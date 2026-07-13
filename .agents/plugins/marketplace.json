@@ -1,7 +1,7 @@
 {
-  "name": "personal",
+  "name": "ana-business-kit",
   "interface": {
-    "displayName": "Personal"
+    "displayName": "Ana Business Kit"
   },
   "plugins": [
     {

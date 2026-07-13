@@ -41,9 +41,35 @@ if (pluginManifest.version !== '0.1.0') failures.push('Plugin version must be 0.
 if (!pluginManifest.skills) failures.push('Plugin skills path is required.');
 
 const marketplace = JSON.parse(await readFile(resolve(root, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
+if (marketplace.name !== 'ana-business-kit') failures.push('Marketplace name must be ana-business-kit.');
 const marketplacePlugin = marketplace.plugins?.find((plugin) => plugin.name === 'ana-hr-operations');
 if (!marketplacePlugin) failures.push('Marketplace entry for ana-hr-operations is missing.');
 if (marketplacePlugin?.source?.path !== './plugins/ana-hr-operations') failures.push('Marketplace plugin path is invalid.');
+
+for (const guide of [
+  'README.md',
+  'START-HERE-ANA.md',
+  'docs/FORK-AND-INSTALL-CODEX.md',
+  'docs/GOOGLE-DOCS-SETUP.md',
+  'docs/FIRST-CLIENT-FLOW.md',
+]) {
+  try {
+    const guideText = await readFile(resolve(root, guide), 'utf8');
+    if (!guideText.trim()) failures.push(`Empty guide: ${guide}`);
+  } catch {
+    failures.push(`Missing guide: ${guide}`);
+  }
+}
+
+const rootReadme = await readFile(resolve(root, 'README.md'), 'utf8');
+for (const required of [
+  'codex plugin marketplace add frankxai/ana-ai-business-kit --ref main',
+  'codex plugin add ana-hr-operations@ana-business-kit',
+  'first client call',
+  'Google Docs',
+]) {
+  if (!rootReadme.toLowerCase().includes(required.toLowerCase())) failures.push(`README onboarding content missing: ${required}`);
+}
 
 const skillRoot = resolve(pluginRoot, 'skills', 'ana-hr-operations');
 const skillText = await readFile(resolve(skillRoot, 'SKILL.md'), 'utf8');

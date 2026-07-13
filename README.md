@@ -1,83 +1,99 @@
 # Ana AI Business Kit
 
-A calm, privacy-first operating kit for a reflective-practice business. It helps a practitioner turn approved ideas into clear offers, prepared sessions, thoughtful aftercare, and reusable content—without putting AI in front of the client relationship.
+Ana's private HR operating system for moving a new client from the first client call to a reviewed kickoff, job description, service offer, price, and invoice draft.
 
-## Two downloads, two jobs
+AI prepares and checks the work. Ana remains the decision-maker and approves every price, invoice, hiring judgment, and external message.
 
-| Download | For | It solves |
-| --- | --- | --- |
-| **Ana Operator Kit** | Ana or another practitioner | A private working space for offers, session preparation, approved aftercare, workshop planning, and content repurposing. It can be used in Codex or Claude Cowork. |
-| **Client Session Kit** | A client receiving a session or circle | A clean, sendable preparation and aftercare pack. It requires no AI account and must be reviewed before it is sent. |
+## Ana, start here
 
-This separation is deliberate. A client never needs access to the operator prompts, private notes, or agent instructions.
+1. Read [Start Here for Ana](START-HERE-ANA.md).
+2. Follow [Fork and install in Codex](docs/FORK-AND-INSTALL-CODEX.md).
+3. Connect Ana's real template with [Google Docs setup](docs/GOOGLE-DOCS-SETUP.md).
+4. Run one client through [the first-client walkthrough](docs/FIRST-CLIENT-FLOW.md).
 
-## What makes this useful
-
-The original FrankX starter had good raw material: an offer map, clarity session, guided circle, workshop, aftercare, and eight agent briefs. Its weakness was audience mixing: one ZIP asked a practitioner, a client, and a technical agent user to interpret the same folder. This release turns it into two short, usable paths.
-
-The value is not a set of personalities. It is a disciplined loop:
-
-1. Ana chooses one approved offer and one human outcome.
-2. AI prepares a draft from only the material she supplies.
-3. Ana edits, verifies, and sends the final client-facing material.
-4. Repeated, approved patterns become a guide, template, or content seed.
-
-## Start in five minutes
-
-1. Download the two ZIPs from the repository release (or create them locally with `npm run package`).
-2. Unzip **ana-operator-kit** into a private folder that is not shared with clients.
-3. Choose [Codex setup](packages/ana-operator-kit/INSTALL-CODEX.md) or [Claude Cowork setup](packages/ana-operator-kit/INSTALL-CLAUDE-COWORK.md).
-4. Read `START-HERE.md`, then run only the next real offer—not the whole system.
-5. Send the **client-session-kit** only after you have reviewed and personalized it.
-
-## Codex plugin for Ana's HR company
-
-The repository also includes **Ana HR Operations**, an installable Codex plugin for client discovery, kickoff, recruiting setup, job descriptions, offers, approved pricing, invoice drafts, and administration.
+The shortest install is:
 
 ```powershell
-git clone https://github.com/frankxai/ana-ai-business-kit.git
-codex plugin marketplace add ./ana-ai-business-kit
-codex plugin add ana-hr-operations@personal
+codex plugin marketplace add frankxai/ana-ai-business-kit --ref main
+codex plugin add ana-hr-operations@ana-business-kit
+codex plugin list
 ```
 
-Install `google-drive@openai-curated` separately when Ana is ready to connect her real Google Docs template. The plugin requires the exact template URL, creates a copy, and blocks final document claims until connector readback verifies the result. Gmail is optional and is limited to preparing a draft after Ana explicitly approves the invoice and recipient.
+Start a new Codex task after installation. Ask:
 
-Starter requests:
+> Use Ana HR Operations. Start a new client engagement and guide me through the 20–30 minute first-call capture. Do not send, schedule, price, or invoice anything without my explicit approval.
 
-- “Run the first client call and capture everything needed for kickoff.”
-- “Turn this approved kickoff into a job description using Ana’s Google Docs template.”
-- “Create the 20–30 minute offer, verify pricing, and prepare an invoice draft.”
+## What the system handles
 
-## Safety and privacy
+| Stage | Codex prepares | Ana decides |
+| --- | --- | --- |
+| First call | Structured notes, missing questions, owners, and dates | What is accurate and appropriate to retain |
+| Kickoff | Scope, stakeholders, cadence, selection process, privacy, and next actions | Final scope and accountable people |
+| Job description | Role outcome, responsibilities, evidence, and structured criteria | Hiring requirements and final wording |
+| Service offer | Deliverables, exclusions, timing, and commercial summary | Scope, price, currency, tax, and payment terms |
+| Invoice | A mathematically checked draft linked to an approved offer or milestone | Invoice number, billing facts, approval, and whether to send |
+| Handoff | A status summary and optional email draft | Exact recipient, channel, and send approval |
 
-- AI drafts and organizes; it does not diagnose, counsel, make clinical claims, decide for a client, or impersonate Ana.
-- Keep raw client notes, contact data, recordings, health information, and employment-sensitive material out of public repositories and unapproved AI workspaces.
-- Never promise a result, clinical outcome, hiring outcome, or confidentiality level you cannot actually provide.
-- Pause and route to appropriate local, qualified support if a client discloses immediate danger or needs clinical, legal, or employment advice.
-- Human approval is required before every client-facing output.
+The plugin does not make candidate decisions, invent prices, edit Ana's master template, or send anything automatically.
 
-See [privacy and scope](packages/ana-operator-kit/reference/PRIVACY-AND-SCOPE.md) for the working boundary.
+## One plugin and two optional ZIPs
 
-## Repository layout
+These are three different tools, not three versions of the same thing.
+
+| Item | Who uses it | When it is useful |
+| --- | --- | --- |
+| **Ana HR Operations Codex plugin** | Ana and her internal HR team | The main recurring workflow for recruiting clients, documents, pricing, invoices, and administration |
+| **Ana Operator Kit ZIP** | Ana privately | A lightweight offline workspace for offers, reflective sessions, workshops, and approved aftercare |
+| **Client Session Kit ZIP** | A client | A clean preparation and aftercare packet that needs no AI account |
+
+So: keep the two ZIP downloads because they have different audiences, but Ana only needs to install the Codex plugin for her HR operations. A client never receives the plugin, private operator prompts, engagement records, or candidate data.
+
+Create the two ZIPs locally with:
+
+```powershell
+npm run package
+```
+
+The archives and SHA-256 checksums are created in `dist/` and are intentionally not committed.
+
+## What Ana needs before the first live client
+
+- Codex in the ChatGPT desktop app or Codex CLI.
+- The plugin installed and visible as `ana-hr-operations@ana-business-kit`.
+- The Google Drive plugin connected if she wants the final document in her real Google Docs template.
+- The exact master-template URL, a comparable finished document when available, a destination folder, and permission to create a copy.
+- A private, company-approved location outside this repository for engagement records and candidate material.
+
+Google Drive is optional for the first local draft. If it is not connected, the plugin creates a clearly labeled Markdown draft and reports `TEMPLATE_BLOCKED` instead of pretending the Google Doc is finished.
+
+## Privacy and control
+
+- Never commit client names, contact details, CVs, recordings, interview notes, IDs, health data, bank details, or real engagement records.
+- Give Codex only the minimum information needed for the current task.
+- Use job-relevant evidence. Do not rank or reject candidates from protected traits or personality proxies.
+- Never infer Ana's approval from silence.
+- Require explicit approval before changing price, finalizing an invoice, emailing, scheduling, or sending a document.
+- Confirm the company's data-processing and retention requirements before using any live candidate or employee data with an AI service.
+
+## Repository map
 
 ```text
-packages/
-  ana-operator-kit/       # private practitioner workspace
-  ana-client-session-kit/ # clean client-facing packet
-scripts/                  # validation and reproducible ZIP creation
+plugins/ana-hr-operations/   # installable Codex plugin and HR workflow
+packages/ana-operator-kit/   # private operator ZIP source
+packages/ana-client-session-kit/ # client-safe ZIP source
+docs/                        # Ana's install and operating guides
+scripts/                     # validation and reproducible packaging
 ```
 
-## Verify or package
-
-No runtime, API key, or dependency installation is required.
+## For maintainers
 
 ```powershell
 npm test
 npm run package
 ```
 
-`npm run package` creates two ZIP files and SHA-256 checksums under `dist/`. The generated artifacts are intentionally not committed.
+`npm test` checks the two package manifests, plugin marketplace, required guides, workflow resources, money/send gates, and example engagement record. See [plugin internals](plugins/ana-hr-operations/skills/ana-hr-operations/SKILL.md) for the operating contract.
 
 ## License and name use
 
-The templates are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). “Ana”, Ana Cecilia Cancino’s name, voice, and identity are not licensed for reuse, endorsement, or impersonation. Replace all identity-specific text before adapting this kit for another practitioner.
+The templates are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). “Ana”, Ana Cecilia Cancino's name, voice, and identity are not licensed for reuse, endorsement, or impersonation. Replace identity-specific text before adapting this kit for another practitioner or HR company.
