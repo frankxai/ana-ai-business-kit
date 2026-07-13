@@ -1,0 +1,10 @@
+{
+  "name": "ana-ai-business-kit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Privacy-first AI business templates for reflective practitioners and their clients.",
+  "scripts": {
+    "test": "node scripts/validate-kit.mjs",
+    "package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/New-Release.ps1"
+  }
+}
