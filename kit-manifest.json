@@ -1,0 +1,50 @@
+{
+  "schema": "ana-ai-business-kit/v1",
+  "version": "1.0.0",
+  "status": "public-safe template",
+  "packages": [
+    {
+      "id": "ana-operator-kit",
+      "archive": "ana-operator-kit-v1.0.0.zip",
+      "audience": "practitioner",
+      "entrypoint": "START-HERE.md",
+      "mustRemainPrivate": true,
+      "files": [
+        "README.md",
+        "START-HERE.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "INSTALL-CODEX.md",
+        "INSTALL-CLAUDE-COWORK.md",
+        "workflows/OFFER-TO-SESSION.md",
+        "workflows/SESSION-TO-AFTERCARE.md",
+        "workflows/CIRCLE-OR-WORKSHOP.md",
+        "prompts/OPERATOR-SETUP.md",
+        "prompts/SESSION-PREP.md",
+        "prompts/AFTERCARE-DRAFT.md",
+        "reference/PRIVACY-AND-SCOPE.md"
+      ]
+    },
+    {
+      "id": "ana-client-session-kit",
+      "archive": "ana-client-session-kit-v1.0.0.zip",
+      "audience": "client",
+      "entrypoint": "README.md",
+      "mustRemainPrivate": false,
+      "files": [
+        "README.md",
+        "CLIENT-WELCOME.md",
+        "SESSION-REQUEST.md",
+        "REFLECTION-BRIEF.md",
+        "AFTERCARE.md",
+        "AI-USE-NOTICE.md"
+      ]
+    }
+  ],
+  "guardrails": {
+    "humanApproval": "required before every client-facing output",
+    "clientData": "private by default",
+    "aiRole": "drafting and organization only",
+    "prohibited": ["diagnosis", "therapy claims", "employment decisions", "impersonation"]
+  }
+}

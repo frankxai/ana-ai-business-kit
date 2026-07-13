@@ -1,0 +1,75 @@
+{
+  "engagement_id": "ANA-DEMO-001",
+  "status": "draft",
+  "template": {
+    "google_doc_url": "https://docs.google.com/document/d/REPLACE_WITH_APPROVED_TEMPLATE/edit",
+    "comparable_doc_url": "https://docs.google.com/document/d/REPLACE_WITH_COMPARABLE_DOC/edit"
+  },
+  "client": {
+    "legal_name": "Example Company B.V.",
+    "contact_name": "Example Contact",
+    "contact_email": "contact@example.invalid",
+    "billing_name": "Example Company B.V.",
+    "billing_address": "Example Street 1, 0000 AA Example City",
+    "billing_email": "billing@example.invalid"
+  },
+  "kickoff": {
+    "company_context": "A growing company needs a repeatable hiring process for a business-critical role.",
+    "hiring_need": "Recruit one senior operations lead.",
+    "success_outcomes": ["Clear scorecard", "Structured interview loop", "Approved shortlist"],
+    "timeline": "Start within two weeks; target shortlist in six weeks.",
+    "scope": "Role definition, sourcing, screening, and shortlist coordination.",
+    "decision_makers": ["Example Contact", "Hiring Manager"],
+    "communication_cadence": "Weekly written update and a 30-minute review call.",
+    "selection_process": "Scorecard, structured screening, client interview, references."
+  },
+  "role": {
+    "title": "Senior Operations Lead",
+    "location": "Hybrid — Example City",
+    "employment_type": "Full time",
+    "reporting_to": "Managing Director",
+    "mission": "Build a dependable operating rhythm for a growing team.",
+    "outcomes": ["Create a 90-day operating plan", "Establish weekly performance reviews"],
+    "responsibilities": ["Own core operating cadence", "Coordinate cross-functional priorities"],
+    "must_have": ["Evidence of leading operations in a growing organization", "Clear stakeholder communication"],
+    "nice_to_have": ["Experience with professional-services teams"],
+    "compensation": "Client-approved range to be inserted before publication.",
+    "recruitment_process": "Intro call, structured interview, practical case, final interview."
+  },
+  "offer": {
+    "service_name": "Recruiting engagement — Senior Operations Lead",
+    "deliverables": ["Kickoff and scorecard", "Candidate sourcing", "Structured shortlist"],
+    "exclusions": ["Employment legal advice", "Final hiring decision"],
+    "timeline": "Six-week initial search period.",
+    "currency": "EUR",
+    "subtotal": 1000.0,
+    "tax_rate": 21.0,
+    "tax_amount": 210.0,
+    "total": 1210.0,
+    "payment_terms": "14 days",
+    "valid_until": "2026-08-01"
+  },
+  "invoice": {
+    "invoice_number": "DRAFT-ANA-DEMO-001",
+    "issue_date": "2026-07-13",
+    "due_date": "2026-07-27",
+    "currency": "EUR",
+    "line_items": [
+      {"description": "Recruiting engagement kickoff", "quantity": 1, "unit_price": 1000.0, "amount": 1000.0}
+    ],
+    "subtotal": 1000.0,
+    "tax_rate": 21.0,
+    "tax_amount": 210.0,
+    "total": 1210.0,
+    "payment_terms": "14 days",
+    "payment_details_reference": "APPROVED-FINANCE-PROFILE"
+  },
+  "approvals": {
+    "kickoff": {"approved_by": "Ana", "approved_at": "2026-07-13"},
+    "job_description": {"approved_by": "Ana", "approved_at": "2026-07-13"},
+    "price": {"approved_by": "Ana", "approved_at": "2026-07-13"},
+    "offer": {"approved_by": "Ana", "approved_at": "2026-07-13"},
+    "invoice": {"approved_by": "Ana", "approved_at": "2026-07-13"},
+    "send": {"approved_by": "Ana", "approved_at": "2026-07-13", "channel": "email draft", "recipient": "billing@example.invalid"}
+  }
+}
