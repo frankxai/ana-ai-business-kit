@@ -1,0 +1,28 @@
+{
+  "name": "ana-hr-operations",
+  "version": "0.1.0",
+  "description": "High-standard client, recruiting, document, pricing, and invoice operations for Ana's HR company.",
+  "author": {
+    "name": "FrankX",
+    "url": "https://www.frankx.ai"
+  },
+  "homepage": "https://github.com/frankxai/ana-ai-business-kit",
+  "repository": "https://github.com/frankxai/ana-ai-business-kit",
+  "license": "CC-BY-4.0",
+  "keywords": ["hr", "recruiting", "google-docs", "offers", "invoicing"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Ana HR Operations",
+    "shortDescription": "Run recruiting and client administration.",
+    "longDescription": "Capture a first client call once, then create approved kickoffs, job descriptions, offers, pricing, and invoice drafts with Google Docs template fidelity and human gates.",
+    "developerName": "FrankX",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://github.com/frankxai/ana-ai-business-kit",
+    "defaultPrompt": [
+      "Run a first client kickoff and create the engagement record.",
+      "Create a job description in Ana's approved Google Docs template.",
+      "Draft the offer, price breakdown, and invoice for Ana's review."
+    ]
+  }
+}

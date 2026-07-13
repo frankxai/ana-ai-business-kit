@@ -30,6 +30,24 @@ The value is not a set of personalities. It is a disciplined loop:
 4. Read `START-HERE.md`, then run only the next real offer—not the whole system.
 5. Send the **client-session-kit** only after you have reviewed and personalized it.
 
+## Codex plugin for Ana's HR company
+
+The repository also includes **Ana HR Operations**, an installable Codex plugin for client discovery, kickoff, recruiting setup, job descriptions, offers, approved pricing, invoice drafts, and administration.
+
+```powershell
+git clone https://github.com/frankxai/ana-ai-business-kit.git
+codex plugin marketplace add ./ana-ai-business-kit
+codex plugin add ana-hr-operations@personal
+```
+
+Install `google-drive@openai-curated` separately when Ana is ready to connect her real Google Docs template. The plugin requires the exact template URL, creates a copy, and blocks final document claims until connector readback verifies the result. Gmail is optional and is limited to preparing a draft after Ana explicitly approves the invoice and recipient.
+
+Starter requests:
+
+- “Run the first client call and capture everything needed for kickoff.”
+- “Turn this approved kickoff into a job description using Ana’s Google Docs template.”
+- “Create the 20–30 minute offer, verify pricing, and prepare an invoice draft.”
+
 ## Safety and privacy
 
 - AI drafts and organizes; it does not diagnose, counsel, make clinical claims, decide for a client, or impersonate Ana.

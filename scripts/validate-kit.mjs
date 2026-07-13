@@ -5,6 +5,7 @@ const root = resolve(import.meta.dirname, '..');
 const manifest = JSON.parse(await readFile(resolve(root, 'kit-manifest.json'), 'utf8'));
 const requiredGuardrails = ['humanApproval', 'clientData', 'aiRole', 'prohibited'];
 const failures = [];
+const pluginRoot = resolve(root, 'plugins', 'ana-hr-operations');
 
 if (manifest.schema !== 'ana-ai-business-kit/v1') failures.push('Unexpected manifest schema.');
 if (manifest.packages?.length !== 2) failures.push('Exactly two downloads are required.');
@@ -34,10 +35,46 @@ for (const required of ['PRACTITIONER REVIEW REQUIRED', 'Never diagnose', 'priva
   if (!operatorInstructions.toLowerCase().includes(required.toLowerCase())) failures.push(`Operator guardrail missing: ${required}`);
 }
 
+const pluginManifest = JSON.parse(await readFile(resolve(pluginRoot, '.codex-plugin', 'plugin.json'), 'utf8'));
+if (pluginManifest.name !== 'ana-hr-operations') failures.push('Plugin name must match its folder.');
+if (pluginManifest.version !== '0.1.0') failures.push('Plugin version must be 0.1.0.');
+if (!pluginManifest.skills) failures.push('Plugin skills path is required.');
+
+const marketplace = JSON.parse(await readFile(resolve(root, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
+const marketplacePlugin = marketplace.plugins?.find((plugin) => plugin.name === 'ana-hr-operations');
+if (!marketplacePlugin) failures.push('Marketplace entry for ana-hr-operations is missing.');
+if (marketplacePlugin?.source?.path !== './plugins/ana-hr-operations') failures.push('Marketplace plugin path is invalid.');
+
+const skillRoot = resolve(pluginRoot, 'skills', 'ana-hr-operations');
+const skillText = await readFile(resolve(skillRoot, 'SKILL.md'), 'utf8');
+if (skillText.includes('[TODO:')) failures.push('Skill contains TODO placeholders.');
+for (const relativePath of [
+  'agents/openai.yaml',
+  'scripts/validate_engagement.py',
+  'scripts/render_documents.py',
+  'scripts/test_engagement.py',
+  'assets/client-kickoff.md',
+  'assets/job-description.md',
+  'assets/offer.md',
+  'assets/invoice.md',
+  'assets/engagement.example.json',
+  'references/workflow.md',
+  'references/record-contract.md',
+  'references/google-docs-template.md',
+  'references/hr-quality-and-privacy.md',
+  'references/pricing-and-invoice.md',
+]) {
+  try {
+    await stat(resolve(skillRoot, relativePath));
+  } catch {
+    failures.push(`Missing plugin resource: ${relativePath}`);
+  }
+}
+
 if (failures.length) {
   console.error('Kit validation failed:');
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log(`Validated ${manifest.packages.length} downloads and ${manifest.packages.reduce((count, pkg) => count + pkg.files.length, 0)} package files.`);
+console.log(`Validated ${manifest.packages.length} downloads, ${manifest.packages.reduce((count, pkg) => count + pkg.files.length, 0)} package files, and the Ana HR Operations plugin.`);
