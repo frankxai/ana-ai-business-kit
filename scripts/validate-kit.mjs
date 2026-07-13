@@ -37,13 +37,39 @@ for (const required of ['PRACTITIONER REVIEW REQUIRED', 'Never diagnose', 'priva
 
 const pluginManifest = JSON.parse(await readFile(resolve(pluginRoot, '.codex-plugin', 'plugin.json'), 'utf8'));
 if (pluginManifest.name !== 'ana-hr-operations') failures.push('Plugin name must match its folder.');
-if (pluginManifest.version !== '0.1.0') failures.push('Plugin version must be 0.1.0.');
+if (!/^0\.1\.0(?:\+codex\.[0-9A-Za-z.-]+)?$/.test(pluginManifest.version)) failures.push('Plugin version must preserve the 0.1.0 base version and optional Codex cachebuster.');
 if (!pluginManifest.skills) failures.push('Plugin skills path is required.');
 
 const marketplace = JSON.parse(await readFile(resolve(root, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
+if (marketplace.name !== 'ana-business-kit') failures.push('Marketplace name must be ana-business-kit.');
 const marketplacePlugin = marketplace.plugins?.find((plugin) => plugin.name === 'ana-hr-operations');
 if (!marketplacePlugin) failures.push('Marketplace entry for ana-hr-operations is missing.');
 if (marketplacePlugin?.source?.path !== './plugins/ana-hr-operations') failures.push('Marketplace plugin path is invalid.');
+
+for (const guide of [
+  'README.md',
+  'START-HERE-ANA.md',
+  'docs/FORK-AND-INSTALL-CODEX.md',
+  'docs/GOOGLE-DOCS-SETUP.md',
+  'docs/FIRST-CLIENT-FLOW.md',
+]) {
+  try {
+    const guideText = await readFile(resolve(root, guide), 'utf8');
+    if (!guideText.trim()) failures.push(`Empty guide: ${guide}`);
+  } catch {
+    failures.push(`Missing guide: ${guide}`);
+  }
+}
+
+const rootReadme = await readFile(resolve(root, 'README.md'), 'utf8');
+for (const required of [
+  'codex plugin marketplace add frankxai/ana-ai-business-kit --ref main',
+  'codex plugin add ana-hr-operations@ana-business-kit',
+  'first client call',
+  'Google Docs',
+]) {
+  if (!rootReadme.toLowerCase().includes(required.toLowerCase())) failures.push(`README onboarding content missing: ${required}`);
+}
 
 const skillRoot = resolve(pluginRoot, 'skills', 'ana-hr-operations');
 const skillText = await readFile(resolve(skillRoot, 'SKILL.md'), 'utf8');
@@ -53,16 +79,28 @@ for (const relativePath of [
   'scripts/validate_engagement.py',
   'scripts/render_documents.py',
   'scripts/test_engagement.py',
+  'scripts/test_sops.py',
   'assets/client-kickoff.md',
   'assets/job-description.md',
   'assets/offer.md',
   'assets/invoice.md',
   'assets/engagement.example.json',
+  'assets/daily-operations-board.md',
+  'assets/recruiting-weekly-status.md',
+  'references/sop-index.md',
   'references/workflow.md',
   'references/record-contract.md',
   'references/google-docs-template.md',
   'references/hr-quality-and-privacy.md',
   'references/pricing-and-invoice.md',
+  'references/sops/SOP-00-multi-client-control.md',
+  'references/sops/SOP-01-first-client-call.md',
+  'references/sops/SOP-02-client-kickoff.md',
+  'references/sops/SOP-03-job-description.md',
+  'references/sops/SOP-04-offer-and-pricing.md',
+  'references/sops/SOP-05-recruiting-delivery.md',
+  'references/sops/SOP-06-invoice.md',
+  'references/sops/SOP-07-send-and-handoff.md',
 ]) {
   try {
     await stat(resolve(skillRoot, relativePath));

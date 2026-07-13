@@ -1,6 +1,6 @@
 # Engagement workflow
 
-Use one engagement record per client and role. Never use chat history as the system of record.
+Use one engagement record per client and role. Never use chat history as the system of record. Execute the stage through `sop-index.md` and its named SOP.
 
 ## State sequence
 
@@ -8,10 +8,11 @@ Use one engagement record per client and role. Never use chat history as the sys
 2. `kickoff` — confirm scope, stakeholders, cadence, selection process, privacy, and next document.
 3. `job-description` — create the role scorecard and job description when recruiting a role.
 4. `offer` — create the service offer from Ana-approved scope and pricing.
-5. `invoice` — create an invoice draft from the approved offer or completed milestone.
-6. `send` — prepare the final email and attachment only after invoice and send approvals exist.
+5. `recruiting` — launch and operate the structured search after job-description approval; keep candidate data in the ATS.
+6. `invoice` — create an invoice draft from the approved offer or completed milestone.
+7. `send` — prepare the final email and attachment only after artifact and send approvals exist.
 
-Job description and offer can run in parallel after kickoff. Invoice depends on an approved offer. Send depends on an approved invoice.
+Job description and offer can run in parallel after kickoff. Recruiting depends on an approved job description and recruiting-launch approval. Invoice depends on an approved offer. Send depends on the relevant approved artifact plus fresh send approval.
 
 ## First-call output
 
@@ -43,3 +44,5 @@ At every transition, write a short status block:
 - external action still requiring Ana.
 
 Use `scripts/validate_engagement.py` before advancing a stage.
+
+For multiple clients, run `SOP-00` and render `assets/daily-operations-board.md`. Use client aliases only; the board is not a system of record.

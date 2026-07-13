@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from datetime import date
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
@@ -13,6 +14,13 @@ from pathlib import Path
 STAGE_FIELDS = {
     "first-call": [
         "engagement_id",
+        "administration.client_alias",
+        "administration.record_owner",
+        "administration.next_action",
+        "administration.next_owner",
+        "administration.next_due_date",
+        "administration.last_reviewed_at",
+        "administration.risk_level",
         "client.legal_name",
         "client.contact_name",
         "client.contact_email",
@@ -26,6 +34,10 @@ STAGE_FIELDS = {
         "kickoff.decision_makers",
         "kickoff.communication_cadence",
         "kickoff.selection_process",
+        "privacy.client_system",
+        "privacy.candidate_system",
+        "privacy.retention_owner",
+        "privacy.deletion_rule",
         "approvals.kickoff.approved_by",
         "approvals.kickoff.approved_at",
     ],
@@ -39,8 +51,20 @@ STAGE_FIELDS = {
         "role.responsibilities",
         "role.must_have",
         "role.recruitment_process",
+        "recruiting.scorecard_reference",
         "approvals.job_description.approved_by",
         "approvals.job_description.approved_at",
+    ],
+    "recruiting": [
+        "recruiting.ats_reference",
+        "recruiting.requisition_status",
+        "recruiting.scorecard_reference",
+        "recruiting.structured_process",
+        "recruiting.pipeline_counts",
+        "recruiting.pipeline_snapshot_at",
+        "recruiting.next_client_update",
+        "approvals.recruiting_launch.approved_by",
+        "approvals.recruiting_launch.approved_at",
     ],
     "offer": [
         "offer.service_name",
@@ -78,6 +102,9 @@ STAGE_FIELDS = {
         "approvals.invoice.approved_at",
     ],
     "send": [
+        "handoff.artifact_type",
+        "handoff.artifact_reference",
+        "handoff.artifact_revision",
         "approvals.send.approved_by",
         "approvals.send.approved_at",
         "approvals.send.channel",
@@ -85,7 +112,38 @@ STAGE_FIELDS = {
     ],
 }
 
-STAGE_CHAIN = ["first-call", "kickoff", "job-description", "offer", "invoice", "send"]
+STAGE_CHAIN = ["first-call", "kickoff", "job-description", "offer", "recruiting", "invoice", "send"]
+STAGE_DEPENDENCIES = {
+    "first-call": ["first-call"],
+    "kickoff": ["first-call", "kickoff"],
+    "job-description": ["first-call", "kickoff", "job-description"],
+    "offer": ["first-call", "kickoff", "offer"],
+    "recruiting": ["first-call", "kickoff", "job-description", "recruiting"],
+    "invoice": ["first-call", "kickoff", "offer", "invoice"],
+    "send": ["first-call", "kickoff", "send"],
+}
+SEND_DEPENDENCIES = {
+    "kickoff": [],
+    "job-description": ["job-description"],
+    "offer": ["offer"],
+    "recruiting-status": ["job-description", "recruiting"],
+    "invoice": ["offer", "invoice"],
+}
+FORBIDDEN_RECORD_KEYS = {
+    "candidate",
+    "candidates",
+    "candidate_name",
+    "candidate_email",
+    "cv",
+    "resume",
+    "interview_notes",
+    "interview_recording",
+    "protected_traits",
+    "bank_account",
+    "iban",
+    "bic",
+    "swift",
+}
 
 
 def get_path(data: dict, dotted: str):
@@ -109,20 +167,40 @@ def money(value, label: str, errors: list[str]) -> Decimal:
         return Decimal("0.00")
 
 
+def find_forbidden_keys(value, path: str = "") -> list[str]:
+    found: list[str] = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            child_path = f"{path}.{key}" if path else key
+            if key.lower() in FORBIDDEN_RECORD_KEYS:
+                found.append(child_path)
+            found.extend(find_forbidden_keys(child, child_path))
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            found.extend(find_forbidden_keys(child, f"{path}[{index}]"))
+    return found
+
+
+def iso_date(value, label: str, errors: list[str]) -> date | None:
+    try:
+        return date.fromisoformat(str(value))
+    except (TypeError, ValueError):
+        errors.append(f"{label} must be an ISO date (YYYY-MM-DD).")
+        return None
+
+
 def validate(record: dict, stage: str, require_template: bool = False) -> list[str]:
     errors: list[str] = []
-    target_index = STAGE_CHAIN.index(stage)
-    required_stages = STAGE_CHAIN[: target_index + 1]
+    required_stages = list(STAGE_DEPENDENCIES[stage])
+    if stage == "send":
+        artifact_type = str(get_path(record, "handoff.artifact_type") or "")
+        if artifact_type not in SEND_DEPENDENCIES:
+            errors.append(f"handoff.artifact_type must be one of: {', '.join(SEND_DEPENDENCIES)}.")
+        else:
+            required_stages[2:2] = SEND_DEPENDENCIES[artifact_type]
 
-    # Job description and offer are parallel outputs; an invoice requires the offer path.
-    if stage == "job-description":
-        required_stages = ["first-call", "kickoff", "job-description"]
-    elif stage in {"offer", "invoice", "send"}:
-        required_stages = ["first-call", "kickoff", "offer"]
-        if stage in {"invoice", "send"}:
-            required_stages.append("invoice")
-        if stage == "send":
-            required_stages.append("send")
+    for forbidden_path in find_forbidden_keys(record):
+        errors.append(f"Forbidden sensitive field in engagement record: {forbidden_path}.")
 
     for required_stage in required_stages:
         for dotted in STAGE_FIELDS[required_stage]:
@@ -134,8 +212,21 @@ def validate(record: dict, stage: str, require_template: bool = False) -> list[s
         if "docs.google.com/document/d/" not in url or "REPLACE_" in url:
             errors.append("An exact approved Google Docs template URL is required.")
 
-    if stage in {"offer", "invoice", "send"}:
-        for section in ["offer"] + (["invoice"] if stage in {"invoice", "send"} else []):
+    risk_level = str(get_path(record, "administration.risk_level") or "").upper()
+    if risk_level not in {"RED", "AMBER", "GREEN", "PAUSED"}:
+        errors.append("administration.risk_level must be RED, AMBER, GREEN, or PAUSED.")
+
+    if stage == "recruiting":
+        counts = get_path(record, "recruiting.pipeline_counts") or {}
+        if not isinstance(counts, dict) or not counts:
+            errors.append("recruiting.pipeline_counts must be a non-empty object of aggregate counts.")
+        else:
+            for name, count in counts.items():
+                if not isinstance(count, int) or isinstance(count, bool) or count < 0:
+                    errors.append(f"recruiting.pipeline_counts.{name} must be a non-negative integer.")
+
+    if "offer" in required_stages:
+        for section in ["offer"] + (["invoice"] if "invoice" in required_stages else []):
             block = record.get(section, {})
             subtotal = money(block.get("subtotal"), f"{section}.subtotal", errors)
             tax_rate = money(block.get("tax_rate"), f"{section}.tax_rate", errors)
@@ -147,14 +238,26 @@ def validate(record: dict, stage: str, require_template: bool = False) -> list[s
             if total != subtotal + tax_amount:
                 errors.append(f"{section}.total must equal subtotal + tax_amount (expected {subtotal + tax_amount}).")
 
-    if stage in {"invoice", "send"}:
+    if "invoice" in required_stages:
         items = record.get("invoice", {}).get("line_items", [])
-        item_total = sum((money(item.get("amount"), "invoice.line_items[].amount", errors) for item in items), Decimal("0.00"))
+        item_total = Decimal("0.00")
+        for index, item in enumerate(items):
+            quantity = money(item.get("quantity"), f"invoice.line_items[{index}].quantity", errors)
+            unit_price = money(item.get("unit_price"), f"invoice.line_items[{index}].unit_price", errors)
+            amount = money(item.get("amount"), f"invoice.line_items[{index}].amount", errors)
+            expected_amount = (quantity * unit_price).quantize(Decimal("0.01"))
+            if amount != expected_amount:
+                errors.append(f"invoice.line_items[{index}].amount must equal quantity × unit_price (expected {expected_amount}).")
+            item_total += amount
         invoice_subtotal = money(record.get("invoice", {}).get("subtotal"), "invoice.subtotal", errors)
         if item_total != invoice_subtotal:
             errors.append(f"Invoice line items must total invoice.subtotal (expected {item_total}).")
         if record.get("invoice", {}).get("currency") != record.get("offer", {}).get("currency"):
             errors.append("Invoice currency must match the approved offer currency.")
+        issue_date = iso_date(record.get("invoice", {}).get("issue_date"), "invoice.issue_date", errors)
+        due_date = iso_date(record.get("invoice", {}).get("due_date"), "invoice.due_date", errors)
+        if issue_date and due_date and due_date < issue_date:
+            errors.append("invoice.due_date must not be before invoice.issue_date.")
 
     return errors
 

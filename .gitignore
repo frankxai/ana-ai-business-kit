@@ -1,2 +1,7 @@
 dist/
 .DS_Store
+private/
+client-records/
+candidate-records/
+*.private.json
+__pycache__/
