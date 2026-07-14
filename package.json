@@ -2,7 +2,7 @@
   "name": "ana-ai-business-kit",
   "version": "1.1.0",
   "private": true,
-  "description": "Privacy-first, human-approved HR operations, team adoption, and document-quality templates.",
+  "description": "Human-approved HR operating system for Ana's established client, recruiting, document, research, and commercial workflows.",
   "scripts": {
     "test": "node scripts/validate-kit.mjs && python plugins/ana-hr-operations/skills/ana-hr-operations/scripts/test_engagement.py && python plugins/ana-hr-operations/skills/ana-hr-operations/scripts/test_sops.py && python plugins/ana-hr-operations/skills/ana-research-library/scripts/test_research_library.py && python plugins/ana-hr-operations/skills/ana-approved-content/scripts/test_approved_content.py",
     "package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/New-Release.ps1"

@@ -1,7 +1,7 @@
 {
   "name": "ana-hr-operations",
   "version": "0.2.0+codex.20260714033127",
-  "description": "Human-approved HR operations, four-person team adoption, template quality, research library, and approval-gated content for Ana's HR company.",
+  "description": "Extend Ana's established HR delivery method across client work, recruiting, documents, research, and commercial administration—with human approval at every decision boundary.",
   "author": {
     "name": "FrankX",
     "url": "https://www.frankx.ai"
@@ -22,8 +22,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Ana HR Operations",
-    "shortDescription": "Run Ana's human-approved HR operating system.",
-    "longDescription": "Execute named SOPs for four-person team control, client delivery, template-preserving Google Docs/Canva work, recruiting, offers, invoice drafts, research curation, and approval-gated content.",
+    "shortDescription": "Extend Ana's established, human-led HR delivery method.",
+    "longDescription": "Carry approved client work through recruiting operations, template-faithful documents, commercial preparation, research, and content while Ana's team owns delivery and named humans retain every decision and external send.",
     "developerName": "FrankX",
     "category": "Productivity",
     "capabilities": [

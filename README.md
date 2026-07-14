@@ -1,31 +1,10 @@
 # Ana AI Business Kit
 
-`v1.1` is a public-safe, four-person adoption product for a human-led HR practice. It turns Ana's existing high-quality Google Docs and Canva templates into a controlled workflow for client discovery, kickoffs, job descriptions, offers, invoices, recruiting delivery, research, and approval-gated content.
+Ana AI Business Kit turns Ana's established HR workflows and approved templates into a shared operating system for client delivery, recruiting, documents, research, and commercial administration. It carries the quality of Ana's method across engagements: capture the right facts once, make ownership visible, preserve the right template, and bring each decision to the right human at the right moment.
 
-It is not an autonomous hiring system. AI prepares and checks work; accountable client humans make employment decisions, while Ana remains accountable for her practice's scope, recommendations, pricing, invoices, publication, and every external send.
+AI works backstage: it prepares, reconciles, and checks. Ana's team owns delivery. Each client's named decision-makers retain employment decisions; Ana retains authority over her practice's judgments, scope, pricing, invoices, publication, and external communication.
 
-## Start here
-
-1. Read [Start Here for Ana](START-HERE-ANA.md).
-2. Give the team [Start Here for the Team](START-HERE-TEAM.md) and [Who reads what](docs/WHO-READS-WHAT.md).
-3. Set up [the four-person team](docs/TEAM-ADOPTION.md) and [controlled Drive architecture](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md).
-4. Follow [the install and private-overlay guide](docs/FORK-AND-INSTALL-CODEX.md).
-5. Run the fictional [practice engagement](docs/PRACTICE-ENGAGEMENT.md) before live work.
-6. Use [template and Canva routing](docs/TEMPLATE-AND-CANVA-ROUTING.md) to connect Ana's actual masters privately.
-
-The maintained public install is:
-
-```powershell
-codex plugin marketplace add frankxai/ana-ai-business-kit --ref main
-codex plugin add ana-hr-operations@ana-business-kit
-codex plugin list
-```
-
-Start a new Codex task after installation. Ask:
-
-> Use Ana HR Operations. Start a private practice engagement and guide me through SOP-01. Separate facts from assumptions. Do not create, send, schedule, price, invoice, or publish anything.
-
-## The operating system
+## What the system strengthens
 
 | Work | Codex prepares and checks | Named human decides |
 | --- | --- | --- |
@@ -40,9 +19,17 @@ The plugin includes three complementary skills:
 
 | Skill | Job |
 | --- | --- |
-| `ana-hr-operations` | SOP-led HR client delivery, documents, pricing, invoice drafts, and handoffs |
+| `ana-hr-operations` | Consistent client delivery, recruiting operations, documents, commercial preparation, and handoffs |
 | `ana-research-library` | Evidence capture and a safe research library for HR, recruiting, team practice, and voluntary workshop preparation |
 | `ana-approved-content` | Approval-gated, source-backed content drafts; it never publishes or sends |
+
+## Begin with Ana's operating method
+
+1. Ana starts with [her operating overview](START-HERE-ANA.md).
+2. The team uses [its operating page](START-HERE-TEAM.md), [role and authority map](docs/TEAM-ADOPTION.md), and [ownership map](docs/WHO-READS-WHAT.md).
+3. Keep live work inside the [controlled Drive architecture](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md), approved ATS, Canva, and finance systems.
+4. Connect Ana's real masters privately through [template and Canva routing](docs/TEMPLATE-AND-CANVA-ROUTING.md).
+5. Validate the complete route with the fictional [release rehearsal](docs/PRACTICE-ENGAGEMENT.md) before applying a new system version to live work.
 
 ## Existing templates stay in charge
 
@@ -54,20 +41,34 @@ Ana's existing kickoff, offer, invoice, and presentation masters are the design 
 
 See [Template and Canva routing](docs/TEMPLATE-AND-CANVA-ROUTING.md) and [Workspace architecture](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md).
 
+## Technical activation
+
+Technical setup follows the operating decisions above. Use [the install and private-overlay guide](docs/FORK-AND-INSTALL-CODEX.md), then install the maintained public plugin:
+
+```powershell
+codex plugin marketplace add frankxai/ana-ai-business-kit --ref main
+codex plugin add ana-hr-operations@ana-business-kit
+codex plugin list
+```
+
+Start a new Codex task after installation. Run a public-safe rehearsal first:
+
+> Use Ana HR Operations. Start a private fictional engagement and guide me through the first call using SOP-01. Separate facts from assumptions. Do not create, send, schedule, price, invoice, or publish anything.
+
 ## What is safe to put in GitHub
 
 Only public-safe instructions, blank templates, schemas, test fixtures, and fictional examples belong here. Real client records, template URLs, candidate material, internal policy, real pricing, invoices, and credentials do not.
 
 For private customization, create a **separately initialized private company overlay repository** and controlled Drive workspace. Do not use a public fork as a private storage mechanism. Details and update flow are in [Fork, private overlay, and install](docs/FORK-AND-INSTALL-CODEX.md).
 
-## Two optional ZIPs
+## Optional facilitation downloads
 
-The optional ZIPs solve a different sharing problem:
+These legacy-compatible ZIPs support a separate facilitation workflow. They are not the primary path for Ana's ongoing HR operations; the installed Ana HR Operations plugin is.
 
 | Item | Audience | Boundary |
 | --- | --- | --- |
 | **Ana HR Operations plugin** | Ana and the internal HR team | Main recurring workflow; never client/candidate data in repo |
-| **Ana Operator Kit ZIP** | Ana/internal practitioners | Practitioner-only; not client-sendable |
+| **Ana Operator Kit ZIP** | Ana/internal practitioners using the optional facilitation workflow | Practitioner-only; not client-sendable |
 | **Client Session Kit ZIP** | A client after review | Client-safe preparation and aftercare material |
 
 Create the two ZIPs locally only when ready to release:
@@ -84,7 +85,7 @@ The archives and SHA-256 checksums are created in `dist/` and are intentionally 
 plugins/ana-hr-operations/       # installable plugin: HR operations + research + approved content skills
 packages/ana-operator-kit/       # public-safe practitioner ZIP source; real work remains private
 packages/ana-client-session-kit/ # client-safe ZIP source
-docs/                            # team adoption, Drive, Canva, practice, updates, adaptation guides
+docs/                            # team roles, Drive, Canva, release rehearsal, updates, adaptation guides
 scripts/                         # validation and reproducible packaging
 ```
 

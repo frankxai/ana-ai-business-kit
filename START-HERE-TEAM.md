@@ -1,24 +1,24 @@
 # Start here, Ana's team
 
-You do not need to learn Git or maintain Markdown files to use this system day to day.
+You already know the client work. This system helps carry Ana's method consistently across owners, documents, and decisions while keeping daily delivery in the tools your team trusts.
 
 Your recommended work setup is:
 
 > Google Drive for live client work + the approved ATS for candidate data + Codex for guided SOP execution
 
-GitHub is the maintained source for instructions, blank examples, validation, and updates. It is not a client workspace.
+GitHub is the maintained source for versioned instructions, blank examples, validation, and updates. It is not a client workspace, and ordinary delivery does not require a local clone.
 
-## Your first 20 minutes
+## Confirm your operating lane
 
-1. Find your role in [Four-person team adoption](docs/TEAM-ADOPTION.md).
-2. Copy your role prompts from [Team starter prompts](docs/TEAM-STARTER-PROMPTS.md).
-3. Learn the folder route in [Google Workspace and templates](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md).
-4. Run [the fictional practice engagement](docs/PRACTICE-ENGAGEMENT.md) before opening a live engagement.
-5. Ask Ana when a source, permission, template, or approval is unclear. Do not guess.
+1. Confirm your remit and decision boundary in [Team roles and authority](docs/TEAM-ADOPTION.md).
+2. Keep your role prompts close from [Team starter prompts](docs/TEAM-STARTER-PROMPTS.md).
+3. Confirm the exact folder and template route in [Google Workspace and templates](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md).
+4. Run [the fictional release rehearsal](docs/PRACTICE-ENGAGEMENT.md) when activating the system or a material update.
+5. Bring any unclear source, permission, template, or approval to Ana. Do not guess.
 
-## The eight SOPs
+## Shared delivery routes
 
-| Work request | SOP | Your safe result |
+| Work request | SOP | Controlled outcome |
 | --- | --- | --- |
 | What needs attention today? | `SOP-00` | Alias-only board and Ana decision queue |
 | New client / first call | `SOP-01` | Confirmed facts, open decisions, owner, and due date |
@@ -52,6 +52,6 @@ Codex should name the SOP before working, confirm entry criteria, stop with a cl
 
 Do not work around a stop state. Assign the missing decision to its owner.
 
-## One rule to remember
+## Decision authority
 
 AI can prepare and check the work. Ana and the accountable client humans make the decisions.

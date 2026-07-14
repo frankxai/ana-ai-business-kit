@@ -1,5 +1,5 @@
 # Repository foundation
 
-`v1.1` is a draft-first, four-person adoption product for Ana's human-led HR practice. The public repository is a reproducible learning and operating template; it is never the location for a client record, candidate record, real template URL, policy, invoice detail, or credential.
+`v1.1` is the public-safe operating foundation for Ana's established HR delivery method. It coordinates client work, recruiting operations, documents, research, and commercial preparation without becoming the system of record for a client, candidate, real template URL, policy, invoice detail, or credential.
 
-The controlled company overlay and Google Drive workspace hold real work. Every change is validated locally, reviewed by a second human before release, and published only after Ana approves the release scope.
+The controlled company overlay and approved business systems hold real work. Every public release is validated locally, independently reviewed, and published only after Ana approves the release scope.
