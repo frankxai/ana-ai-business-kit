@@ -22,7 +22,7 @@ Run when recruiting scope is approved and a new or materially changed role needs
 4. Create the scorecard and structured interview evidence before polishing the public job-description copy.
 5. Draft title, mission, outcomes, responsibilities, requirements, location/work pattern, employment type, compensation text from approved facts, and recruitment stages.
 6. Check for protected-trait inference, unnecessary credential inflation, unexplained gaps, fabricated market claims, and inconsistent criteria.
-7. For Google Docs, execute the copy/readback route in `google-docs-template.md`; otherwise create a visibly labeled local draft.
+7. Create a content pack from approved role facts. For Google Docs, execute the copy/readback route in `google-docs-template.md`; for Canva, use a copied master and named visual check; otherwise create a visibly labeled local draft.
 8. Compare the draft with the kickoff and scorecard. Resolve or list every contradiction.
 9. Record Ana's job-description approval and timestamp; run `validate_engagement.py --stage job-description`.
 

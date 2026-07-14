@@ -24,7 +24,8 @@ Run after job-description approval to launch a requisition, manage delivery, pre
 6. Prepare the weekly status from `assets/recruiting-weekly-status.md`: progress, evidence/process learning, risks, client decisions needed, changes, and next seven-day plan. Do not expose rejected-candidate details.
 7. Present shortlisted candidates only through the approved ATS/client route and against the approved scorecard. AI may organize evidence but must not rank or decide.
 8. Record client decisions, owners, dates, and any change request. A material role/scope change returns to `SOP-02`, `SOP-03`, or `SOP-04` as applicable.
-9. Validate with `validate_engagement.py --stage recruiting` after launch and at any material process change.
+9. When a process or team-practice claim needs evidence, create a source entry through `$ana-research-library`; do not treat research as a candidate/employee profiling tool.
+10. Validate with `validate_engagement.py --stage recruiting` after launch and at any material process change.
 
 ## Exit criteria
 

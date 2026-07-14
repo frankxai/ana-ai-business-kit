@@ -23,7 +23,7 @@ Run when an approved deposit, milestone, retainer, success fee, or completed ser
 5. Verify every line amount, subtotal, discount when applicable, tax basis/rate/amount, total, deposit/credit, and balance due.
 6. Calculate due date from the approved payment terms and confirm it is not before issue date.
 7. Use only a finance-system reference for payment instructions; do not store or reproduce unverified bank details.
-8. Render a visibly labeled invoice draft, then compare it with the offer/milestone and billing source.
+8. Build a source-linked invoice content pack, render a visibly labeled invoice draft, and compare it with the offer/milestone and billing source. If Ana's Canva invoice master is used, copy it and require a named visual check; never include raw bank credentials.
 9. Run `validate_engagement.py --stage invoice` and record Ana's invoice approval only after she reviews the final facts and total.
 
 ## Exit criteria

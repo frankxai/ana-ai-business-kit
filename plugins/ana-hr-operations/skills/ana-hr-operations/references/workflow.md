@@ -30,6 +30,7 @@ Confirm:
 - candidate-data handling and deletion expectations;
 - communication cadence;
 - Ana's approved Google Docs template and nearest comparable completed document;
+- the private template-registry ID, platform (Google Docs or Canva), master-copy route, document owner, and visual-check requirement;
 - pricing source, currency, billing identity, tax treatment, and payment terms.
 
 ## Administration rule
@@ -44,5 +45,7 @@ At every transition, write a short status block:
 - external action still requiring Ana.
 
 Use `scripts/validate_engagement.py` before advancing a stage.
+
+For each document route, prepare a content pack from approved facts before making a copy. Google Docs work requires copy/readback; Canva work requires copy plus a named visual check. A template/source/access gap remains `TEMPLATE_BLOCKED`; a Canva copy without visual review remains `CANVA_RENDER_PENDING`.
 
 For multiple clients, run `SOP-00` and render `assets/daily-operations-board.md`. Use client aliases only; the board is not a system of record.

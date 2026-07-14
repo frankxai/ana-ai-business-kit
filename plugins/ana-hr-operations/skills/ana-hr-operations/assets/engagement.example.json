@@ -1,4 +1,5 @@
 {
+  "demo_only": true,
   "engagement_id": "ANA-DEMO-001",
   "status": "draft",
   "administration": {
@@ -13,8 +14,35 @@
     "blockers": []
   },
   "template": {
+    "registry_reference": "PRIVATE-TEMPLATE-REGISTRY-DEMO-ONLY",
     "google_doc_url": "https://docs.google.com/document/d/REPLACE_WITH_APPROVED_TEMPLATE/edit",
-    "comparable_doc_url": "https://docs.google.com/document/d/REPLACE_WITH_COMPARABLE_DOC/edit"
+    "comparable_doc_url": "https://docs.google.com/document/d/REPLACE_WITH_COMPARABLE_DOC/edit",
+    "document_routes": {
+      "kickoff": {
+        "template_id": "kickoff-google-docs-master-demo",
+        "platform": "google-docs",
+        "status": "TEMPLATE_BLOCKED",
+        "visual_check_required": true
+      },
+      "offer": {
+        "template_id": "offer-canva-master-demo",
+        "platform": "canva",
+        "status": "CANVA_RENDER_PENDING",
+        "visual_check_required": true
+      },
+      "invoice": {
+        "template_id": "invoice-canva-master-demo",
+        "platform": "canva",
+        "status": "CANVA_RENDER_PENDING",
+        "visual_check_required": true
+      }
+    }
+  },
+  "team": {
+    "manager_approver": "Ana",
+    "engagement_coordinator": "Example Coordinator",
+    "research_recruiting_operator": "Example Research Operator",
+    "document_client_experience_operator": "Example Document Operator"
   },
   "client": {
     "legal_name": "Example Company B.V.",

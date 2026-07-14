@@ -1,74 +1,94 @@
 # Start here, Ana
 
-This repository gives you a repeatable way to run the administrative side of an HR engagement without lowering your standard or handing decisions to AI.
+This is your four-person HR operating kit. It helps your team move a client from first conversation to a high-quality, human-approved kickoff, job description, offer, invoice draft, recruiting update, and handoff—without putting client or candidate information in GitHub.
 
-Your normal path is:
+AI prepares, checks, and explains. You remain the accountable manager for your practice: client decision-makers make employment decisions, while you approve your team's recommendations, scope, pricing, invoices, publication, and external communication.
 
-> first client call → confirmed kickoff → job description and/or service offer → approved price → invoice draft → your approval to send
+## The simple model
 
-Codex remembers the structure through a private engagement record. It shows what is complete, what is missing, who owns the next action, and which approval is still required.
+| Layer | What it does | Where it lives |
+| --- | --- | --- |
+| **SOP** | Tells the team the right order, quality gate, and stop condition. | This plugin |
+| **Private engagement record** | Holds the live facts, owner, approvals, and next action for one client and role. | Ana's approved private workspace |
+| **Master template** | Holds the exact design for kickoff, offer, invoice, or presentation. | Controlled Google Drive or Canva |
+| **Approval record** | Shows who approved what, when, and what is still blocked. | Private engagement record + control workbook |
+| **Final artifact** | A copied, checked draft or approved client document. | Client engagement folder |
 
-## What to do today
+The point is not to make the team technical. They work from Google Drive and Codex. GitHub is the maintained operating manual and update source; Ana or an explicitly approved technical maintainer keeps the private company overlay.
 
-### 1. Install the HR plugin
+Give each teammate [Start Here for the Team](START-HERE-TEAM.md). The role-by-role reading and ownership map is in [Who reads what](docs/WHO-READS-WHAT.md).
 
-Use the exact steps in [Fork and install in Codex](docs/FORK-AND-INSTALL-CODEX.md). You may install Frank's maintained version immediately or fork it into your own GitHub account first.
+## First 45 minutes
 
-Forking is useful when you want your own copy and change history. It is not required to start.
+1. Read [Team adoption](docs/TEAM-ADOPTION.md) together and choose the four role owners.
+2. Create the private Drive structure exactly as described in [Workspace and template architecture](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md). Do not move live client or candidate data into this repo.
+3. Put the approved kickoff, offer, invoice, and presentation masters in **01 Master Templates**. Make each one view-only for the wider team; copies are edited in the relevant engagement folder.
+4. Complete a private template registry using [the example registry](plugins/ana-hr-operations/skills/ana-hr-operations/assets/template-registry.example.json). Keep real links in the private overlay only.
+5. Install the HR plugin using [the corrected install guide](docs/FORK-AND-INSTALL-CODEX.md), then start a **new Codex task**.
+6. Run the fictional [practice engagement](docs/PRACTICE-ENGAGEMENT.md) before using a live client. It deliberately uses made-up names and no candidate data.
 
-### 2. Start a new Codex task
+## Daily rhythm
 
-Installed plugins become available in new tasks. Paste this:
+### Ana — manager control
 
-> Use Ana HR Operations. I have a new recruiting client. Set up a private engagement record outside the repository and guide me through the first-call capture one section at a time. Separate facts from assumptions. Do not send or schedule anything.
+Use these as plain-language prompts in a new Codex task. They are manager controls, not autonomous slash commands.
 
-Codex should ask for the client outcome, role or service need, stakeholders, timing, process, document requirements, template source, pricing inputs, and next owner. If a fact is unknown, it remains an open decision.
+> Use Ana HR Operations. Run manager morning control for our private engagement records. Show only client aliases, current stage, owner, due date, blocker, approval needed, template status, and the next action. Do not create, send, price, invoice, publish, or change records.
 
-### 3. Connect your Google Docs template
+> Use Ana HR Operations. Run the approval review. For each request, show the exact artifact, source facts, unresolved assumptions, template/readback status, named recipient if relevant, and the single approval I am being asked to give. Do not treat this review as approval.
 
-Install and connect Google Drive, then provide the template only inside the private Codex task. Do not paste the private template URL into GitHub.
+> Use Ana HR Operations. Run a quality and exceptions review. Flag stale records, missing owners, missing template routes, money mismatches, sensitive-data risk, unsupported claims, and anything that needs my decision.
 
-Codex needs:
+Only after you actively say "I approve [specific decision]" with the relevant facts should Codex record an approval. Silence, a thumbs-up in an old thread, or a general preference is not approval.
 
-- the exact master-template URL;
-- the document type;
-- the closest approved completed example, if one exists;
-- the destination folder and desired title;
-- your approval to create a copy.
+### Team members
 
-It must copy the master, never edit it. See [Google Docs setup](docs/GOOGLE-DOCS-SETUP.md).
+Each person uses a fresh task and their role prompt from [Team starter prompts](docs/TEAM-STARTER-PROMPTS.md). The coordinator owns the next action; the research operator owns source quality; the document operator owns template fidelity. Nobody makes an employment decision, commercial commitment, or external send through the system.
 
-### 4. Run one real client
+## Your existing great templates
 
-Do not try to configure every possible service first. Run one active engagement through [the first-client walkthrough](docs/FIRST-CLIENT-FLOW.md), review where the structure helps, and then adjust your fork.
+Your real kickoff, offer, invoice, and Canva presentation templates are the source of visual quality. This kit never replaces them with generic AI styling.
 
-## Where information belongs
+- **Google Docs templates:** Codex reads the exact master, makes a copy, changes only the copy in small verified batches, re-reads it, and reports whether visual page inspection happened.
+- **Canva offer, invoice, and presentation templates:** the team provides the exact approved Canva master inside a private task; creates a copy; prepares a content pack from approved facts; then performs a human visual check in Canva. Codex must report `CANVA_RENDER_PENDING` until that check is complete.
+- **No exact template link, no final document:** the correct result is `TEMPLATE_BLOCKED`, not an invented document. The full route is in [Template and Canva routing](docs/TEMPLATE-AND-CANVA-ROUTING.md).
 
-| Information | Where it belongs |
+## One first live engagement
+
+When the practice engagement passes, use this prompt with the real client facts only in Ana's approved private workspace:
+
+> Use Ana HR Operations. Create or open the private engagement record for one client and one role. Select SOP-01 and guide me through the first-call capture one section at a time. Separate facts, assumptions, owners, due dates, template route, and approvals. Keep candidate information in the approved ATS. Do not send, schedule, set price, create an invoice, or publish anything.
+
+Then use the system in this order:
+
+> first client call → confirmed kickoff → job description and/or service offer → approved price → invoice draft → approved handoff
+
+## What lives where
+
+| Information | Correct home |
 | --- | --- |
-| Plugin instructions and blank templates | This GitHub repository |
-| Live client engagement record | Private company-approved storage outside GitHub |
-| Candidate CVs and interview evidence | Your approved ATS or HR system, not this repository |
-| Master Google Docs template | Ana's controlled Google Drive |
-| Local draft before Google Docs is connected | Private client folder, labeled draft |
-| Final document | Copied Google Doc, reviewed and approved by Ana |
+| Plugin instructions, blank schemas, fictional practice material | This public-safe repository |
+| Real template links, company policy, internal notes | Separate private company overlay |
+| Master Google Docs and Canva templates | Controlled Drive/Canva master folder |
+| Live engagement record and client files | Private client engagement folder |
+| CVs, interview evidence, candidate identity, employment data | Approved ATS/HR system only |
+| Finance credentials and bank details | Approved finance system only |
+| Daily cross-client view | Private control workbook, aliases only |
 
-## Your approval gates
+## What Codex is doing underneath
 
-Codex must stop for you at four points:
+For every request it should:
 
-1. Kickoff scope and role requirements.
-2. Price, currency, tax treatment, and payment terms.
-3. Invoice facts and final amount.
-4. Exact recipient, channel, and permission to send.
+1. select one named SOP instead of improvising;
+2. check its entry criteria and stop with an exception code if something is missing;
+3. use the right connector: Google Docs for Docs, Canva for visual masters, Google Sheets for the control workbook, and Gmail/Calendar only after a fresh approval gate;
+4. create or validate a private record; run its validation; and preserve the source of each important fact;
+5. produce a receipt: what changed, what is still blocked, approvals present/missing, template status, and next owner.
 
-Silence is never approval. If Codex is missing a fact, the correct result is a clear question or a blocked draft—not a guess.
+That gives your team consistency without asking them to learn Markdown, Git, or a technical agent framework in daily work.
 
-## About the two ZIP downloads
+## Updates and support
 
-The ZIPs solve a separate sharing problem:
+Use [Release and update checks](docs/RELEASE-AND-UPDATE.md) once per month or before a new teammate starts. Changes should be trialled on the fictional practice engagement first. Keep real policy and template changes in the private overlay, never in a public fork.
 
-- Keep the **Operator Kit** private for offers and reflective session preparation.
-- Send only the reviewed **Client Session Kit** when a client needs preparation or aftercare material.
-
-They are useful, but they are not required for the core HR plugin. Start with the plugin.
+The optional Operator and Client Session ZIPs remain separate from the HR plugin. See the repository README for their audience boundary.

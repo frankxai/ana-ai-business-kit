@@ -16,19 +16,20 @@ Run at the start and end of the working day, before a weekly planning block, or 
 
 ## Procedure
 
-1. Read only the minimum status fields from each active engagement: alias, stage, last review, next action, owner, due date, blockers, risk, and missing approval.
+1. Read only the minimum status fields from each active engagement: alias, stage, last review, next action, owner, due date, blockers, risk, template status, and missing approval.
 2. Reject stale or ambiguous records instead of inferring status from chat history.
 3. Validate the current stage when a record claims it is ready to advance.
 4. Classify each row: `RED` overdue/privacy/money/send block, `AMBER` due within two working days or awaiting approval, `GREEN` on track, `PAUSED` explicitly held.
 5. Sort by red risk, overdue date, client commitment, then earliest due date. Do not rank clients by commercial value unless Ana explicitly supplies that policy.
 6. Render `assets/daily-operations-board.md` using aliases only.
-7. Create a decision queue for Ana: approvals, client questions, internal follow-ups, and connector-blocked work.
+7. Create a decision queue for Ana: approvals, client questions, internal follow-ups, template/connector-blocked work, and exceptions. Present it as a decision card; never treat the board review as approval.
 8. Record the board timestamp and source-record timestamps. Do not write board summaries back into stale source records without review.
 
 ## Exit criteria
 
 - Every active engagement has one next action, owner, and due date or is explicitly paused.
 - Every red/amber item names its blocker and required decision.
+- Every item has an assigned team role or is explicitly owned by Ana.
 - The board contains no candidate names, emails, CV content, interview evidence, billing address, or bank information.
 
 ## Evidence

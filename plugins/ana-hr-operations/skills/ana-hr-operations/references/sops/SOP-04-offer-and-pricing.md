@@ -20,8 +20,8 @@ Run after kickoff approval when the client needs a recruiting/service proposal o
 2. **5–10 minutes — define deliverables.** State tangible deliverables, milestones, timing, acceptance/review points, and what is not included.
 3. **10–15 minutes — load approved commercial inputs.** Capture each line item, quantity, unit price, discount, currency, tax rate/treatment, validity, and payment terms with its source. Do not recommend or invent a number.
 4. **15–20 minutes — calculate.** Verify quantity × unit price, line totals, subtotal, explicit discount, tax basis/amount, total, deposits or milestones, and currency consistency.
-5. **20–25 minutes — draft the offer.** Use plain language, named outcomes, scope, exclusions, timeline, dependencies, commercial terms, validity, and signature/acceptance route.
-6. **25–30 minutes — quality and approvals.** Compare with kickoff, pricing source, and template; list missing facts; record separate `approvals.price` and `approvals.offer` only after Ana explicitly approves each.
+5. **20–25 minutes — draft the offer.** Build a content pack from source-linked facts, then use plain language, named outcomes, scope, exclusions, timeline, dependencies, commercial terms, validity, and signature/acceptance route.
+6. **25–30 minutes — quality and approvals.** Compare with kickoff, pricing source, and exact template route; list missing facts. For Canva, require a copied design and named visual check before claiming fidelity. Record separate `approvals.price` and `approvals.offer` only after Ana explicitly approves each.
 7. Run `validate_engagement.py --stage offer`; use the Google Docs copy/readback route if the final draft belongs in Ana's template.
 
 ## Exit criteria

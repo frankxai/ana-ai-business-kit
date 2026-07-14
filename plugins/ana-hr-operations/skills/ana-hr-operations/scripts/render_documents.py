@@ -12,9 +12,16 @@ from validate_engagement import validate
 
 
 DOCUMENT_STAGES = {
+    "kickoff": "kickoff",
     "job-description": "job-description",
     "offer": "offer",
     "invoice": "invoice",
+}
+DOCUMENT_ASSETS = {
+    "kickoff": "client-kickoff.md",
+    "job-description": "job-description.md",
+    "offer": "offer.md",
+    "invoice": "invoice.md",
 }
 
 
@@ -34,6 +41,7 @@ def line_items(values, currency: str) -> str:
 def context(record: dict) -> dict[str, str]:
     client = record["client"]
     kickoff = record["kickoff"]
+    privacy = record.get("privacy") or {}
     role = record.get("role", {})
     offer = record.get("offer", {})
     invoice = record.get("invoice", {})
@@ -45,6 +53,17 @@ def context(record: dict) -> dict[str, str]:
         "billing_address": client.get("billing_address", "[Billing address]"),
         "billing_email": client.get("billing_email", "[Billing email]"),
         "company_context": kickoff["company_context"],
+        "hiring_need": kickoff.get("hiring_need", "[Hiring need]"),
+        "kickoff_scope": kickoff.get("scope", "[Scope]"),
+        "kickoff_timeline": kickoff.get("timeline", "[Timeline]"),
+        "kickoff_outcomes": bullets(kickoff.get("success_outcomes", [])),
+        "decision_makers": bullets(kickoff.get("decision_makers", [])),
+        "communication_cadence": kickoff.get("communication_cadence", "[Communication cadence]"),
+        "selection_process": kickoff.get("selection_process", "[Selection process]"),
+        "client_system": privacy.get("client_system", "[Approved client system]"),
+        "candidate_system": privacy.get("candidate_system", "[Approved candidate system]"),
+        "retention_owner": privacy.get("retention_owner", "[Retention owner]"),
+        "deletion_rule": privacy.get("deletion_rule", "[Deletion rule]"),
         "role_title": role.get("title", "[Role title]"),
         "location": role.get("location", "[Location]"),
         "employment_type": role.get("employment_type", "[Employment type]"),
@@ -91,7 +110,7 @@ def main() -> int:
     if errors:
         raise SystemExit("Cannot render:\n- " + "\n- ".join(errors))
 
-    asset = Path(__file__).resolve().parent.parent / "assets" / f"{args.document}.md"
+    asset = Path(__file__).resolve().parent.parent / "assets" / DOCUMENT_ASSETS[args.document]
     rendered = Template(asset.read_text(encoding="utf-8")).safe_substitute(context(record))
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(rendered, encoding="utf-8")

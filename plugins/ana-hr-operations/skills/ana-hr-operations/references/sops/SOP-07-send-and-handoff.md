@@ -18,7 +18,7 @@ Run when Ana asks to prepare or perform a client-facing document, email, or cale
 
 1. Re-read the engagement record, artifact approval, and current send request; do not rely on prior chat approval.
 2. Resolve the exact recipient and channel. Check for lookalike addresses, wrong client aliases, reply-all risk, or unintended CC/BCC recipients.
-3. Re-open the latest artifact and verify title, client identity, role/service, dates, totals when relevant, links, attachment version, draft labels, and template readback status.
+3. Re-open the latest artifact and verify title, client identity, role/service, dates, totals when relevant, links, attachment version, draft labels, template readback status, and named Canva/visual-check status where applicable.
 4. Remove internal notes, unresolved placeholders, candidate data, hidden assumptions, and unsupported claims from the client-facing package.
 5. Prepare a concise email/calendar/document handoff stating purpose, action requested, deadline, and attachment/link. Gmail may create a draft only when Ana asks.
 6. Present a final send card: recipient, channel, subject/title, artifact, revision, amount when applicable, and remaining risks.

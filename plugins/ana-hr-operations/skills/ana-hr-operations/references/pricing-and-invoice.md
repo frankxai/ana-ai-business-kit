@@ -8,6 +8,8 @@ Use only an Ana-approved price list, written quote, or explicit instruction. Cap
 
 Require separate approvals for price and offer wording.
 
+When the offer uses Ana's Canva master, create a source-linked content pack before editing a copied design. A named human must visually check the copy; `CANVA_RENDER_PENDING` is a stop state, not a final offer.
+
 ## Invoice creation
 
 Create an invoice only from an approved offer or explicitly approved milestone. Reconcile:
@@ -22,6 +24,8 @@ Create an invoice only from an approved offer or explicitly approved milestone. 
 - payment instructions from an approved finance-system reference.
 
 The plugin may produce a draft Google Doc or Markdown invoice. It must not create a payment, alter accounting records, or invent bank details.
+
+When the invoice uses Ana's Canva master, the copied design is still an invoice draft until Ana reviews the billing identity, number, totals, payment reference, and named visual check. The visual template never contains raw bank credentials.
 
 ## Send gate
 

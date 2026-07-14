@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from string import Template
 
-from render_documents import context
+from render_documents import DOCUMENT_ASSETS, context
 from validate_engagement import STAGE_CHAIN, validate
 
 
@@ -62,6 +62,14 @@ sensitive_candidate = copy.deepcopy(EXAMPLE)
 sensitive_candidate["recruiting"]["candidate_email"] = "person@example.invalid"
 require(any("Forbidden sensitive field" in error for error in validate(sensitive_candidate, "recruiting")), "Candidate PII in the engagement record must fail.")
 
+missing_team_owner = copy.deepcopy(EXAMPLE)
+missing_team_owner["team"].pop("manager_approver")
+require(any("team.manager_approver" in error for error in validate(missing_team_owner, "first-call")), "Missing team manager must fail.")
+
+wrong_template_state = copy.deepcopy(EXAMPLE)
+wrong_template_state["template"]["document_routes"]["offer"]["platform"] = "google-docs"
+require(any("CANVA_RENDER_PENDING" in error for error in validate(wrong_template_state, "offer")), "Canva state must match Canva platform.")
+
 bad_line_amount = copy.deepcopy(EXAMPLE)
 bad_line_amount["invoice"]["line_items"][0]["amount"] = 999.0
 require(any("quantity × unit_price" in error for error in validate(bad_line_amount, "invoice")), "Incorrect invoice line arithmetic must fail.")
@@ -74,9 +82,17 @@ bad_pipeline_count = copy.deepcopy(EXAMPLE)
 bad_pipeline_count["recruiting"]["pipeline_counts"]["screened"] = -1
 require(any("non-negative integer" in error for error in validate(bad_pipeline_count, "recruiting")), "Invalid aggregate pipeline counts must fail.")
 
+null_privacy = copy.deepcopy(EXAMPLE)
+null_privacy["privacy"] = None
+null_privacy_context = context(null_privacy)
+require(
+    null_privacy_context["client_system"] == "[Approved client system]",
+    "Null privacy must render safe placeholders without crashing.",
+)
+
 render_context = context(EXAMPLE)
-for document in ["job-description", "offer", "invoice"]:
-    template = Template((ROOT / "assets" / f"{document}.md").read_text(encoding="utf-8"))
+for document in ["kickoff", "job-description", "offer", "invoice"]:
+    template = Template((ROOT / "assets" / DOCUMENT_ASSETS[document]).read_text(encoding="utf-8"))
     rendered = template.safe_substitute(render_context)
     require("${" not in rendered, f"{document} has unresolved placeholders.")
     require("DRAFT" in rendered, f"{document} must remain visibly draft-labeled.")

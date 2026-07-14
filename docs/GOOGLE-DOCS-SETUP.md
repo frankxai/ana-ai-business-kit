@@ -9,6 +9,7 @@ The goal is template fidelity: keep Ana's approved structure and styling while r
 3. Connect the approved Google account from the plugin screen.
 4. Confirm that the account can read the master template and create a copy in the destination folder.
 5. Keep the master template in a controlled folder with appropriate permissions.
+6. Record its private template-registry ID, owner, and visual-check requirement in Ana's private company overlay.
 
 Do not put the template URL, client folder URL, or customer identifiers in this public repository.
 
@@ -20,6 +21,7 @@ Do not put the template URL, client folder URL, or customer identifiers in this 
 - Intended destination folder.
 - New document title.
 - Explicit approval to create a copy.
+- Template-registry ID and named document/template owner.
 
 Use this prompt:
 
@@ -42,3 +44,7 @@ Connector readback confirms document structure, not necessarily visual page fide
 The document remains `TEMPLATE_BLOCKED` when the exact template, access, destination, or copy approval is missing. In that case Codex may make a private local Markdown draft, but it must not claim that the final Google Doc exists.
 
 The document remains a draft until Ana approves both its content and its template fidelity.
+
+## When the approved master is in Canva
+
+Do not recreate a Canva master as a generic Google Doc. Use the exact Canva master from the private registry, create a copy, prepare approved content first, and have a named human visually inspect the Canva copy. Until that happens, report `CANVA_RENDER_PENDING`. The complete route and copy/paste prompt are in [Template and Canva routing](TEMPLATE-AND-CANVA-ROUTING.md).
