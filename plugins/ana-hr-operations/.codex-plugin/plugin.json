@@ -1,7 +1,7 @@
 {
   "name": "ana-hr-operations",
-  "version": "0.2.0+codex.20260714033127",
-  "description": "Extend Ana's established HR delivery method across client work, recruiting, documents, research, and commercial administration—with human approval at every decision boundary.",
+  "version": "0.2.0+codex.20260714123709",
+  "description": "Extend Ana's established HR delivery method across client work, recruiting, research, Google Docs and Canva template execution, and commercial administration\u2014with human approval at every decision boundary.",
   "author": {
     "name": "FrankX",
     "url": "https://www.frankx.ai"
@@ -17,13 +17,14 @@
     "invoicing",
     "canva",
     "research-library",
-    "approval-gated-content"
+    "approval-gated-content",
+    "template-studio"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Ana HR Operations",
     "shortDescription": "Extend Ana's established, human-led HR delivery method.",
-    "longDescription": "Carry approved client work through recruiting operations, template-faithful documents, commercial preparation, research, and content while Ana's team owns delivery and named humans retain every decision and external send.",
+    "longDescription": "Carry approved client work through recruiting operations, interconnected Google Docs and Canva template jobs, commercial preparation, research, and content while Ana's team owns delivery and named humans retain every decision and external send.",
     "developerName": "FrankX",
     "category": "Productivity",
     "capabilities": [
@@ -34,7 +35,8 @@
     "defaultPrompt": [
       "Run Ana's manager morning control and approval queue.",
       "Run the 20\u201330 minute first-client-call SOP with a template route.",
-      "Create a source-backed content pack for Ana's approved offer or invoice master."
+      "Create a source-backed content pack for Ana's approved offer or invoice master.",
+      "Use Template Studio to create a checked practice copy or Canva candidate set, then stop for Ana's next decision."
     ]
   }
 }

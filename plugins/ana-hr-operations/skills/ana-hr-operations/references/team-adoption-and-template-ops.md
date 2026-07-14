@@ -45,5 +45,14 @@ Use these truthful states:
 
 - Use `$ana-research-library` for a source-backed research entry, evidence mapping, team-practice question, or research brief.
 - Use `$ana-approved-content` only after a factual source/approved library entry exists; it creates an approval-gated draft and never publishes/sends.
+- Use `$ana-template-studio` only after the current SOP validates. It owns the template job, content-pack-to-artifact mapping, Google Docs readback, Canva candidate selection, and Canva visual-check status.
 
 Neither specialised skill changes hiring accountability, template protections, finance controls, or external-action gates.
+
+## Guided and orchestrated adoption
+
+**Guided mode** is the team default: one person opens one Codex task, selects one SOP, completes one copied template, validates it, and asks Ana one exact decision. It is the recovery path whenever a connector or specialist handoff is unclear.
+
+**Orchestrated specialist mode** keeps `$ana-hr-operations` as the single coordinator. It may route evidence to `$ana-research-library`, artifacts to `$ana-template-studio`, and approved educational content to `$ana-approved-content`. Job description and offer preparation may run in parallel only after kickoff approval. Money, hiring decisions, candidate selection, visual review, approvals, sharing, and sending remain sequential.
+
+Every specialist handoff carries: engagement ID and alias, SOP/stage, validation result, immutable source receipt, artifact requested, unresolved decisions, owner, due date, and next human gate. Chat history alone is never a handoff record.

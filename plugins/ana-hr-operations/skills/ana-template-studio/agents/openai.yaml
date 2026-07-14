@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ana Template Studio"
+  short_description: "Create checked Docs and Canva artifact copies"
+  default_prompt: "Use $ana-template-studio to prepare an approval-gated template job from verified engagement facts."
