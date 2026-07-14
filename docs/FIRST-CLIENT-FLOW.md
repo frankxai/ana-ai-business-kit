@@ -2,7 +2,7 @@
 
 Use one private engagement record per client and role. The record lives in company-approved private storage outside this GitHub repository.
 
-Before live work, assign Ana, an engagement coordinator, a research/recruiting operator, and a document/client-experience operator using [Team adoption](TEAM-ADOPTION.md). Ana remains the named approver.
+Before live work, confirm named owners across management, coordination, research/recruiting, and document/client experience using [Team roles and authority](TEAM-ADOPTION.md). Ana remains the named approver.
 
 ## Before the call
 

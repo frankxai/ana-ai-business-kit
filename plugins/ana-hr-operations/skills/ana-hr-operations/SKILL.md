@@ -1,6 +1,6 @@
 ---
 name: ana-hr-operations
-description: "Run Ana's human-approved HR company operations across a four-person team: new-client discovery, kickoff, recruiting setup, job description or service offer, pricing approval, invoice draft, template-preserving Google Docs or Canva work, and approved handoff preparation. Use for recruiting clients, first-call capture, client onboarding, document quality, team control, and administration across many clients."
+description: "Extend Ana's established, human-approved HR delivery method across new-client discovery, kickoff, recruiting setup, job descriptions, service offers, pricing approval, invoice drafts, template-preserving Google Docs or Canva work, and approved handoff preparation. Use for recruiting clients, first-call capture, client onboarding, document quality, operating control, and administration across many clients."
 ---
 
 # Ana HR Operations

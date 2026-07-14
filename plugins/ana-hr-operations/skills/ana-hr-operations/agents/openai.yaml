@@ -1,4 +1,4 @@
 interface:
   display_name: "Ana HR Operations"
-  short_description: "Run Ana's four-person, auditable HR operating SOPs"
-  default_prompt: "Use $ana-hr-operations to select the exact SOP, role owner, template route, validation gate, approval card, and evidence receipt."
+  short_description: "Extend Ana's established, auditable HR delivery method"
+  default_prompt: "Use $ana-hr-operations to prepare the next client-delivery outcome from approved sources and templates, follow the correct operating route and quality gates, leave employment decisions with the client's named decision-makers, and leave practice judgments, scope, pricing, invoices, publication, and external sends with Ana."

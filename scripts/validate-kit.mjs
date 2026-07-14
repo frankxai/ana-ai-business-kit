@@ -122,6 +122,42 @@ for (const required of [
   if (!rootReadme.toLowerCase().includes(required.toLowerCase())) failures.push(`README onboarding content missing: ${required}`);
 }
 
+const publicEntries = [
+  'README.md',
+  'START-HERE-ANA.md',
+  'START-HERE-TEAM.md',
+  'FOUNDATION.md',
+  'docs/TEAM-ADOPTION.md',
+  'docs/WHO-READS-WHAT.md',
+  'plugins/ana-hr-operations/.codex-plugin/plugin.json',
+  'plugins/ana-hr-operations/skills/ana-hr-operations/agents/openai.yaml',
+];
+
+const publicEntryContents = await Promise.all(
+  publicEntries.map(async (entry) => ({
+    entry,
+    content: (await readFile(resolve(root, entry), 'utf8')).toLowerCase(),
+  })),
+);
+
+const staleFramings = [
+  'four-person adoption product',
+  'this is your four-person hr operating kit',
+  'the simple model',
+  'the point is not to make the team technical',
+  'your first 20 minutes',
+  'first 45 minutes',
+  'one rule to remember',
+  'the team is ready for normal use when it can demonstrate',
+  'asking all four people to work directly in github',
+];
+
+for (const { entry, content } of publicEntryContents) {
+  for (const staleFraming of staleFramings) {
+    if (content.includes(staleFraming)) failures.push(`${entry} contains stale onboarding framing: ${staleFraming}`);
+  }
+}
+
 const skillRoot = resolve(pluginRoot, 'skills', 'ana-hr-operations');
 const skillText = await readFile(resolve(skillRoot, 'SKILL.md'), 'utf8');
 if (skillText.includes('[TODO:')) failures.push('Skill contains TODO placeholders.');

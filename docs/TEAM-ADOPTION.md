@@ -1,17 +1,19 @@
-# Four-person team adoption
+# Team operating roles and authority
 
-This is the operating product for Ana and a four-person team. It is designed so the team can work mainly from Google Drive and Codex; GitHub is for maintained instructions and updates, not daily client work.
+This role map turns Ana's established way of working into visible ownership, decision rights, and clean handoffs. It defines four operating remits, not a required headcount: an experienced operator may own more than one remit, while approval separation and named accountability remain intact.
 
-## The four seats
+Daily delivery stays in Google Drive, the approved ATS, Canva, and Codex. GitHub maintains public-safe operating instructions and updates; it is not the team's live client workspace.
 
-| Seat | Primary outcome | Can prepare | Cannot decide or do alone |
+## Four operating remits
+
+| Operating remit | Primary outcome | Can prepare | Cannot decide or do alone |
 | --- | --- | --- | --- |
 | **Ana — manager and approver** | Quality, client trust, scope, risk, and commercial control | Manager board, approval review, escalation, final artifact review | Delegate final hiring decision, price, invoice, publication, or external send to AI |
 | **Engagement coordinator** | Every client has a next action, owner, date, and clean kickoff | First-call capture, board updates, meeting preparation, follow-up draft | Approve scope, price, invoice, or send; edit master templates |
 | **Research and recruiting operator** | Job-relevant research, scorecard/process readiness, and traceable sources | Research library entries, role evidence, aggregate pipeline updates, weekly status draft | Make a candidate decision, retain candidate data outside the ATS, turn neuroscience/personality into a selection signal |
 | **Document and client-experience operator** | Template fidelity and clean client experience | Content pack, copied Google Doc/Canva draft, visual-check card, client-facing draft | Edit a master, publish, send, approve a commercial number, or claim a visual check that did not happen |
 
-One person may temporarily cover two seats, but the approval separation still applies: the person who prepared a commercial/client-facing item does not silently self-approve it.
+One person may own more than one remit, but approval separation still applies: the person who prepared a commercial or client-facing item does not silently self-approve it.
 
 ## Permission matrix
 
@@ -30,31 +32,31 @@ Use named individual accounts. Do not share a Google, Canva, GitHub, Codex, ATS,
 
 This is a starting access design, not legal or security advice. Align it with the client's data-processing terms, local employment law, and Ana's actual systems before live use.
 
-## First month adoption
+## Activation and assurance sequence
 
-### Day 0 — set the guardrails (45–60 minutes)
+### Establish the control layer
 
-1. Assign the four seats and backup owners.
+1. Assign a named owner and backup for each operating remit.
 2. Create the Drive folder structure in [Workspace and template architecture](GOOGLE-WORKSPACE-AND-TEMPLATES.md).
 3. Set up the private template registry and identify the real kickoff, offer, invoice, and Canva presentation masters.
 4. Confirm where candidate data, client data, and finance information actually live.
 5. Install the plugin on the team members' individual Codex accounts; do not paste credentials into any prompt.
 
-### Week 1 — practice, not production
+### Validate the route with a fictional release rehearsal
 
-1. Run [the fictional practice engagement](PRACTICE-ENGAGEMENT.md) together.
-2. Each role uses its prompt from [Team starter prompts](TEAM-STARTER-PROMPTS.md).
-3. Ana runs the manager morning control and approval review.
-4. Record only learnings about the process in the private overlay—no client data.
+1. Run [the fictional release rehearsal](PRACTICE-ENGAGEMENT.md) across the complete route.
+2. Each operator uses the relevant prompt from [Team starter prompts](TEAM-STARTER-PROMPTS.md).
+3. Ana reviews the manager control, approval review, and decision boundaries.
+4. Record only approved operating decisions and process improvements in the private overlay—no client data.
 
-### Week 2 — one live pilot
+### Activate one bounded live engagement
 
-1. Pick one appropriate, low-complexity engagement with a clear client data boundary.
+1. Select one appropriate, bounded engagement with a clear client data boundary.
 2. Use one private engagement record and the existing template masters.
 3. Keep candidate identities and interview evidence in the ATS.
-4. Stop at every approval gate. A slow, well-receipted first run is a successful run.
+4. Stop at every approval gate. A deliberate, well-receipted first run is a successful run.
 
-### Weeks 3–4 — stabilize
+### Stabilize and extend
 
 1. Review bottlenecks, unclear ownership, template issues, and repeated questions.
 2. Update the private template registry, prompts, and team guide—not the public repository with client-specific content.
@@ -74,9 +76,9 @@ These are explicit prompts, not automated commands. Use them in a fresh task wit
 
 Use the prompts in [Start Here](../START-HERE-ANA.md). A manager control produces a decision card; it does not itself grant approval.
 
-## Definition of adoption success
+## Operating readiness standard
 
-The team is ready for normal use when it can demonstrate, on a fictional case:
+Before a workflow version is used with live client material, the fictional release evidence should show:
 
 - one correct owner and next action for every engagement;
 - a copied—not edited—master template route for kickoff, offer, invoice, and presentation;

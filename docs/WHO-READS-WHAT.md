@@ -1,6 +1,6 @@
-# Who reads what and where the team works
+# Operating map: what each person reads and owns
 
-## Recommended operating mode
+## Recommended operating model
 
 Use a **Drive-first, GitHub-maintained** model:
 
@@ -10,7 +10,7 @@ Use a **Drive-first, GitHub-maintained** model:
 - Ana or the approved technical maintainer reviews repository updates and mirrors the relevant operating summary into Drive.
 - A separate private company overlay holds real template references and internal policy. It is not a public fork and never holds live candidate records.
 
-Using only Google Drive would make the underlying validation and version history harder to maintain. Asking all four people to work directly in GitHub would add unnecessary friction and increase the chance that client data lands in the wrong place. The hybrid model keeps daily work simple and the operating logic auditable.
+This separation respects how expert operators already work: client delivery stays in familiar, controlled business systems, while versioned quality controls remain reviewable and auditable. GitHub maintenance is a specific technical responsibility, not a requirement for every operator.
 
 ## Reading path by role
 
@@ -27,7 +27,7 @@ Using only Google Drive would make the underlying validation and version history
 | Subject | Canonical source | Drive mirror/use |
 | --- | --- | --- |
 | SOP sequence and exception codes | Plugin `references/sop-index.md` + `references/sops/` | Operating manual summary; Codex selects exact plugin SOP |
-| Team roles and permissions | `docs/TEAM-ADOPTION.md` | Governance folder copy, adapted privately |
+| Operating roles and permissions | `docs/TEAM-ADOPTION.md` | Governance folder copy, adapted privately |
 | Folder/template permissions | `docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md` | Actual controlled Drive folders and permissions |
 | Starter prompts | `docs/TEAM-STARTER-PROMPTS.md` | Team onboarding Doc or bookmarks |
 | Practice acceptance | `docs/PRACTICE-ENGAGEMENT.md` | Fictional practice folder/workbook |

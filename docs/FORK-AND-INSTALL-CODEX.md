@@ -1,6 +1,6 @@
 # Install Ana HR Operations and keep company work private
 
-The public repository is the maintained learning and plugin source. Your actual template links, internal policy, client records, candidate records, commercial information, and credentials stay in a separately controlled private company workspace.
+The public repository is the versioned plugin and operating source. Your actual template links, internal policy, client records, candidate records, commercial information, and credentials stay in a separately controlled private company workspace.
 
 ## Before you start
 
@@ -13,7 +13,7 @@ You need:
 
 Do not add live client or candidate records to GitHub.
 
-## Option A — install Frank's maintained public-safe version
+## Option A — activate Frank's maintained public-safe version
 
 Use this for the quickest start. It contains blank templates, validation, fictional practice material, and operating instructions only.
 
@@ -83,7 +83,7 @@ Use the plugin screen for connector setup. Connector availability can differ bet
 4. Type `@` and select **Ana HR Operations**, or ask for it by name.
 5. Run this safe practice prompt:
 
-> Use Ana HR Operations. Use fictional placeholders only. Explain the SOPs, the four team roles, the template route, and the approval gates. Do not create, share, send, schedule, price, invoice, or publish anything.
+> Use Ana HR Operations. Use fictional placeholders only. Walk through the operating routes, named team responsibilities, template route, and approval gates. Do not create, share, send, schedule, price, invoice, or publish anything.
 
 Expected flow: first call, kickoff, job description and/or offer, recruiting, invoice, approved handoff. See [Practice engagement](PRACTICE-ENGAGEMENT.md).
 

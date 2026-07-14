@@ -1,31 +1,31 @@
 # Start here, Ana
 
-This is your four-person HR operating kit. It helps your team move a client from first conversation to a high-quality, human-approved kickoff, job description, offer, invoice draft, recruiting update, and handoff—without putting client or candidate information in GitHub.
+You already have the method, judgment, team, and templates that make the work valuable. This kit gives them a shared operating layer, so each client can move from first conversation to a high-quality kickoff, job description, offer, invoice draft, recruiting update, and handoff with clear ownership and human approval.
 
-AI prepares, checks, and explains. You remain the accountable manager for your practice: client decision-makers make employment decisions, while you approve your team's recommendations, scope, pricing, invoices, publication, and external communication.
+AI works backstage to prepare, check, and explain. Your team owns delivery. Client decision-makers make employment decisions, while you retain authority over your practice's recommendations, scope, pricing, invoices, publication, and external communication.
 
-## The simple model
+## Your operating architecture
 
 | Layer | What it does | Where it lives |
 | --- | --- | --- |
-| **SOP** | Tells the team the right order, quality gate, and stop condition. | This plugin |
+| **Operating route** | Carries the team's method through the right sequence, quality gate, and stop condition. | This plugin |
 | **Private engagement record** | Holds the live facts, owner, approvals, and next action for one client and role. | Ana's approved private workspace |
 | **Master template** | Holds the exact design for kickoff, offer, invoice, or presentation. | Controlled Google Drive or Canva |
 | **Approval record** | Shows who approved what, when, and what is still blocked. | Private engagement record + control workbook |
 | **Final artifact** | A copied, checked draft or approved client document. | Client engagement folder |
 
-The point is not to make the team technical. They work from Google Drive and Codex. GitHub is the maintained operating manual and update source; Ana or an explicitly approved technical maintainer keeps the private company overlay.
+Daily delivery stays in the systems your team already uses: Google Drive, the approved ATS, Canva, and Codex. GitHub maintains the versioned operating logic and public-safe updates; you or an explicitly approved technical maintainer keeps the separate private company overlay.
 
-Give each teammate [Start Here for the Team](START-HERE-TEAM.md). The role-by-role reading and ownership map is in [Who reads what](docs/WHO-READS-WHAT.md).
+Each operator can use [Start Here for the Team](START-HERE-TEAM.md). The role-by-role reading and ownership map is in [Who reads what](docs/WHO-READS-WHAT.md).
 
-## First 45 minutes
+## Activate the operating layer
 
-1. Read [Team adoption](docs/TEAM-ADOPTION.md) together and choose the four role owners.
+1. Confirm the named owner and backup for each remit in [Team roles and authority](docs/TEAM-ADOPTION.md).
 2. Create the private Drive structure exactly as described in [Workspace and template architecture](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md). Do not move live client or candidate data into this repo.
 3. Put the approved kickoff, offer, invoice, and presentation masters in **01 Master Templates**. Make each one view-only for the wider team; copies are edited in the relevant engagement folder.
 4. Complete a private template registry using [the example registry](plugins/ana-hr-operations/skills/ana-hr-operations/assets/template-registry.example.json). Keep real links in the private overlay only.
 5. Install the HR plugin using [the corrected install guide](docs/FORK-AND-INSTALL-CODEX.md), then start a **new Codex task**.
-6. Run the fictional [practice engagement](docs/PRACTICE-ENGAGEMENT.md) before using a live client. It deliberately uses made-up names and no candidate data.
+6. Run the fictional [release rehearsal](docs/PRACTICE-ENGAGEMENT.md) before applying the system to live work. It deliberately uses made-up names and no candidate data.
 
 ## Daily rhythm
 
@@ -45,7 +45,7 @@ Only after you actively say "I approve [specific decision]" with the relevant fa
 
 Each person uses a fresh task and their role prompt from [Team starter prompts](docs/TEAM-STARTER-PROMPTS.md). The coordinator owns the next action; the research operator owns source quality; the document operator owns template fidelity. Nobody makes an employment decision, commercial commitment, or external send through the system.
 
-## Your existing great templates
+## Your method and templates remain in charge
 
 Your real kickoff, offer, invoice, and Canva presentation templates are the source of visual quality. This kit never replaces them with generic AI styling.
 
@@ -53,9 +53,9 @@ Your real kickoff, offer, invoice, and Canva presentation templates are the sour
 - **Canva offer, invoice, and presentation templates:** the team provides the exact approved Canva master inside a private task; creates a copy; prepares a content pack from approved facts; then performs a human visual check in Canva. Codex must report `CANVA_RENDER_PENDING` until that check is complete.
 - **No exact template link, no final document:** the correct result is `TEMPLATE_BLOCKED`, not an invented document. The full route is in [Template and Canva routing](docs/TEMPLATE-AND-CANVA-ROUTING.md).
 
-## One first live engagement
+## Bring one engagement into the operating layer
 
-When the practice engagement passes, use this prompt with the real client facts only in Ana's approved private workspace:
+When the release rehearsal passes, use this prompt with real client facts only in your approved private workspace:
 
 > Use Ana HR Operations. Create or open the private engagement record for one client and one role. Select SOP-01 and guide me through the first-call capture one section at a time. Separate facts, assumptions, owners, due dates, template route, and approvals. Keep candidate information in the approved ATS. Do not send, schedule, set price, create an invoice, or publish anything.
 
@@ -75,7 +75,7 @@ Then use the system in this order:
 | Finance credentials and bank details | Approved finance system only |
 | Daily cross-client view | Private control workbook, aliases only |
 
-## What Codex is doing underneath
+## The control layer beneath each request
 
 For every request it should:
 
@@ -85,10 +85,10 @@ For every request it should:
 4. create or validate a private record; run its validation; and preserve the source of each important fact;
 5. produce a receipt: what changed, what is still blocked, approvals present/missing, template status, and next owner.
 
-That gives your team consistency without asking them to learn Markdown, Git, or a technical agent framework in daily work.
+That gives your team a consistent, auditable route while daily work stays focused on clients, decisions, and delivery.
 
 ## Updates and support
 
-Use [Release and update checks](docs/RELEASE-AND-UPDATE.md) once per month or before a new teammate starts. Changes should be trialled on the fictional practice engagement first. Keep real policy and template changes in the private overlay, never in a public fork.
+Use [Release and update checks](docs/RELEASE-AND-UPDATE.md) once per month or before a new teammate starts. Changes should pass the fictional release rehearsal first. Keep real policy and template changes in the private overlay, never in a public fork.
 
-The optional Operator and Client Session ZIPs remain separate from the HR plugin. See the repository README for their audience boundary.
+The optional legacy-compatible Operator and Client Session ZIPs remain separate from the primary HR plugin. See the repository README for their audience boundary.
