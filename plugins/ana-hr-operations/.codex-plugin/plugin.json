@@ -35,8 +35,7 @@
     "defaultPrompt": [
       "Run Ana's manager morning control and approval queue.",
       "Run the 20\u201330 minute first-client-call SOP with a template route.",
-      "Create a source-backed content pack for Ana's approved offer or invoice master.",
-      "Use Template Studio to create a checked practice copy or Canva candidate set, then stop for Ana's next decision."
+      "Run Template Studio on a practice offer or invoice, then stop for Ana's approval."
     ]
   }
 }
