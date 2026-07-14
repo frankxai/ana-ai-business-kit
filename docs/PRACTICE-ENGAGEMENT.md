@@ -74,9 +74,9 @@ Pass when the calculation validates and the invoice remains a draft.
 
 ### 6. Canva and Google Docs visual route
 
-The document operator prepares a fictional content pack using [Template and Canva routing](TEMPLATE-AND-CANVA-ROUTING.md). No real master is provided in this exercise.
+The document operator prepares a fictional content pack using [Template and Canva routing](TEMPLATE-AND-CANVA-ROUTING.md). Use one of the clearly labeled private v1.2 practice masters, copy it, and keep the practice warning visible. The repository contains no Drive/Canva URL; select the exact private registry entry in the team workspace.
 
-Pass when the output says `TEMPLATE_BLOCKED` rather than pretending that a Google Doc or Canva design exists. If Ana uses a disposable internal practice master, it must still be copied and visually checked by a named human.
+For Google Docs, pass when the copy is re-read and reports `GOOGLE_DOCS_READBACK_COMPLETE`, while rendered layout is honestly marked inspected or uninspected. For Canva, generate candidates only when Ana has explicitly chosen the starter route; stop at `CANVA_CANDIDATE_SELECTION_PENDING`, then create an editable design only from the selected candidate and keep `CANVA_RENDER_PENDING` until a named human checks it. If the exact practice registry entry is unavailable, report `TEMPLATE_BLOCKED`.
 
 ### 7. Research library
 
@@ -100,9 +100,13 @@ Pass when a content draft is separate from publication approval.
 - [ ] Every stage has an SOP receipt.
 - [ ] Real client/candidate/financial data never appears.
 - [ ] A missing template becomes `TEMPLATE_BLOCKED`.
+- [ ] A practice master is copied; the master itself is never edited.
+- [ ] Canva candidate generation stops for user selection before editable-design creation.
 - [ ] No Canva visual review is claimed without a human check.
 - [ ] Ana approval is named and specific; no approval is inferred.
 - [ ] A candidate is never ranked, diagnosed, profiled, or selected by AI.
 - [ ] The research and content skills produce a draft plus boundary, not a live action.
 
 If any box is not true, repeat only the failed stage before a live pilot.
+
+The latest public-safe execution receipt is in [Practice execution v1.2](PRACTICE-EXECUTION-V1.2.md).

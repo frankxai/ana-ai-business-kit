@@ -32,9 +32,13 @@ Add this to every live-work prompt:
 
 > Use Ana HR Operations. Create a content pack for `[kickoff / job description / offer / invoice / presentation]` for `[engagement alias]`. Use only approved sources. List every fact, number source, unresolved field, template ID, destination, required approval, and visual-check requirement. Do not create or share a final document yet.
 
+> Use Ana Template Studio in guided mode with the validated `[SOP receipt]` and copied `[artifact]` content pack. Select the exact-master, starter-practice, generated-candidate, or local-fallback route; validate the template job; explain each gate; and stop for the named approval. Do not change upstream facts, edit a master, share, or send.
+
 > Use Ana HR Operations and Google Docs. Using the exact private master and destination I provide, create a copy only, map approved content in small verified batches, re-read it, and report the copy URL, structure/readback, remaining placeholders, and rendered-layout verification status. Keep it a draft and do not share or send it.
 
 > Use Ana HR Operations and Canva. Use the exact private master I provide, create a copy only, apply the approved content pack, and preserve the master visual system. Mark `CANVA_RENDER_PENDING` until I record a human visual check. Do not export, publish, share, or send it.
+
+> Use Ana Template Studio for a practice-only Canva `[offer presentation / invoice]`. Generate placeholder-only review candidates, show every candidate, and stop for my selection. Do not create an editable design until I choose one and do not call it Ana's approved master.
 
 > Use Ana Approved Content. Draft `[format]` from approved source entries only. State the intended audience, source IDs, factual boundaries, clear next step, and approval needed. Do not use a client story, guarantee, urgency tactic, diagnosis, neuroscience claim, publish, or send.
 

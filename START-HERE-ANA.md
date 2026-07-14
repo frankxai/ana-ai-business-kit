@@ -27,6 +27,8 @@ Each operator can use [Start Here for the Team](START-HERE-TEAM.md). The role-by
 5. Install the HR plugin using [the corrected install guide](docs/FORK-AND-INSTALL-CODEX.md), then start a **new Codex task**.
 6. Run the fictional [release rehearsal](docs/PRACTICE-ENGAGEMENT.md) before applying the system to live work. It deliberately uses made-up names and no candidate data.
 
+The private Ana Team Operating System Drive now also contains a short **Ana HR Template Studio — PRACTICE ONLY — v1.2** pack: first call/kickoff, role scorecard/job description, service-offer content, invoice content, and approval/handoff. These are disposable rehearsal masters, not replacements for your real documents. When you send your real templates, the private registry changes to those exact masters and the same prompts, approvals, and checks continue to work.
+
 ## Daily rhythm
 
 ### Ana — manager control
@@ -51,6 +53,7 @@ Your real kickoff, offer, invoice, and Canva presentation templates are the sour
 
 - **Google Docs templates:** Codex reads the exact master, makes a copy, changes only the copy in small verified batches, re-reads it, and reports whether visual page inspection happened.
 - **Canva offer, invoice, and presentation templates:** the team provides the exact approved Canva master inside a private task; creates a copy; prepares a content pack from approved facts; then performs a human visual check in Canva. Codex must report `CANVA_RENDER_PENDING` until that check is complete.
+- **Starter Canva route:** if you explicitly want to establish a new master before your real Canva source arrives, `$ana-template-studio` can generate practice candidates. You or I choose one before Codex creates an editable design; then a named human checks it. A generated candidate is never silently promoted to your approved brand template.
 - **No exact template link, no final document:** the correct result is `TEMPLATE_BLOCKED`, not an invented document. The full route is in [Template and Canva routing](docs/TEMPLATE-AND-CANVA-ROUTING.md).
 
 ## Bring one engagement into the operating layer
@@ -92,3 +95,5 @@ That gives your team a consistent, auditable route while daily work stays focuse
 Use [Release and update checks](docs/RELEASE-AND-UPDATE.md) once per month or before a new teammate starts. Changes should pass the fictional release rehearsal first. Keep real policy and template changes in the private overlay, never in a public fork.
 
 The optional legacy-compatible Operator and Client Session ZIPs remain separate from the primary HR plugin. See the repository README for their audience boundary.
+
+The connected document and specialist architecture is in [Template Studio v1.2](docs/TEMPLATE-STUDIO-V1.2.md).

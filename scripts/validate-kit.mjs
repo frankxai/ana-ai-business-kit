@@ -76,6 +76,7 @@ for (const guide of [
   'docs/RELEASE-AND-UPDATE.md',
   'docs/HR-AGENCY-ADAPTATION.md',
   'docs/WHO-READS-WHAT.md',
+  'docs/TEMPLATE-STUDIO-V1.2.md',
 ]) {
   try {
     const guideText = await readFile(resolve(root, guide), 'utf8');
@@ -216,6 +217,16 @@ for (const [skillName, resources] of Object.entries({
     'assets/content-brief.example.json',
     'scripts/validate_content_brief.py',
     'scripts/test_approved_content.py',
+  ],
+  'ana-template-studio': [
+    'SKILL.md',
+    'agents/openai.yaml',
+    'references/template-job-contract.md',
+    'references/docs-canva-runbook.md',
+    'references/specialist-orchestration.md',
+    'assets/template-job.example.json',
+    'scripts/validate_template_job.py',
+    'scripts/test_template_studio.py',
   ],
 })) {
   const specialSkillRoot = resolve(pluginRoot, 'skills', skillName);

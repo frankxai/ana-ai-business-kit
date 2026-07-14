@@ -32,6 +32,14 @@ Operate one structured engagement per client and role. Capture facts once, execu
 - Use `manager morning control`, `approval review`, or `quality and exceptions review` as read-only manager controls. Present a decision card; do not treat the request itself as approval.
 - Use `$ana-research-library` for source capture, HR/recruiting research, team-practice research, or voluntary workshop research. It never turns research into a hiring or diagnostic signal.
 - Use `$ana-approved-content` only to draft source-backed educational/marketing content that remains approval-gated and unpublished.
+- Use `$ana-template-studio` after a stage validates and a kickoff, job description, offer, invoice, presentation, or handoff artifact must be created or checked in Google Docs or Canva.
+
+## Operating modes
+
+- Use **guided mode by default**: one SOP, one artifact, one validation, and one human decision at a time. Explain what is happening underneath and stop at each named gate.
+- Use **orchestrated specialist mode** only when the user asks for the team, swarm, end-to-end execution, or parallel preparation. This skill remains the single coordinator and synthesis owner. Route research to `$ana-research-library`, template execution to `$ana-template-studio`, and approval-gated education/marketing to `$ana-approved-content`.
+- After kickoff approval, job-description/scorecard work and offer-content preparation may run in parallel from the same immutable kickoff receipt. Candidate selection, price/invoice reconciliation, Ana approvals, visual checks, and external handoffs remain sequential human gates.
+- If a connector or specialist route fails, return to guided mode at the last validated stage. Do not improvise past the missing evidence.
 
 ## Core workflow
 
@@ -56,16 +64,18 @@ python scripts/validate_engagement.py <private-record.json> --stage <first-call|
 python scripts/render_documents.py <private-record.json> --document <kickoff|job-description|offer|invoice> --out <private-output.md>
 ```
 
-8. For a Google Docs final, use the installed `$google-docs` skill. Require the exact approved template URL, copy the master, preserve connector-visible structure, write in small verified batches, and re-read before handoff. Report whether visual layout was actually inspected.
-9. For a Canva offer, invoice, or presentation, require the exact approved master, Ana's copy approval, an approved content pack, and a named human visual check. Use `CANVA_RENDER_PENDING` until the visual check is recorded. Never edit a master or claim generic output is Ana's design.
-10. Create an invoice only from an approved offer or milestone. Validate amounts and require invoice approval.
-11. Prepare a send draft only after explicit send approval names the exact recipient and channel. Never send automatically.
-12. End with the SOP receipt defined in `references/sop-index.md`.
+8. Route the validated stage receipt to `$ana-template-studio`. It creates one template job and selects the exact-master, starter-practice, generated-candidate, or local-fallback route.
+9. For a Google Docs final, use the installed `$google-docs` skill through Template Studio. Require the exact approved template URL, copy the master, preserve connector-visible structure, write in small verified batches, and re-read before handoff. Report whether visual layout was actually inspected.
+10. For a Canva offer, invoice, or presentation, prefer the exact approved master. When Ana explicitly asks to establish a starter and the account cannot access brand templates, Template Studio may generate practice candidates, but it must show every candidate and wait for user selection before creating an editable design. Use `CANVA_RENDER_PENDING` until the named visual check is recorded. Never edit a master or call a generated candidate Ana's approved design.
+11. Create an invoice only from an approved offer or milestone. Validate amounts and require invoice approval.
+12. Prepare a send draft only after explicit send approval names the exact recipient and channel. Never send automatically.
+13. End with the SOP receipt defined in `references/sop-index.md`.
 
 ## Existing plugin routing
 
 - Use `$google-docs` for Google Docs template reads, copies, edits, and connector verification.
 - Use Canva only for an exact Canva master after a private content pack and copy approval; visual review remains a named human action.
+- For a new practice-only Canva starter, use `$ana-template-studio` and its generated-candidate selection gate. This does not replace the future exact-master route.
 - Use `$google-sheets` only for the private alias-only control workbook and practice tracker, never as the candidate system of record.
 - Use Google Calendar only when Ana asks to schedule or inspect a kickoff.
 - Use Gmail only to create a draft after the send gate passes and Ana explicitly requests it.

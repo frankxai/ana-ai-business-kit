@@ -4,7 +4,7 @@
   "private": true,
   "description": "Human-approved HR operating system for Ana's established client, recruiting, document, research, and commercial workflows.",
   "scripts": {
-    "test": "node scripts/validate-kit.mjs && python plugins/ana-hr-operations/skills/ana-hr-operations/scripts/test_engagement.py && python plugins/ana-hr-operations/skills/ana-hr-operations/scripts/test_sops.py && python plugins/ana-hr-operations/skills/ana-research-library/scripts/test_research_library.py && python plugins/ana-hr-operations/skills/ana-approved-content/scripts/test_approved_content.py",
+    "test": "node scripts/validate-kit.mjs && python plugins/ana-hr-operations/skills/ana-hr-operations/scripts/test_engagement.py && python plugins/ana-hr-operations/skills/ana-hr-operations/scripts/test_sops.py && python plugins/ana-hr-operations/skills/ana-research-library/scripts/test_research_library.py && python plugins/ana-hr-operations/skills/ana-approved-content/scripts/test_approved_content.py && python plugins/ana-hr-operations/skills/ana-template-studio/scripts/test_template_studio.py",
     "package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/New-Release.ps1"
   }
 }

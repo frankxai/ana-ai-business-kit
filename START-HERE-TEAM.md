@@ -31,6 +31,8 @@ GitHub is the maintained source for versioned instructions, blank examples, vali
 
 Codex should name the SOP before working, confirm entry criteria, stop with a clear exception when blocked, and return a receipt with the next owner and action.
 
+Use guided mode while learning: one SOP, one copied artifact, one validation, and one Ana decision. When the team later uses the specialist route, Ana HR Operations remains the coordinator and Ana Template Studio handles only the Docs/Canva artifact. If anything becomes unclear, return to the last validated guided step.
+
 ## Where you work
 
 | Information | Use this system |
@@ -47,6 +49,7 @@ Codex should name the SOP before working, confirm entry criteria, stop with a cl
 
 - `TEMPLATE_BLOCKED`: the exact master, destination, access, or copy approval is missing.
 - `CANVA_RENDER_PENDING`: the Canva copy has not had a named human visual check.
+- `CANVA_CANDIDATE_SELECTION_PENDING`: Canva returned options; no editable design exists until a person chooses one.
 - `APPROVAL_PENDING`: Ana has not actively approved the exact decision.
 - `PRIVACY_BLOCKED`: the requested work would put sensitive information in the wrong place.
 

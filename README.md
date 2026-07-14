@@ -15,11 +15,12 @@ AI works backstage: it prepares, reconciles, and checks. Ana's team owns deliver
 | Research and team practice | Evidence library, applicability notes, workshop/research draft | Ana decides what is appropriate to use or teach |
 | Content | Accurate, approval-gated draft using approved sources | Ana approves publication and any send |
 
-The plugin includes three complementary skills:
+The plugin includes four complementary skills:
 
 | Skill | Job |
 | --- | --- |
 | `ana-hr-operations` | Consistent client delivery, recruiting operations, documents, commercial preparation, and handoffs |
+| `ana-template-studio` | Validated content-pack-to-Google-Docs/Canva execution, candidate selection, readback, visual checks, and approval cards |
 | `ana-research-library` | Evidence capture and a safe research library for HR, recruiting, team practice, and voluntary workshop preparation |
 | `ana-approved-content` | Approval-gated, source-backed content drafts; it never publishes or sends |
 
@@ -37,9 +38,10 @@ Ana's existing kickoff, offer, invoice, and presentation masters are the design 
 
 - Google Docs: exact master → copy only → small verified edits → connector readback → human content/template approval.
 - Canva: exact master → copy only → approved content pack → Canva visual check → human approval. The status stays `CANVA_RENDER_PENDING` until visual review is recorded.
+- Starter Canva route: generated candidates → user selection → editable design → named visual check. It is practice-only until Ana promotes an exact master.
 - Google Sheets: controlled private workbook for aliases, task state, approvals, and fictional practice data; candidate identities remain in the ATS.
 
-See [Template and Canva routing](docs/TEMPLATE-AND-CANVA-ROUTING.md) and [Workspace architecture](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md).
+See [Template and Canva routing](docs/TEMPLATE-AND-CANVA-ROUTING.md), [Template Studio v1.2](docs/TEMPLATE-STUDIO-V1.2.md), and [Workspace architecture](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md).
 
 ## Technical activation
 

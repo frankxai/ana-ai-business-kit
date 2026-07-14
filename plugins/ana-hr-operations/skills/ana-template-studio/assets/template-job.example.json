@@ -1,0 +1,61 @@
+{
+  "schema": "ana-template-job/v1",
+  "demo_only": true,
+  "job_id": "TJOB-DEMO-001",
+  "engagement_id": "ANA-DEMO-001",
+  "client_alias": "EXAMPLE-OPS",
+  "artifact_type": "offer-presentation",
+  "mode": "guided",
+  "platform": "canva",
+  "status": "CANVA_CANDIDATE_SELECTION_PENDING",
+  "upstream": {
+    "sop_id": "SOP-04",
+    "stage": "offer",
+    "validation": "pass",
+    "receipt_reference": "PRIVATE-DEMO-SOP-04-RECEIPT"
+  },
+  "route": "generated-candidate",
+  "source": {
+    "content_pack_reference": "PRIVATE-DEMO-OFFER-CONTENT-PACK",
+    "template_reference": "PRACTICE-STARTER-NOT-ANA-MASTER",
+    "comparable_reference": null,
+    "destination_reference": "PRIVATE-DEMO-ARTIFACT-FOLDER",
+    "facts_reviewed_at": "2026-07-14T12:00:00Z"
+  },
+  "content": {
+    "approved_fact_references": ["PRIVATE-DEMO-KICKOFF", "PRIVATE-DEMO-PRICE-SOURCE"],
+    "required_sections": ["outcome", "scope", "timeline", "commercial terms", "next decision"],
+    "unresolved_fields": [],
+    "commercial_source_references": ["PRIVATE-DEMO-PRICE-SOURCE", "PRIVATE-DEMO-TAX-SOURCE"]
+  },
+  "artifact": {
+    "master_never_edit": true,
+    "copy_reference": null,
+    "revision": null,
+    "generation_job_reference": "DEMO-CANVA-JOB",
+    "candidate_reference": null,
+    "downstream_stage": "send"
+  },
+  "verification": {
+    "google_docs_readback": "not-applicable",
+    "rendered_layout_inspected": false,
+    "canva_candidate_selection": "pending",
+    "canva_visual_check": "pending",
+    "visual_checked_by": null,
+    "visual_checked_at": null
+  },
+  "approvals": {
+    "copy": "approved-for-practice",
+    "content": "approved-fictional",
+    "commercial": "approved-fictional",
+    "invoice": "not-applicable",
+    "visual": "pending",
+    "send": "not-requested"
+  },
+  "next": {
+    "action": "Frank or Ana selects one Canva candidate.",
+    "owner": "Frank or Ana",
+    "due_date": "2026-07-15",
+    "external_action_still_requiring_ana": "Any client use, share, export, or send."
+  }
+}
