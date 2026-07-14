@@ -82,6 +82,14 @@ bad_pipeline_count = copy.deepcopy(EXAMPLE)
 bad_pipeline_count["recruiting"]["pipeline_counts"]["screened"] = -1
 require(any("non-negative integer" in error for error in validate(bad_pipeline_count, "recruiting")), "Invalid aggregate pipeline counts must fail.")
 
+null_privacy = copy.deepcopy(EXAMPLE)
+null_privacy["privacy"] = None
+null_privacy_context = context(null_privacy)
+require(
+    null_privacy_context["client_system"] == "[Approved client system]",
+    "Null privacy must render safe placeholders without crashing.",
+)
+
 render_context = context(EXAMPLE)
 for document in ["kickoff", "job-description", "offer", "invoice"]:
     template = Template((ROOT / "assets" / DOCUMENT_ASSETS[document]).read_text(encoding="utf-8"))

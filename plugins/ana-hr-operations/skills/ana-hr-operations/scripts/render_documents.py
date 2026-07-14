@@ -41,6 +41,7 @@ def line_items(values, currency: str) -> str:
 def context(record: dict) -> dict[str, str]:
     client = record["client"]
     kickoff = record["kickoff"]
+    privacy = record.get("privacy") or {}
     role = record.get("role", {})
     offer = record.get("offer", {})
     invoice = record.get("invoice", {})
@@ -59,10 +60,10 @@ def context(record: dict) -> dict[str, str]:
         "decision_makers": bullets(kickoff.get("decision_makers", [])),
         "communication_cadence": kickoff.get("communication_cadence", "[Communication cadence]"),
         "selection_process": kickoff.get("selection_process", "[Selection process]"),
-        "client_system": record.get("privacy", {}).get("client_system", "[Approved client system]"),
-        "candidate_system": record.get("privacy", {}).get("candidate_system", "[Approved candidate system]"),
-        "retention_owner": record.get("privacy", {}).get("retention_owner", "[Retention owner]"),
-        "deletion_rule": record.get("privacy", {}).get("deletion_rule", "[Deletion rule]"),
+        "client_system": privacy.get("client_system", "[Approved client system]"),
+        "candidate_system": privacy.get("candidate_system", "[Approved candidate system]"),
+        "retention_owner": privacy.get("retention_owner", "[Retention owner]"),
+        "deletion_rule": privacy.get("deletion_rule", "[Deletion rule]"),
         "role_title": role.get("title", "[Role title]"),
         "location": role.get("location", "[Location]"),
         "employment_type": role.get("employment_type", "[Employment type]"),

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -63,6 +64,7 @@ REQUIRED_PROHIBITIONS = {
     "personality or emotion profiling",
     "automated employment decision",
 }
+PRIVATE_REFERENCE_RE = re.compile(r"^PRIVATE-[A-Z0-9][A-Z0-9._-]{2,127}$")
 
 
 def get_path(data: dict, dotted: str):
@@ -102,9 +104,11 @@ def parse_iso_date(value, label: str, errors: list[str]) -> date | None:
 
 def validate(entry: dict) -> list[str]:
     errors: list[str] = []
+    if not isinstance(entry, dict):
+        return ["Research entry must be a JSON object."]
     if entry.get("schema") != "ana-research-entry/v1":
         errors.append("schema must be ana-research-entry/v1.")
-    if entry.get("demo_only") is not True and entry.get("privacy", {}).get("contains_personal_data") is not False:
+    if entry.get("demo_only") is not True and get_path(entry, "privacy.contains_personal_data") is not False:
         errors.append("Live research entries must explicitly confirm contains_personal_data is false.")
     for path in REQUIRED_PATHS:
         if not present(get_path(entry, path)) and get_path(entry, path) is not False:
@@ -115,7 +119,8 @@ def validate(entry: dict) -> list[str]:
         errors.append("status must be a known research review status.")
     source_url = str(get_path(entry, "source.url") or "")
     parsed = urlparse(source_url)
-    if parsed.scheme != "https" or not parsed.netloc:
+    is_private_reference = PRIVATE_REFERENCE_RE.fullmatch(source_url) is not None
+    if not is_private_reference and (parsed.scheme != "https" or not parsed.netloc):
         errors.append("source.url must be an absolute HTTPS URL or approved private reference URL.")
     reviewed = parse_iso_date(get_path(entry, "ownership.reviewed_at"), "ownership.reviewed_at", errors)
     due = parse_iso_date(get_path(entry, "ownership.next_review_due"), "ownership.next_review_due", errors)

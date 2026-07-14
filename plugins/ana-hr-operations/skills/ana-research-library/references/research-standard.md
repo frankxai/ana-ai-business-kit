@@ -12,6 +12,8 @@ Every private entry follows `ana-research-entry/v1` and includes:
 - curator, named reviewer, review status/date, and next-review date;
 - confirmation that no personal/candidate/employee data is included.
 
+Use an absolute `https://` URL for a public source. When the source location must remain in the approved private registry, use only a non-sensitive reference ID in the form `PRIVATE-SOURCE-NAME-001`; never put a private URL, access token, person name, or client identifier in that value.
+
 ## Claim writing rules
 
 - Say what the source supports, not what the team hopes it means.
