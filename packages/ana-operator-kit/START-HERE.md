@@ -16,7 +16,7 @@ Use [SESSION-PREP.md](prompts/SESSION-PREP.md) to make a draft agenda and questi
 
 ## Prepare the client packet
 
-Personalize `../ana-client-session-kit/CLIENT-WELCOME.md` and `SESSION-REQUEST.md`. Review the packet for names, dates, and claims. Send it manually.
+Personalize `../ana-client-session-kit/CLIENT-WELCOME.md` and `../ana-client-session-kit/SESSION-REQUEST.md`. Review the packet for names, dates, and claims. Send it manually.
 
 ## Set the follow-up
 

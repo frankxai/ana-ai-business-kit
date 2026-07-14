@@ -122,7 +122,7 @@ for (const required of [
   if (!rootReadme.toLowerCase().includes(required.toLowerCase())) failures.push(`README onboarding content missing: ${required}`);
 }
 
-const publicEntryText = (await Promise.all([
+const publicEntries = [
   'README.md',
   'START-HERE-ANA.md',
   'START-HERE-TEAM.md',
@@ -131,9 +131,16 @@ const publicEntryText = (await Promise.all([
   'docs/WHO-READS-WHAT.md',
   'plugins/ana-hr-operations/.codex-plugin/plugin.json',
   'plugins/ana-hr-operations/skills/ana-hr-operations/agents/openai.yaml',
-].map((entry) => readFile(resolve(root, entry), 'utf8')))).join('\n').toLowerCase();
+];
 
-for (const staleFraming of [
+const publicEntryContents = await Promise.all(
+  publicEntries.map(async (entry) => ({
+    entry,
+    content: (await readFile(resolve(root, entry), 'utf8')).toLowerCase(),
+  })),
+);
+
+const staleFramings = [
   'four-person adoption product',
   'this is your four-person hr operating kit',
   'the simple model',
@@ -143,8 +150,12 @@ for (const staleFraming of [
   'one rule to remember',
   'the team is ready for normal use when it can demonstrate',
   'asking all four people to work directly in github',
-]) {
-  if (publicEntryText.includes(staleFraming)) failures.push(`Public entry copy contains stale onboarding framing: ${staleFraming}`);
+];
+
+for (const { entry, content } of publicEntryContents) {
+  for (const staleFraming of staleFramings) {
+    if (content.includes(staleFraming)) failures.push(`${entry} contains stale onboarding framing: ${staleFraming}`);
+  }
 }
 
 const skillRoot = resolve(pluginRoot, 'skills', 'ana-hr-operations');
