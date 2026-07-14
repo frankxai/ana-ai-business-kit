@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ana Research Library"
+  short_description: "Curate evidence with safe HR and team-practice boundaries"
+  default_prompt: "Use $ana-research-library to capture a source-backed research entry, separate evidence from interpretation, and state the human decision boundary."
+policy:
+  allow_implicit_invocation: true

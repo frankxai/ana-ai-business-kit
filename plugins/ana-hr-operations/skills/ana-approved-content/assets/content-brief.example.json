@@ -1,0 +1,30 @@
+{
+  "schema": "ana-approved-content/v1",
+  "demo_only": true,
+  "content_id": "CONTENT-DEMO-STRUCTURED-HIRING-001",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "audience": "leaders considering a more structured hiring process",
+  "format": "short educational post",
+  "proposed_channel": "not selected",
+  "title": "A clearer hiring conversation starts before the interview",
+  "source_entry_ids": ["LIB-DEMO-STRUCTURED-INTERVIEWS-001"],
+  "claims": [
+    {
+      "text": "A role scorecard and consistent interview questions can make the evidence conversation easier to follow.",
+      "source_entry_id": "LIB-DEMO-STRUCTURED-INTERVIEWS-001"
+    }
+  ],
+  "draft": "A hiring process becomes easier to review when the team agrees on the role outcome and the evidence it will look for before interviews begin. A clear scorecard does not replace judgment; it gives the people making the decision a more consistent conversation. If your team is preparing a role, start by defining the outcome, the observable evidence, and who owns each decision.",
+  "call_to_action": "Invite the reader to request an exploratory conversation about role and process clarity.",
+  "boundaries": [
+    "No client story, promised result, testimonial, or market claim is included.",
+    "This draft does not publish, send, schedule, or make an employment decision.",
+    "The research source is used for internal educational context, not legal advice."
+  ],
+  "approval": {
+    "required_from": "Ana",
+    "approved_by": null,
+    "approved_at": null
+  },
+  "publication_receipt": null
+}

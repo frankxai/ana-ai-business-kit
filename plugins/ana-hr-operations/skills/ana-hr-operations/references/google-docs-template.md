@@ -11,6 +11,7 @@ Require:
 3. the nearest comparable completed document when available;
 4. the intended destination folder and title;
 5. Ana's approval to create a copy.
+6. the private template-registry ID and a named owner for template fidelity.
 
 If any precondition is missing, create only a labeled local draft and report `TEMPLATE_BLOCKED`. Do not search broadly through Drive for an unspecified template.
 
@@ -26,3 +27,7 @@ If any precondition is missing, create only a labeled local draft and report `TE
 8. Keep the document labeled as a draft until Ana approves content and template fidelity.
 
 Do not claim visual fidelity from plain text alone. If PDF export and page inspection are unavailable, report that rendered layout has not been verified.
+
+## Canva boundary
+
+For a Canva offer, invoice, or presentation, use the exact private Canva master and a separate content pack. Create a copy only, preserve the master visual system, and record `CANVA_RENDER_PENDING` until a named human completes an in-Canva visual check. Google Docs readback does not replace Canva visual review, and neither connector authorizes sharing or sending.

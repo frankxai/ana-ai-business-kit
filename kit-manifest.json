@@ -1,14 +1,16 @@
 {
   "schema": "ana-ai-business-kit/v1",
-  "version": "1.0.0",
-  "status": "public-safe template",
+  "version": "1.1.0",
+  "status": "public-safe operating template",
   "packages": [
     {
       "id": "ana-operator-kit",
-      "archive": "ana-operator-kit-v1.0.0.zip",
+      "archive": "ana-operator-kit-v1.1.0.zip",
       "audience": "practitioner",
       "entrypoint": "START-HERE.md",
-      "mustRemainPrivate": true,
+      "intended_access": "internal-practitioner-only",
+      "contains_only_public_safe_content": true,
+      "not_client_sendable": true,
       "files": [
         "README.md",
         "START-HERE.md",
@@ -27,7 +29,7 @@
     },
     {
       "id": "ana-client-session-kit",
-      "archive": "ana-client-session-kit-v1.0.0.zip",
+      "archive": "ana-client-session-kit-v1.1.0.zip",
       "audience": "client",
       "entrypoint": "README.md",
       "mustRemainPrivate": false,
@@ -45,6 +47,11 @@
     "humanApproval": "required before every client-facing output",
     "clientData": "private by default",
     "aiRole": "drafting and organization only",
-    "prohibited": ["diagnosis", "therapy claims", "employment decisions", "impersonation"]
+    "prohibited": ["diagnosis", "therapy claims", "employment decisions", "candidate profiling", "impersonation", "unapproved publishing", "unapproved external sends"]
+  },
+  "team_adoption": {
+    "roles": ["Ana — manager and approver", "engagement coordinator", "research and recruiting operator", "document and client-experience operator"],
+    "real_templates": "private-company-overlay-and-controlled-drive-only",
+    "practice_material": "fictional-demo-only"
   }
 }

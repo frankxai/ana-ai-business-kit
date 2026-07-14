@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ana Approved Content"
+  short_description: "Draft source-backed content that waits for Ana's approval"
+  default_prompt: "Use $ana-approved-content to create an accurate, source-backed draft and an explicit Ana approval card. Do not publish or send it."
+policy:
+  allow_implicit_invocation: true

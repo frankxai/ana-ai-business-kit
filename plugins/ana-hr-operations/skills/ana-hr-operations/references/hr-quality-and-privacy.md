@@ -8,6 +8,8 @@
 - Use the same structured criteria across candidates for the same role.
 - Keep Ana and the client responsible for decisions; AI may organize evidence but must not make the hiring decision.
 - Do not fabricate candidate history, references, salary data, market claims, or client policy.
+- Treat team-practice and neuroscience material as research/education only: do not use it for candidate/employee profiling, diagnosis, performance assessment, or selection.
+- Label a source, interpretation, limitation, and owner before turning research into a team practice, client claim, or content draft.
 
 ## Privacy
 
@@ -25,3 +27,4 @@
 - Job requirements are inclusive and job-relevant.
 - No confidential data appears in the wrong artifact.
 - Ana approved the artifact and its destination.
+- A copied Canva artifact has a named visual-check receipt; a Google Docs artifact reports whether rendered layout was inspected.

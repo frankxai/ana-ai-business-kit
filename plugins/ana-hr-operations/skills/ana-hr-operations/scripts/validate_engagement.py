@@ -143,6 +143,30 @@ FORBIDDEN_RECORD_KEYS = {
     "iban",
     "bic",
     "swift",
+    "candidate_id",
+    "employee_name",
+    "employee_email",
+    "medical_information",
+    "health_data",
+    "neurotype",
+    "personality_profile",
+    "emotion_inference",
+}
+TEAM_ROLES = {
+    "manager_approver",
+    "engagement_coordinator",
+    "research_recruiting_operator",
+    "document_client_experience_operator",
+}
+TEMPLATE_PLATFORMS = {"google-docs", "canva"}
+TEMPLATE_STATUSES = {
+    "TEMPLATE_BLOCKED",
+    "DRAFT_CONTENT_READY",
+    "COPY_CREATED",
+    "GOOGLE_DOCS_READBACK_COMPLETE",
+    "CANVA_RENDER_PENDING",
+    "ANA_CONTENT_APPROVED",
+    "READY_FOR_HANDOFF_REVIEW",
 }
 
 
@@ -201,6 +225,39 @@ def validate(record: dict, stage: str, require_template: bool = False) -> list[s
 
     for forbidden_path in find_forbidden_keys(record):
         errors.append(f"Forbidden sensitive field in engagement record: {forbidden_path}.")
+
+    team = record.get("team")
+    if team is not None:
+        if not isinstance(team, dict):
+            errors.append("team must be an object when supplied.")
+        else:
+            for role in TEAM_ROLES:
+                if not is_present(team.get(role)):
+                    errors.append(f"Missing team.{role}.")
+
+    routes = get_path(record, "template.document_routes")
+    if routes is not None:
+        if not isinstance(routes, dict):
+            errors.append("template.document_routes must be an object when supplied.")
+        else:
+            for document_type, route in routes.items():
+                if not isinstance(route, dict):
+                    errors.append(f"template.document_routes.{document_type} must be an object.")
+                    continue
+                if not is_present(route.get("template_id")):
+                    errors.append(f"template.document_routes.{document_type}.template_id is required.")
+                platform = route.get("platform")
+                status = route.get("status")
+                if platform not in TEMPLATE_PLATFORMS:
+                    errors.append(f"template.document_routes.{document_type}.platform must be google-docs or canva.")
+                if status not in TEMPLATE_STATUSES:
+                    errors.append(f"template.document_routes.{document_type}.status is not a recognized template status.")
+                if not isinstance(route.get("visual_check_required"), bool):
+                    errors.append(f"template.document_routes.{document_type}.visual_check_required must be boolean.")
+                if status == "CANVA_RENDER_PENDING" and platform != "canva":
+                    errors.append(f"template.document_routes.{document_type} cannot use CANVA_RENDER_PENDING outside Canva.")
+                if status == "GOOGLE_DOCS_READBACK_COMPLETE" and platform != "google-docs":
+                    errors.append(f"template.document_routes.{document_type} cannot use GOOGLE_DOCS_READBACK_COMPLETE outside Google Docs.")
 
     for required_stage in required_stages:
         for dotted in STAGE_FIELDS[required_stage]:

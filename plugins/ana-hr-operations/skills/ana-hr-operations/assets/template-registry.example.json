@@ -1,0 +1,64 @@
+{
+  "schema": "ana-template-registry/v1",
+  "demo_only": true,
+  "registry_owner": "Ana",
+  "storage": "PRIVATE-COMPANY-OVERLAY-ONLY",
+  "templates": [
+    {
+      "template_id": "kickoff-google-docs-master-demo",
+      "document_type": "kickoff",
+      "platform": "google-docs",
+      "master_reference": "PRIVATE-DRIVE-REFERENCE-ONLY",
+      "copy_destination": "PRIVATE-ENGAGEMENT-KICKOFF-FOLDER",
+      "master_owner": "Ana",
+      "allowed_editors": ["Ana", "Document and client-experience operator"],
+      "copy_required": true,
+      "visual_check_required": true,
+      "content_fields": ["company_context", "hiring_need", "scope", "timeline", "decision_makers", "selection_process"],
+      "status": "approved-demo-only",
+      "last_reviewed_at": "2026-07-14"
+    },
+    {
+      "template_id": "offer-canva-master-demo",
+      "document_type": "offer",
+      "platform": "canva",
+      "master_reference": "PRIVATE-CANVA-REFERENCE-ONLY",
+      "copy_destination": "PRIVATE-ENGAGEMENT-COMMERCIAL-FOLDER",
+      "master_owner": "Ana",
+      "allowed_editors": ["Ana", "Document and client-experience operator"],
+      "copy_required": true,
+      "visual_check_required": true,
+      "content_fields": ["service_name", "deliverables", "exclusions", "timeline", "subtotal", "tax_amount", "total"],
+      "status": "approved-demo-only",
+      "last_reviewed_at": "2026-07-14"
+    },
+    {
+      "template_id": "invoice-canva-master-demo",
+      "document_type": "invoice",
+      "platform": "canva",
+      "master_reference": "PRIVATE-CANVA-REFERENCE-ONLY",
+      "copy_destination": "PRIVATE-ENGAGEMENT-COMMERCIAL-FOLDER",
+      "master_owner": "Ana",
+      "allowed_editors": ["Ana", "Document and client-experience operator"],
+      "copy_required": true,
+      "visual_check_required": true,
+      "content_fields": ["invoice_number", "billing_name", "issue_date", "due_date", "line_items", "total"],
+      "status": "approved-demo-only",
+      "last_reviewed_at": "2026-07-14"
+    },
+    {
+      "template_id": "client-presentation-canva-master-demo",
+      "document_type": "presentation",
+      "platform": "canva",
+      "master_reference": "PRIVATE-CANVA-REFERENCE-ONLY",
+      "copy_destination": "PRIVATE-ENGAGEMENT-CLIENT-DELIVERY-FOLDER",
+      "master_owner": "Ana",
+      "allowed_editors": ["Ana", "Document and client-experience operator"],
+      "copy_required": true,
+      "visual_check_required": true,
+      "content_fields": ["approved_client_context", "scope", "milestones", "next_steps"],
+      "status": "approved-demo-only",
+      "last_reviewed_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 name: ana-hr-operations
-description: Run Ana's HR company operations from new-client discovery through kickoff, recruiting setup, job description or service offer, pricing approval, invoice draft, and human-approved send preparation. Use for recruiting clients, first-call capture, client onboarding, Google Docs template-preserving HR documents, job descriptions, proposals or offers, pricing calculations, invoice creation, and administration across many clients.
+description: "Run Ana's human-approved HR company operations across a four-person team: new-client discovery, kickoff, recruiting setup, job description or service offer, pricing approval, invoice draft, template-preserving Google Docs or Canva work, and approved handoff preparation. Use for recruiting clients, first-call capture, client onboarding, document quality, team control, and administration across many clients."
 ---
 
 # Ana HR Operations
@@ -9,7 +9,7 @@ Operate one structured engagement per client and role. Capture facts once, execu
 
 ## Load the right references
 
-- Always read `references/sop-index.md`, `references/workflow.md`, and `references/hr-quality-and-privacy.md`.
+- Always read `references/sop-index.md`, `references/workflow.md`, `references/hr-quality-and-privacy.md`, and `references/team-adoption-and-template-ops.md`.
 - Read `references/record-contract.md` when creating or changing an engagement record.
 - Read `references/google-docs-template.md` for any Google Docs template, copy, write, or verification task.
 - Read `references/pricing-and-invoice.md` before creating an offer, price calculation, invoice, or send draft.
@@ -26,6 +26,13 @@ Operate one structured engagement per client and role. Capture facts once, execu
 - Use `SOP-06` to draft and reconcile an invoice.
 - Use `SOP-07` for a Google Doc, email, or administrative handoff after explicit send approval.
 
+## Team and manager routing
+
+- Use the four-role contract in `references/team-adoption-and-template-ops.md`; individual team members prepare within their role, while Ana retains the manager/approval routes.
+- Use `manager morning control`, `approval review`, or `quality and exceptions review` as read-only manager controls. Present a decision card; do not treat the request itself as approval.
+- Use `$ana-research-library` for source capture, HR/recruiting research, team-practice research, or voluntary workshop research. It never turns research into a hiring or diagnostic signal.
+- Use `$ana-approved-content` only to draft source-backed educational/marketing content that remains approval-gated and unpublished.
+
 ## Core workflow
 
 1. Select exactly one SOP from `references/sop-index.md` and state its identifier.
@@ -35,7 +42,8 @@ Operate one structured engagement per client and role. Capture facts once, execu
 5. Route the next artifact:
    - use `job-description` for role definition and recruiting;
    - use `offer` for Ana's service scope and commercial terms;
-   - run both in parallel only after kickoff is approved.
+   - use `kickoff`, `offer`, `invoice`, or `presentation` content packs only after their exact template route is known;
+   - run job description and offer in parallel only after kickoff is approved.
 6. Validate the record before rendering or advancing:
 
 ```bash
@@ -45,17 +53,20 @@ python scripts/validate_engagement.py <private-record.json> --stage <first-call|
 7. Create a local human-review draft when useful:
 
 ```bash
-python scripts/render_documents.py <private-record.json> --document <job-description|offer|invoice> --out <private-output.md>
+python scripts/render_documents.py <private-record.json> --document <kickoff|job-description|offer|invoice> --out <private-output.md>
 ```
 
-8. For the final Google Doc, use the installed `$google-docs` skill. Require the exact approved template URL, copy the master, preserve connector-visible structure, write in small verified batches, and re-read before handoff.
-9. Create an invoice only from an approved offer or milestone. Validate amounts and require invoice approval.
-10. Prepare a send draft only after explicit send approval names the exact recipient and channel. Never send automatically.
-11. End with the SOP receipt defined in `references/sop-index.md`.
+8. For a Google Docs final, use the installed `$google-docs` skill. Require the exact approved template URL, copy the master, preserve connector-visible structure, write in small verified batches, and re-read before handoff. Report whether visual layout was actually inspected.
+9. For a Canva offer, invoice, or presentation, require the exact approved master, Ana's copy approval, an approved content pack, and a named human visual check. Use `CANVA_RENDER_PENDING` until the visual check is recorded. Never edit a master or claim generic output is Ana's design.
+10. Create an invoice only from an approved offer or milestone. Validate amounts and require invoice approval.
+11. Prepare a send draft only after explicit send approval names the exact recipient and channel. Never send automatically.
+12. End with the SOP receipt defined in `references/sop-index.md`.
 
 ## Existing plugin routing
 
-- Use `$google-docs` for template reads, copies, edits, and connector verification.
+- Use `$google-docs` for Google Docs template reads, copies, edits, and connector verification.
+- Use Canva only for an exact Canva master after a private content pack and copy approval; visual review remains a named human action.
+- Use `$google-sheets` only for the private alias-only control workbook and practice tracker, never as the candidate system of record.
 - Use Google Calendar only when Ana asks to schedule or inspect a kickoff.
 - Use Gmail only to create a draft after the send gate passes and Ana explicitly requests it.
 - Keep local Markdown as the fallback when a connector or exact template is unavailable; label the result `TEMPLATE_BLOCKED` where appropriate.
@@ -67,7 +78,9 @@ python scripts/render_documents.py <private-record.json> --document <job-descrip
 - Do not rank or reject candidates from protected traits or personality proxies. Use job-relevant structured evidence and keep the human decision-maker accountable.
 - Do not put candidate data, CVs, recordings, IDs, health data, or bank details in this repository.
 - Do not edit Ana's master Google Docs template; create a copy.
+- Do not edit Ana's Canva master; create a copy and require a named visual check before client use.
 - Do not infer approval from silence. Record the named approver and timestamp.
+- Do not use neuroscience, psychology, personality, emotion, or health information to profile, rank, or select a candidate or employee.
 - Do not send an offer, invoice, email, or calendar invitation without explicit active-turn authorization.
 
 ## Completion gate
@@ -80,5 +93,6 @@ Return:
 - validation result;
 - approvals present and missing;
 - template fidelity/readback status;
+- template platform, copy/visual-check status, and any `TEMPLATE_BLOCKED` or `CANVA_RENDER_PENDING` condition;
 - exact next human action.
 - SOP identifier, entry-gate result, exception code if blocked, and evidence receipt.

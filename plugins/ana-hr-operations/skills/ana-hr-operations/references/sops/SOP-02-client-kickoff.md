@@ -22,9 +22,9 @@ Run after the first-call record is confirmed and before producing a final job de
 4. Confirm the structured recruiting stages, scorecard owner, job-relevant evidence, interview responsibilities, shortlist decision, and final human decision-maker.
 5. Confirm approved systems, access boundary, retention owner, deletion rule, and data-incident contact. Keep candidate identities out of the engagement record.
 6. Confirm meeting/update cadence, channels, escalation route, next client update, and response expectations.
-7. Confirm required artifacts, exact Google Docs master template, comparable approved example, destination folder, and permission to create copies. Mark `TEMPLATE_BLOCKED` when incomplete.
+7. Confirm required artifacts, template-registry ID, platform (Google Docs or Canva), exact approved master, comparable approved example, destination folder, copy owner, and permission to create copies. Mark `TEMPLATE_BLOCKED` when incomplete. For Canva, require a named visual check after copy creation.
 8. Confirm pricing source owner, currency, tax-treatment owner, billing identity, invoice route, and payment terms without giving tax/legal advice.
-9. Produce a kickoff readback with decisions, open items, owners, and dates.
+9. Produce a kickoff readback with decisions, open items, owners, team roles, template route/status, and dates.
 10. Record Ana's explicit kickoff approval and timestamp; then run `validate_engagement.py --stage kickoff`.
 
 ## Exit criteria

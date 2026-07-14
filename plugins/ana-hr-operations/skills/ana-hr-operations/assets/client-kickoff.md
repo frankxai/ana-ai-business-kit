@@ -1,27 +1,42 @@
-# Client kickoff capture
+# DRAFT KICKOFF — HUMAN REVIEW REQUIRED
 
-Operational procedure: `references/sops/SOP-01-first-client-call.md` followed by `references/sops/SOP-02-client-kickoff.md`.
+**Prepared for:** ${client_name}
 
-## First call — 20–30 minutes
+**Engagement:** ${engagement_id}
 
-1. Why now? What changed or became urgent?
-2. What role, team, or HR outcome is needed?
-3. What would success look like in 30, 60, and 90 days?
-4. Who decides, who reviews, and who works with Ana day to day?
-5. What timing, constraints, budget range, and internal dependencies matter?
-6. What candidate or employee information may be handled, where, and by whom?
-7. Which document is needed next: job description, recruiting offer, or both?
-8. When must the offer arrive, and who approves price and billing details?
+## Why this engagement
 
-## Kickoff confirmation
+${company_context}
 
-- Scope and explicit exclusions
-- Named decision-makers and working contacts
-- Communication cadence and review checkpoints
-- Role scorecard and structured selection process
-- Candidate-data handling boundary
-- Approved pricing source and currency
-- Google Docs template URL and the nearest comparable completed document
-- Billing identity, email, address, tax treatment, and payment terms
+**Hiring or service need:** ${hiring_need}
 
-Do not collect sensitive candidate information during a client sales call.
+## Intended outcomes
+
+${kickoff_outcomes}
+
+## Scope and timeline
+
+**Scope:** ${kickoff_scope}
+
+**Timeline:** ${kickoff_timeline}
+
+## Accountable people and cadence
+
+**Decision-makers:**
+
+${decision_makers}
+
+**Communication cadence:** ${communication_cadence}
+
+## Structured process
+
+${selection_process}
+
+## Data boundary
+
+- Client workspace: ${client_system}
+- Candidate system: ${candidate_system}
+- Retention owner: ${retention_owner}
+- Deletion rule: ${deletion_rule}
+
+This draft does not contain candidate identity or interview evidence. It becomes a client kickoff only after Ana verifies scope, process, privacy, template fidelity, and destination.

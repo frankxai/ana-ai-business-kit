@@ -20,10 +20,10 @@ Run for a new lead, a newly signed client, or a material new role that needs its
 2. **3–8 minutes — why now and success.** Capture the business context, trigger, urgency, and observable 30/60/90-day outcomes.
 3. **8–13 minutes — role and scope.** Capture the role/service need, location, employment type, reporting line, responsibilities, exclusions, timeline, and constraints. Mark unknowns.
 4. **13–18 minutes — stakeholders and process.** Identify decision-maker, daily contact, approvers, recruiting stages, evidence expected, review cadence, and dependencies.
-5. **18–23 minutes — data and documents.** Identify the approved ATS/private systems, retention owner, template type, exact master URL if available, comparable document, and destination folder. Do not collect candidate data.
+5. **18–23 minutes — data and documents.** Identify the approved ATS/private systems, retention owner, document type/platform, private template-registry ID, exact master URL if available, comparable document, destination folder, copy owner, and visual-check requirement. Do not collect candidate data.
 6. **23–27 minutes — commercial/admin inputs.** Capture budget range only when client-approved, offer deadline, price approver, currency, billing identity owner, tax-treatment owner, and payment-term owner. Do not calculate or recommend a price here.
 7. **27–30 minutes — readback.** Read back facts, assumptions, open decisions, owners, dates, and the next artifact. Ask the client to correct the summary.
-8. Create or update the private engagement record and the administration block.
+8. Create or update the private engagement record, administration block, named team roles, and the template route. Missing source/access/copy approval stays `TEMPLATE_BLOCKED`.
 9. Run `validate_engagement.py --stage first-call`.
 
 ## Exit criteria

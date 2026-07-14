@@ -1,0 +1,27 @@
+{
+  "schema": "ana-team-workspace/v1",
+  "demo_only": true,
+  "workspace_owner": "Ana",
+  "roles": [
+    {"role": "manager_approver", "owner": "Ana", "may_approve": ["scope", "hiring-accountability", "price", "invoice", "publish", "send"]},
+    {"role": "engagement_coordinator", "owner": "Example Coordinator", "may_approve": []},
+    {"role": "research_recruiting_operator", "owner": "Example Research Operator", "may_approve": []},
+    {"role": "document_client_experience_operator", "owner": "Example Document Operator", "may_approve": []}
+  ],
+  "folders": [
+    "00 Governance & Team Setup",
+    "01 Master Templates — View Only",
+    "02 Active Engagements",
+    "03 Approved Deliverables",
+    "04 Research Library",
+    "05 Content Studio — Approval Required",
+    "90 Archive — Restricted"
+  ],
+  "controls": {
+    "candidate_data_system": "APPROVED-ATS-ONLY",
+    "finance_system": "APPROVED-FINANCE-SYSTEM-ONLY",
+    "template_registry": "PRIVATE-COMPANY-OVERLAY-ONLY",
+    "shared_accounts_forbidden": true,
+    "external_action_requires_fresh_ana_approval": true
+  }
+}

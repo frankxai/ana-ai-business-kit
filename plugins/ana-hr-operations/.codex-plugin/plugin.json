@@ -1,7 +1,7 @@
 {
   "name": "ana-hr-operations",
-  "version": "0.1.0+codex.20260713155214",
-  "description": "High-standard client, recruiting, document, pricing, and invoice operations for Ana's HR company.",
+  "version": "0.2.0+codex.20260714033127",
+  "description": "Human-approved HR operations, four-person team adoption, template quality, research library, and approval-gated content for Ana's HR company.",
   "author": {
     "name": "FrankX",
     "url": "https://www.frankx.ai"
@@ -14,13 +14,16 @@
     "recruiting",
     "google-docs",
     "offers",
-    "invoicing"
+    "invoicing",
+    "canva",
+    "research-library",
+    "approval-gated-content"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Ana HR Operations",
-    "shortDescription": "Run Ana's auditable HR operating SOPs.",
-    "longDescription": "Execute named SOPs for multi-client control, first calls, kickoffs, job descriptions, recruiting delivery, offers, pricing, invoice drafts, and approved handoffs.",
+    "shortDescription": "Run Ana's human-approved HR operating system.",
+    "longDescription": "Execute named SOPs for four-person team control, client delivery, template-preserving Google Docs/Canva work, recruiting, offers, invoice drafts, research curation, and approval-gated content.",
     "developerName": "FrankX",
     "category": "Productivity",
     "capabilities": [
@@ -29,9 +32,9 @@
     ],
     "websiteURL": "https://github.com/frankxai/ana-ai-business-kit",
     "defaultPrompt": [
-      "Show today's multi-client HR board and approval queue.",
-      "Run the 20\u201330 minute first-client-call SOP.",
-      "Run the approved offer, pricing, and invoice SOPs."
+      "Run Ana's manager morning control and approval queue.",
+      "Run the 20\u201330 minute first-client-call SOP with a template route.",
+      "Create a source-backed content pack for Ana's approved offer or invoice master."
     ]
   }
 }

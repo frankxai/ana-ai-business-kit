@@ -1,5 +1,5 @@
-import { readFile, stat } from 'node:fs/promises';
-import { resolve, relative, sep } from 'node:path';
+import { readFile, readdir, stat } from 'node:fs/promises';
+import { dirname, resolve, relative, sep } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const manifest = JSON.parse(await readFile(resolve(root, 'kit-manifest.json'), 'utf8'));
@@ -7,7 +7,19 @@ const requiredGuardrails = ['humanApproval', 'clientData', 'aiRole', 'prohibited
 const failures = [];
 const pluginRoot = resolve(root, 'plugins', 'ana-hr-operations');
 
+async function findMarkdownFiles(directory) {
+  const files = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    if (entry.name === '.git' || entry.name === 'node_modules') continue;
+    const entryPath = resolve(directory, entry.name);
+    if (entry.isDirectory()) files.push(...await findMarkdownFiles(entryPath));
+    else if (entry.isFile() && entry.name.toLowerCase().endsWith('.md')) files.push(entryPath);
+  }
+  return files;
+}
+
 if (manifest.schema !== 'ana-ai-business-kit/v1') failures.push('Unexpected manifest schema.');
+if (manifest.version !== '1.1.0') failures.push('Kit manifest must be version 1.1.0.');
 if (manifest.packages?.length !== 2) failures.push('Exactly two downloads are required.');
 for (const key of requiredGuardrails) if (!(key in manifest.guardrails)) failures.push(`Missing guardrail: ${key}`);
 
@@ -15,6 +27,9 @@ for (const pkg of manifest.packages ?? []) {
   if (!pkg.id || !pkg.archive || !pkg.entrypoint || !Array.isArray(pkg.files)) {
     failures.push(`Invalid package manifest entry: ${pkg.id ?? 'unknown'}.`);
     continue;
+  }
+  if (!pkg.archive.endsWith(`-v${manifest.version}.zip`)) {
+    failures.push(`Package archive version must match kit ${manifest.version}: ${pkg.archive}`);
   }
   for (const file of pkg.files) {
     const destination = resolve(root, 'packages', pkg.id, file);
@@ -37,7 +52,7 @@ for (const required of ['PRACTITIONER REVIEW REQUIRED', 'Never diagnose', 'priva
 
 const pluginManifest = JSON.parse(await readFile(resolve(pluginRoot, '.codex-plugin', 'plugin.json'), 'utf8'));
 if (pluginManifest.name !== 'ana-hr-operations') failures.push('Plugin name must match its folder.');
-if (!/^0\.1\.0(?:\+codex\.[0-9A-Za-z.-]+)?$/.test(pluginManifest.version)) failures.push('Plugin version must preserve the 0.1.0 base version and optional Codex cachebuster.');
+if (!/^0\.2\.0(?:\+codex\.[0-9A-Za-z.-]+)?$/.test(pluginManifest.version)) failures.push('Plugin version must preserve the 0.2.0 base version and optional Codex cachebuster.');
 if (!pluginManifest.skills) failures.push('Plugin skills path is required.');
 
 const marketplace = JSON.parse(await readFile(resolve(root, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
@@ -49,9 +64,18 @@ if (marketplacePlugin?.source?.path !== './plugins/ana-hr-operations') failures.
 for (const guide of [
   'README.md',
   'START-HERE-ANA.md',
+  'START-HERE-TEAM.md',
   'docs/FORK-AND-INSTALL-CODEX.md',
   'docs/GOOGLE-DOCS-SETUP.md',
   'docs/FIRST-CLIENT-FLOW.md',
+  'docs/TEAM-ADOPTION.md',
+  'docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md',
+  'docs/TEMPLATE-AND-CANVA-ROUTING.md',
+  'docs/PRACTICE-ENGAGEMENT.md',
+  'docs/TEAM-STARTER-PROMPTS.md',
+  'docs/RELEASE-AND-UPDATE.md',
+  'docs/HR-AGENCY-ADAPTATION.md',
+  'docs/WHO-READS-WHAT.md',
 ]) {
   try {
     const guideText = await readFile(resolve(root, guide), 'utf8');
@@ -61,11 +85,38 @@ for (const guide of [
   }
 }
 
+for (const markdownFile of await findMarkdownFiles(root)) {
+  const markdown = await readFile(markdownFile, 'utf8');
+  for (const match of markdown.matchAll(/!?\[[^\]]*\]\(([^)]+)\)/g)) {
+    let target = match[1].trim();
+    if (target.startsWith('<') && target.endsWith('>')) target = target.slice(1, -1);
+    if (/^(?:https?:|mailto:|tel:|#)/i.test(target)) continue;
+    target = target.split('#', 1)[0].split('?', 1)[0];
+    if (!target) continue;
+    try {
+      target = decodeURIComponent(target);
+    } catch {
+      failures.push(`Invalid link encoding in ${relative(root, markdownFile)}: ${match[1]}`);
+      continue;
+    }
+    const destination = resolve(dirname(markdownFile), target);
+    if (destination !== root && !destination.startsWith(root + sep)) {
+      failures.push(`Local link leaves the repository in ${relative(root, markdownFile)}: ${match[1]}`);
+      continue;
+    }
+    try {
+      await stat(destination);
+    } catch {
+      failures.push(`Broken local link in ${relative(root, markdownFile)}: ${match[1]}`);
+    }
+  }
+}
+
 const rootReadme = await readFile(resolve(root, 'README.md'), 'utf8');
 for (const required of [
   'codex plugin marketplace add frankxai/ana-ai-business-kit --ref main',
   'codex plugin add ana-hr-operations@ana-business-kit',
-  'first client call',
+  'first call',
   'Google Docs',
 ]) {
   if (!rootReadme.toLowerCase().includes(required.toLowerCase())) failures.push(`README onboarding content missing: ${required}`);
@@ -87,12 +138,15 @@ for (const relativePath of [
   'assets/engagement.example.json',
   'assets/daily-operations-board.md',
   'assets/recruiting-weekly-status.md',
+  'assets/template-registry.example.json',
+  'assets/team-workspace.example.json',
   'references/sop-index.md',
   'references/workflow.md',
   'references/record-contract.md',
   'references/google-docs-template.md',
   'references/hr-quality-and-privacy.md',
   'references/pricing-and-invoice.md',
+  'references/team-adoption-and-template-ops.md',
   'references/sops/SOP-00-multi-client-control.md',
   'references/sops/SOP-01-first-client-call.md',
   'references/sops/SOP-02-client-kickoff.md',
@@ -106,6 +160,35 @@ for (const relativePath of [
     await stat(resolve(skillRoot, relativePath));
   } catch {
     failures.push(`Missing plugin resource: ${relativePath}`);
+  }
+}
+
+for (const [skillName, resources] of Object.entries({
+  'ana-research-library': [
+    'SKILL.md',
+    'agents/openai.yaml',
+    'references/research-standard.md',
+    'references/source-seed-list.md',
+    'assets/research-entry.example.json',
+    'scripts/validate_research_entry.py',
+    'scripts/test_research_library.py',
+  ],
+  'ana-approved-content': [
+    'SKILL.md',
+    'agents/openai.yaml',
+    'references/editorial-safety.md',
+    'assets/content-brief.example.json',
+    'scripts/validate_content_brief.py',
+    'scripts/test_approved_content.py',
+  ],
+})) {
+  const specialSkillRoot = resolve(pluginRoot, 'skills', skillName);
+  for (const relativePath of resources) {
+    try {
+      await stat(resolve(specialSkillRoot, relativePath));
+    } catch {
+      failures.push(`Missing ${skillName} resource: ${relativePath}`);
+    }
   }
 }
 

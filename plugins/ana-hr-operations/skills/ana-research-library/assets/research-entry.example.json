@@ -1,0 +1,43 @@
+{
+  "schema": "ana-research-entry/v1",
+  "demo_only": true,
+  "entry_id": "LIB-DEMO-STRUCTURED-INTERVIEWS-001",
+  "status": "CURATOR_REVIEWED",
+  "topic": "structured, job-relevant interviewing",
+  "question": "How can an HR team make interview evidence more consistent without automating a hiring decision?",
+  "intended_audience": "Ana's internal HR team",
+  "proposed_safe_use": "Improve the interview-plan checklist and structured scorecard process.",
+  "source": {
+    "title": "Structured Interviews",
+    "publisher": "U.S. Office of Personnel Management",
+    "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/structured-interviews",
+    "source_class": "official_guidance",
+    "published_or_accessed": "2026-07-14"
+  },
+  "claim": {
+    "source_supported_claim": "The source describes structured interview approaches that use job-related questions and consistent evaluation methods.",
+    "team_interpretation": "Use a shared role scorecard and consistent interview plan for the same role, with a named human accountable for decisions.",
+    "limitations": [
+      "This entry is practice guidance, not a complete local legal or selection-policy analysis.",
+      "The client must approve the role criteria and local process."
+    ]
+  },
+  "applicability": {
+    "allowed_contexts": ["role scorecard design", "interview-plan preparation", "internal process training"],
+    "prohibited_uses": ["candidate ranking by AI", "protected-trait inference", "personality or emotion profiling", "automated employment decision"]
+  },
+  "evidence": {
+    "strength": "official_guidance",
+    "requires_qualified_review": false
+  },
+  "ownership": {
+    "curator": "Research and recruiting operator",
+    "reviewer": "Ana",
+    "reviewed_at": "2026-07-14",
+    "next_review_due": "2027-01-14"
+  },
+  "privacy": {
+    "contains_personal_data": false,
+    "approved_for_external_summary": false
+  }
+}

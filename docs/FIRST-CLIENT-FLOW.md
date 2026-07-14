@@ -2,6 +2,8 @@
 
 Use one private engagement record per client and role. The record lives in company-approved private storage outside this GitHub repository.
 
+Before live work, assign Ana, an engagement coordinator, a research/recruiting operator, and a document/client-experience operator using [Team adoption](TEAM-ADOPTION.md). Ana remains the named approver.
+
 ## Before the call
 
 Prepare:
@@ -10,7 +12,7 @@ Prepare:
 - the business outcome and likely role or service need;
 - known stakeholders and decision-makers;
 - call date and target timing;
-- Ana's approved document template;
+- template-registry ID and Ana's approved Google Docs and/or Canva master for the next artifact;
 - current approved pricing source, currency, tax treatment, payment terms, and billing identity.
 
 It is fine for items to be unknown. Codex should track them as open decisions instead of guessing.
@@ -29,7 +31,7 @@ Capture:
 4. Decision-maker, daily contact, approvers, and availability.
 5. Recruiting stages and job-relevant evidence.
 6. Candidate-data handling and deletion expectations.
-7. Required documents and Ana's exact Google Docs template.
+7. Required documents, exact platform, private template-registry ID, master route, copy owner, and visual-check requirement.
 8. Commercial inputs and which items still require Ana's decision.
 9. Next owner and due date.
 
@@ -53,7 +55,7 @@ For the commercial offer:
 
 > Draft the service offer from the approved kickoff. Separate scope, exclusions, deliverables, timing, dependencies, and commercial terms. Do not invent price, tax, currency, or payment terms.
 
-The job description and offer may proceed together after kickoff approval. They remain drafts until Ana reviews them.
+The job description and offer may proceed together after kickoff approval. They remain drafts until Ana reviews them. Before a copied document/design is made, create a content pack from approved facts; Google Docs uses copy/readback, while Canva uses copy plus a named visual check.
 
 ## Stage 4 — pricing approval
 
@@ -98,5 +100,5 @@ Codex returns:
 - facts used and assumptions blocked;
 - validation result;
 - approvals present and missing;
-- Google Docs readback and layout-inspection status;
+- Google Docs readback and layout-inspection status, or Canva copy/visual-check status;
 - the exact next human action.
