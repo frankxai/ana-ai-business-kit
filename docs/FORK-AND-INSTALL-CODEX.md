@@ -65,6 +65,8 @@ For a private, locally developed plugin clone, use the Codex plugin update/reins
 
 ## Connect Google Drive and Canva for Ana's templates
 
+Read [Codex plugin stack for Ana's team](OFFICIAL-CODEX-PLUGIN-STACK.md) before connecting tools. It separates the custom method plugin from OpenAI-curated connectors and shows the minimum stack for each role.
+
 The HR plugin can make a labeled local draft on its own. It needs the matching connector to work with an existing master:
 
 1. In the ChatGPT desktop app, open **Plugins** from Codex.
@@ -74,6 +76,8 @@ The HR plugin can make a labeled local draft on its own. It needs the matching c
 5. Give only the exact approved master link, destination folder, document type, and copy approval in that private task.
 
 Use the plugin screen for connector setup. Connector availability can differ between the desktop app and CLI. Gmail and Google Calendar are optional and remain approval-gated.
+
+GitHub is for public-safe source, issues, pull requests, releases, and validation—not live client delivery. Codex Security is useful for an approved maintainer's pre-release repository review; it is not an HR workflow plugin.
 
 ## Verify safely
 

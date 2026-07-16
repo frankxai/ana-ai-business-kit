@@ -24,7 +24,7 @@ Each operator can use [Start Here for the Team](START-HERE-TEAM.md). The role-by
 2. Create the private Drive structure exactly as described in [Workspace and template architecture](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md). Do not move live client or candidate data into this repo.
 3. Put the approved kickoff, offer, invoice, and presentation masters in **01 Master Templates**. Make each one view-only for the wider team; copies are edited in the relevant engagement folder.
 4. Complete a private template registry using [the example registry](plugins/ana-hr-operations/skills/ana-hr-operations/assets/template-registry.example.json). Keep real links in the private overlay only.
-5. Install the HR plugin using [the corrected install guide](docs/FORK-AND-INSTALL-CODEX.md), then start a **new Codex task**.
+5. Install the HR plugin using [the corrected install guide](docs/FORK-AND-INSTALL-CODEX.md), choose the minimum approved connectors from [the official Codex plugin stack](docs/OFFICIAL-CODEX-PLUGIN-STACK.md), then start a **new Codex task**.
 6. Run the fictional [release rehearsal](docs/PRACTICE-ENGAGEMENT.md) before applying the system to live work. It deliberately uses made-up names and no candidate data.
 
 The private Ana Team Operating System Drive now also contains a short **Ana HR Template Studio — PRACTICE ONLY — v1.2** pack: first call/kickoff, role scorecard/job description, service-offer content, invoice content, and approval/handoff. These are disposable rehearsal masters, not replacements for your real documents. When you send your real templates, the private registry changes to those exact masters and the same prompts, approvals, and checks continue to work.
@@ -93,6 +93,8 @@ That gives your team a consistent, auditable route while daily work stays focuse
 ## Updates and support
 
 Use [Release and update checks](docs/RELEASE-AND-UPDATE.md) once per month or before a new teammate starts. Changes should pass the fictional release rehearsal first. Keep real policy and template changes in the private overlay, never in a public fork.
+
+Use the improvement loop in [Codex plugin stack for Ana's team](docs/OFFICIAL-CODEX-PLUGIN-STACK.md#improve-the-method-without-losing-control) when someone finds friction: capture it without private details, route it to the public kit or private overlay, review it, test it, release it, and rehearse the update before live use.
 
 The optional legacy-compatible Operator and Client Session ZIPs remain separate from the primary HR plugin. See the repository README for their audience boundary.
 

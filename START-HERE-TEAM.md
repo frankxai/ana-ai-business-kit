@@ -14,7 +14,8 @@ GitHub is the maintained source for versioned instructions, blank examples, vali
 2. Keep your role prompts close from [Team starter prompts](docs/TEAM-STARTER-PROMPTS.md).
 3. Confirm the exact folder and template route in [Google Workspace and templates](docs/GOOGLE-WORKSPACE-AND-TEMPLATES.md).
 4. Run [the fictional release rehearsal](docs/PRACTICE-ENGAGEMENT.md) when activating the system or a material update.
-5. Bring any unclear source, permission, template, or approval to Ana. Do not guess.
+5. Install only the tools required for your remit using [the official Codex plugin stack](docs/OFFICIAL-CODEX-PLUGIN-STACK.md).
+6. Bring any unclear source, permission, template, or approval to Ana. Do not guess.
 
 ## Shared delivery routes
 

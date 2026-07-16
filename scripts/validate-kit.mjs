@@ -91,7 +91,7 @@ for (const markdownFile of await findMarkdownFiles(root)) {
   for (const match of markdown.matchAll(/!?\[[^\]]*\]\(([^)]+)\)/g)) {
     let target = match[1].trim();
     if (target.startsWith('<') && target.endsWith('>')) target = target.slice(1, -1);
-    if (/^(?:https?:|mailto:|tel:|#)/i.test(target)) continue;
+    if (/^(?:https?:|mailto:|tel:|codex:|plugin:|#)/i.test(target)) continue;
     target = target.split('#', 1)[0].split('?', 1)[0];
     if (!target) continue;
     try {
