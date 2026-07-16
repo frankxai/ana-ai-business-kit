@@ -4,6 +4,8 @@ This role map turns Ana's established way of working into visible ownership, dec
 
 Daily delivery stays in Google Drive, the approved ATS, Canva, and Codex. GitHub maintains public-safe operating instructions and updates; it is not the team's live client workspace.
 
+The [official Codex plugin stack](OFFICIAL-CODEX-PLUGIN-STACK.md) maps each operating remit to the minimum connectors it needs and provides the safe rehearsal prompts. Do not grant the whole team every connector by default.
+
 ## Four operating remits
 
 | Operating remit | Primary outcome | Can prepare | Cannot decide or do alone |
@@ -59,9 +61,10 @@ This is a starting access design, not legal or security advice. Align it with th
 ### Stabilize and extend
 
 1. Review bottlenecks, unclear ownership, template issues, and repeated questions.
-2. Update the private template registry, prompts, and team guide—not the public repository with client-specific content.
-3. Run a second practice case if the template or approval process changed materially.
-4. Decide whether to expand to a second client only after Ana signs off on the pilot review.
+2. Classify each improvement as reusable/public-safe or company-specific/private using the [shared improvement loop](OFFICIAL-CODEX-PLUGIN-STACK.md#improve-the-method-without-losing-control).
+3. Update the private template registry, prompts, and team guide—not the public repository with client-specific content.
+4. Run a second practice case if the template, connector, permission, or approval process changed materially.
+5. Decide whether to expand to a second client only after Ana signs off on the pilot review.
 
 ## Ana-only manager controls
 

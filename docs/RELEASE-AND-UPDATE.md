@@ -24,7 +24,7 @@ Use this checklist monthly, before a new teammate begins, and before relying on 
 
 4. **Start a new Codex task.** Existing tasks may not load the new skill content.
 5. **Run the fictional practice engagement.** Complete the acceptance checklist in [Practice engagement](PRACTICE-ENGAGEMENT.md). No client data.
-6. **Review differences.** Check team prompts, permission matrix, real-template registry compatibility, research/content guardrails, and approval states.
+6. **Review differences.** Check team prompts, the [official plugin stack](OFFICIAL-CODEX-PLUGIN-STACK.md), connector permissions, real-template registry compatibility, research/content guardrails, and approval states.
 7. **Record decision.** Ana explicitly records `approved for live pilot`, `hold`, or `revert`, with date and reason.
 8. **Use on one live pilot first.** Do not expand a change to every active client until the pilot review passes.
 

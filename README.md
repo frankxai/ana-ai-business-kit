@@ -24,6 +24,12 @@ The plugin includes four complementary skills:
 | `ana-research-library` | Evidence capture and a safe research library for HR, recruiting, team practice, and voluntary workshop preparation |
 | `ana-approved-content` | Approval-gated, source-backed content drafts; it never publishes or sends |
 
+## Pair the method with official Codex plugins
+
+Ana HR Operations defines **how the team works**. OpenAI-curated plugins provide approved access to systems such as Google Drive, Canva, Gmail, Calendar, Slack, and GitHub. They are separate on purpose: a connector can retrieve or prepare information, while Ana's plugin applies the SOP, privacy boundary, stop state, and human approval.
+
+Use the [Codex plugin stack for Ana's team](docs/OFFICIAL-CODEX-PLUGIN-STACK.md) to choose the minimum plugins for each role, connect approved individual accounts, rehearse safely, and improve the shared method through reviewed changes.
+
 ## Begin with Ana's operating method
 
 1. Ana starts with [her operating overview](START-HERE-ANA.md).
@@ -45,7 +51,7 @@ See [Template and Canva routing](docs/TEMPLATE-AND-CANVA-ROUTING.md), [Template 
 
 ## Technical activation
 
-Technical setup follows the operating decisions above. Use [the install and private-overlay guide](docs/FORK-AND-INSTALL-CODEX.md), then install the maintained public plugin:
+Technical setup follows the operating decisions above. Use [the install and private-overlay guide](docs/FORK-AND-INSTALL-CODEX.md) and [official plugin stack](docs/OFFICIAL-CODEX-PLUGIN-STACK.md), then install the maintained public plugin:
 
 ```powershell
 codex plugin marketplace add frankxai/ana-ai-business-kit --ref main
@@ -54,6 +60,10 @@ codex plugin list
 ```
 
 Start a new Codex task after installation. Run a public-safe rehearsal first:
+
+[Install from Ana's web guide](https://www.frankx.ai/allies/ana-cancino#install) · [Open Ana HR Operations in Codex](codex://plugins/ana-hr-operations@ana-business-kit) · [Browse OpenAI-curated plugins](codex://plugins/install/?marketplace=openai-curated)
+
+The Codex link works after the marketplace has been added. If GitHub or the browser does not activate application links, open **Codex → Plugins** manually.
 
 > Use Ana HR Operations. Start a private fictional engagement and guide me through the first call using SOP-01. Separate facts from assumptions. Do not create, send, schedule, price, invoice, or publish anything.
 
