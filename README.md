@@ -1,5 +1,9 @@
 # Ana AI Business Kit
 
+[![Install Ana HR Operations in Codex](https://img.shields.io/badge/Install_Ana_HR_Operations-in_Codex-4A233C?style=for-the-badge&logo=openai&logoColor=white)](https://www.frankx.ai/allies/ana-cancino#install)
+
+**Team member?** Start with the guided installer above. If the Ana Business Kit marketplace is already configured on this device, [open Ana HR Operations directly in Codex](codex://plugins/ana-hr-operations@ana-business-kit). GitHub cannot silently install a Codex plugin or bypass workspace permissions; the guided route shows the exact commands, confirms the shared version, and keeps the human approval boundary visible.
+
 Ana AI Business Kit turns Ana's established HR workflows and approved templates into a shared operating system for client delivery, recruiting, documents, research, and commercial administration. It carries the quality of Ana's method across engagements: capture the right facts once, make ownership visible, preserve the right template, and bring each decision to the right human at the right moment.
 
 AI works backstage: it prepares, reconciles, and checks. Ana's team owns delivery. Each client's named decision-makers retain employment decisions; Ana retains authority over her practice's judgments, scope, pricing, invoices, publication, and external communication.
