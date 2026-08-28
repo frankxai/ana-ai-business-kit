@@ -1,0 +1,30 @@
+{
+  "schema_version": "starlight.editorial_contract.v1",
+  "brand_id": "cecilia",
+  "source": {
+    "repository": "frankxai/starlight-design-intelligence",
+    "ref": "50ae34c7ac06e6c083f277ca96c3bde8f0a39b43",
+    "profile": "brand-packs/cecilia/COPY.md",
+    "profile_sha256": "1d303013eb105afb0a272c3f72ddda236edca4dfb97babdf427304bf2e56fd82"
+  },
+  "content_roots": [
+    "app",
+    "components",
+    "content",
+    "data",
+    "lib",
+    "pages",
+    "src"
+  ],
+  "generated_files": [
+    "CREATOR.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    ".github/copilot-instructions.md",
+    ".cursor/rules/editorial.mdc",
+    ".agents/skills/frank-brand-editor/SKILL.md",
+    ".github/workflows/starlight-editorial-contract.yml",
+    ".starlight/editorial-contract.json"
+  ]
+}

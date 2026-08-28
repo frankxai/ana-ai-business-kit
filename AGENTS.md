@@ -10,3 +10,17 @@ This is a human-led HR operating kit, not an autonomous recruiting, legal, finan
 - The public repository contains only blank, public-safe material. A separately initialized private company overlay holds Ana's real templates, policies, records, and approved source links; it is not a "private fork" of this public repository.
 - Preserve the two-package audience boundary. `ana-operator-kit` is practitioner-only and non-client-sendable; `ana-client-session-kit` is the only client-sendable package after Ana's review.
 - Run `npm test` after changes to manifests, package lists, templates, skills, or validation code. Run `npm run package` before a release when machine capacity permits.
+
+<!-- STARLIGHT-EDITORIAL:START -->
+## Editorial contract
+
+Brand: **Cecilia** (`cecilia`)
+
+- Read `CREATOR.md` before changing public or customer-facing copy.
+- Apply the registered brand voice and the shared editorial gate.
+- Reject generated prestige language, rhetorical contrast formulas, invented claims, and abstract labels that hide simple facts.
+- Keep public labels in sentence case.
+- Run the changed-copy editorial audit before release.
+
+Pinned source: https://github.com/frankxai/starlight-design-intelligence/blob/50ae34c7ac06e6c083f277ca96c3bde8f0a39b43/brand-packs/cecilia/COPY.md
+<!-- STARLIGHT-EDITORIAL:END -->
