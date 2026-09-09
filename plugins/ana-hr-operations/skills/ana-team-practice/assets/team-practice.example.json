@@ -1,0 +1,34 @@
+{
+  "schema": "team-practice/v1",
+  "demo_only": true,
+  "team_alias": "FICTIONAL-TEAM-01",
+  "purpose": "Make client handoffs complete and assign each next action to a role.",
+  "session_date": "2026-10-01",
+  "duration_minutes": 60,
+  "facilitator_role": "facilitator",
+  "reviewer_role": "practice_owner",
+  "non_clinical": true,
+  "voluntary": true,
+  "individual_assessment": false,
+  "spiritual_content": false,
+  "contains_personal_data": false,
+  "human_data_review_complete": true,
+  "reporting": "process_outputs_only",
+  "participation_notice": "Participants may pass on any exercise or disclosure without employment consequences.",
+  "neutral_alternative": "Review the fictional handoff checklist independently and propose a process improvement.",
+  "agenda": [
+    {"minutes": 5, "activity": "Confirm purpose and participation choices."},
+    {"minutes": 10, "activity": "Examine a fictional incomplete handoff."},
+    {"minutes": 15, "activity": "Map decision owners and handoff fields."},
+    {"minutes": 15, "activity": "Rehearse a request and recipient readback."},
+    {"minutes": 10, "activity": "Propose working agreements and owners."},
+    {"minutes": 5, "activity": "Confirm follow-through."}
+  ],
+  "agreements": [
+    {"behavior": "Each handoff names a next action, role owner, and due date.", "owner_role": "engagement_coordinator", "review_date": "2026-10-31"},
+    {"behavior": "The receiving role confirms missing inputs before accepting the handoff.", "owner_role": "delivery_operator", "review_date": "2026-10-31"}
+  ],
+  "evidence": [
+    {"url": "https://www.cipd.org/en/knowledge/evidence-reviews/trust-psychological-safety/", "limits": "General review; does not validate this session or promise a causal performance effect."}
+  ]
+}

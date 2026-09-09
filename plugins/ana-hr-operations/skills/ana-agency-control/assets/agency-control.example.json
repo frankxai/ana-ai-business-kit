@@ -1,0 +1,396 @@
+{
+  "schema_version": "agency-control/v1",
+  "agency_alias": "fictional-agency-a",
+  "as_of": "2026-09-09",
+  "sources": [
+    {
+      "source_id": "policy",
+      "agency_alias": "fictional-agency-a",
+      "kind": "company-policy",
+      "reference": "record-policy",
+      "version": "v1",
+      "owner_role": "agency-owner",
+      "updated_at": "2026-09-01",
+      "review_due": "2026-10-01",
+      "access_state": "confirmed",
+      "engagement_alias": "agency-wide"
+    },
+    {
+      "source_id": "catalog",
+      "agency_alias": "fictional-agency-a",
+      "kind": "service-catalog",
+      "reference": "record-catalog",
+      "version": "v1",
+      "owner_role": "agency-owner",
+      "updated_at": "2026-09-01",
+      "review_due": "2026-10-01",
+      "access_state": "confirmed",
+      "engagement_alias": "agency-wide"
+    },
+    {
+      "source_id": "engagement",
+      "agency_alias": "fictional-agency-a",
+      "kind": "engagement",
+      "reference": "record-engagement",
+      "version": "v1",
+      "owner_role": "coordinator",
+      "updated_at": "2026-09-01",
+      "review_due": "2026-10-01",
+      "access_state": "confirmed",
+      "engagement_alias": "fictional-engagement-a"
+    },
+    {
+      "source_id": "talent-index",
+      "agency_alias": "fictional-agency-a",
+      "kind": "talent-index",
+      "reference": "record-talent-index",
+      "version": "v1",
+      "owner_role": "talent-operator",
+      "updated_at": "2026-09-01",
+      "review_due": "2026-10-01",
+      "access_state": "confirmed",
+      "engagement_alias": "agency-wide"
+    },
+    {
+      "source_id": "meeting-note",
+      "agency_alias": "fictional-agency-a",
+      "kind": "meeting-note",
+      "reference": "record-meeting-note",
+      "version": "v1",
+      "owner_role": "coordinator",
+      "updated_at": "2026-09-01",
+      "review_due": "2026-10-01",
+      "access_state": "confirmed",
+      "engagement_alias": "fictional-engagement-a"
+    },
+    {
+      "source_id": "old-policy",
+      "agency_alias": "fictional-agency-a",
+      "kind": "company-policy",
+      "reference": "record-old-policy",
+      "version": "v1",
+      "owner_role": "agency-owner",
+      "updated_at": "2026-09-01",
+      "review_due": "2026-09-08",
+      "access_state": "confirmed",
+      "engagement_alias": "agency-wide"
+    },
+    {
+      "source_id": "restricted-record",
+      "agency_alias": "fictional-agency-a",
+      "kind": "clinical",
+      "reference": "record-restricted-record",
+      "version": "v1",
+      "owner_role": "agency-owner",
+      "updated_at": "2026-09-01",
+      "review_due": "2026-10-01",
+      "access_state": "unknown",
+      "engagement_alias": "fictional-engagement-a"
+    },
+    {
+      "source_id": "other-agency-index",
+      "agency_alias": "fictional-agency-b",
+      "kind": "talent-index",
+      "reference": "record-other-agency-index",
+      "version": "v1",
+      "owner_role": "talent-operator",
+      "updated_at": "2026-09-01",
+      "review_due": "2026-10-01",
+      "access_state": "confirmed",
+      "engagement_alias": "agency-wide"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "intake-closed",
+      "kind": "knowledge-refresh",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "completed",
+      "source_refs": [
+        {
+          "source_id": "policy",
+          "version": "v1"
+        },
+        {
+          "source_id": "engagement",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [],
+      "decision_question": ""
+    },
+    {
+      "task_id": "refresh-policy",
+      "kind": "knowledge-refresh",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "policy",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [],
+      "decision_question": ""
+    },
+    {
+      "task_id": "pipeline-update",
+      "kind": "pipeline-update",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "talent-index",
+          "version": "v1"
+        },
+        {
+          "source_id": "engagement",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [
+        "intake-closed"
+      ],
+      "decision_question": ""
+    },
+    {
+      "task_id": "candidate-followup",
+      "kind": "candidate-followup",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "talent-index",
+          "version": "v1"
+        },
+        {
+          "source_id": "engagement",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [
+        "pipeline-update"
+      ],
+      "decision_question": ""
+    },
+    {
+      "task_id": "service-proposal",
+      "kind": "service-offer",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "catalog",
+          "version": "v1"
+        },
+        {
+          "source_id": "engagement",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [],
+      "decision_question": "Approve the proposed scope for the fictional service engagement?"
+    },
+    {
+      "task_id": "employment-review",
+      "kind": "employment-offer",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "policy",
+          "version": "v1"
+        },
+        {
+          "source_id": "engagement",
+          "version": "v1"
+        },
+        {
+          "source_id": "talent-index",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [],
+      "decision_question": "Which unresolved employment-offer terms require the client decision owner?"
+    },
+    {
+      "task_id": "invoice-review",
+      "kind": "invoice-review",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-09",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "engagement",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [],
+      "decision_question": "Does the draft match the approved billable source?"
+    },
+    {
+      "task_id": "status-brief",
+      "kind": "status-update",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "engagement",
+          "version": "v1"
+        },
+        {
+          "source_id": "meeting-note",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [],
+      "decision_question": ""
+    },
+    {
+      "task_id": "scope-decision",
+      "kind": "meeting-decision",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "engagement",
+          "version": "v1"
+        },
+        {
+          "source_id": "catalog",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [],
+      "decision_question": "Approve the proposed fictional delivery sequence?"
+    },
+    {
+      "task_id": "client-handoff",
+      "kind": "client-handoff",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "engagement",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [
+        "service-proposal",
+        "invoice-review"
+      ],
+      "decision_question": ""
+    },
+    {
+      "task_id": "expired-source",
+      "kind": "knowledge-refresh",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-08",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "old-policy",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [],
+      "decision_question": ""
+    },
+    {
+      "task_id": "forbidden-domain",
+      "kind": "knowledge-refresh",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "restricted-record",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [],
+      "decision_question": ""
+    },
+    {
+      "task_id": "other-agency-task",
+      "kind": "pipeline-update",
+      "engagement_alias": "fictional-engagement-a",
+      "due_date": "2026-09-12",
+      "status": "pending",
+      "source_refs": [
+        {
+          "source_id": "other-agency-index",
+          "version": "v1"
+        }
+      ],
+      "depends_on": [],
+      "decision_question": ""
+    }
+  ],
+  "meetings": [
+    {
+      "meeting_id": "status-sync",
+      "purpose": "status",
+      "task_ids": [
+        "status-brief"
+      ],
+      "planned_minutes": 30,
+      "attendee_count": 5,
+      "async_ready": true,
+      "requires_live": false
+    },
+    {
+      "meeting_id": "scope-review",
+      "purpose": "decision",
+      "task_ids": [
+        "scope-decision"
+      ],
+      "planned_minutes": 25,
+      "attendee_count": 4,
+      "async_ready": true,
+      "requires_live": false
+    },
+    {
+      "meeting_id": "interview-slot",
+      "purpose": "interview",
+      "task_ids": [
+        "employment-review"
+      ],
+      "planned_minutes": 45,
+      "attendee_count": 2,
+      "async_ready": true,
+      "requires_live": false
+    },
+    {
+      "meeting_id": "handoff-sync",
+      "purpose": "status",
+      "task_ids": [
+        "client-handoff"
+      ],
+      "planned_minutes": 20,
+      "attendee_count": 3,
+      "async_ready": true,
+      "requires_live": false
+    },
+    {
+      "meeting_id": "care-checkin",
+      "purpose": "care",
+      "task_ids": [
+        "expired-source"
+      ],
+      "planned_minutes": 30,
+      "attendee_count": 2,
+      "async_ready": true,
+      "requires_live": false
+    }
+  ]
+}

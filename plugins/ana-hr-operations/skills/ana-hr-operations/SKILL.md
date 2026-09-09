@@ -13,6 +13,7 @@ Operate one structured engagement per client and role. Capture facts once, execu
 - Read `references/record-contract.md` when creating or changing an engagement record.
 - Read `references/google-docs-template.md` for any Google Docs template, copy, write, or verification task.
 - Read `references/pricing-and-invoice.md` before creating an offer, price calculation, invoice, or send draft.
+- Read `references/billing-review.md` when rehearsing source-linked billing events, local duplicate reservations, or review matching against an exact invoice revision. Local ledger acknowledgment never authenticates an approver or authorizes issue/send.
 - Read the exact SOP selected by `references/sop-index.md` before taking stage actions. Do not improvise a different stage sequence.
 
 ## SOP routing
@@ -27,6 +28,8 @@ Operate one structured engagement per client and role. Capture facts once, execu
 - Use `SOP-07` for a Google Doc, email, or administrative handoff after explicit send approval.
 
 ## Team and manager routing
+
+- Use `$ana-agency-control` for a source-linked company work brief, candidate-source intake, specialist preparation packets, service-versus-employment offer routing, or proposals to replace status meetings with asynchronous decisions. It coordinates this skill and does not grant source access or execute consequential actions.
 
 - Use the four-role contract in `references/team-adoption-and-template-ops.md`; individual team members prepare within their role, while Ana retains the manager/approval routes.
 - Use `manager morning control`, `approval review`, or `quality and exceptions review` as read-only manager controls. Present a decision card; do not treat the request itself as approval.

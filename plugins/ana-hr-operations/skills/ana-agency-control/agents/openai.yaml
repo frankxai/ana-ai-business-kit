@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ana Agency Control"
+  short_description: "Company knowledge, owned work, and fewer status meetings"
+  default_prompt: "Use $ana-agency-control to prepare our source-linked work and decision brief, specialist handoffs, and meeting recommendations."

@@ -5,6 +5,10 @@ from __future__ import annotations
 
 import copy
 import json
+import subprocess
+import sys
+import tempfile
+from decimal import Inexact, Rounded, localcontext, ROUND_DOWN
 from pathlib import Path
 from string import Template
 
@@ -90,11 +94,111 @@ require(
     "Null privacy must render safe placeholders without crashing.",
 )
 
-render_context = context(EXAMPLE)
 for document in ["kickoff", "job-description", "offer", "invoice"]:
     template = Template((ROOT / "assets" / DOCUMENT_ASSETS[document]).read_text(encoding="utf-8"))
-    rendered = template.safe_substitute(render_context)
+    rendered = template.safe_substitute(context(EXAMPLE, document))
     require("${" not in rendered, f"{document} has unresolved placeholders.")
     require("DRAFT" in rendered, f"{document} must remain visibly draft-labeled.")
+
+# These cases previously accepted invalid arithmetic or raised a traceback.
+for section in ["offer", "invoice"]:
+    for field in ["subtotal", "tax_rate", "tax_amount", "total"]:
+        for value in ["NaN", "sNaN", "Infinity", "-Infinity", float("nan"), -1, True, {}, [], "1e999999"]:
+            malformed = copy.deepcopy(EXAMPLE)
+            malformed[section][field] = value
+            require(any(f"{section}.{field}" in error for error in validate(malformed, "invoice")),
+                    f"{section}.{field}={value!r} must fail without crashing.")
+
+for field in ["quantity", "unit_price", "amount"]:
+    for value in ["NaN", "Infinity", -1, False, None, {}]:
+        malformed = copy.deepcopy(EXAMPLE)
+        malformed["invoice"]["line_items"][0][field] = value
+        require(any(f"line_items[0].{field}" in error for error in validate(malformed, "invoice")),
+                f"Malformed line {field} must fail without crashing.")
+
+for root in [None, [], "record", 42]:
+    require(validate(root, "invoice"), "Non-object records must fail without crashing.")
+for section in ["offer", "invoice", "client", "kickoff"]:
+    for value in [None, [], "block", 42]:
+        malformed = copy.deepcopy(EXAMPLE)
+        malformed[section] = value
+        require(validate(malformed, "invoice"), f"Malformed {section} must fail without crashing.")
+for value in [None, {}, "items", 1, [], [None], ["item"], [{}]]:
+    malformed = copy.deepcopy(EXAMPLE)
+    malformed["invoice"]["line_items"] = value
+    require(validate(malformed, "invoice"), "Malformed line collections must fail without crashing.")
+for field in ["platform", "status"]:
+    malformed = copy.deepcopy(EXAMPLE)
+    malformed["template"]["document_routes"]["invoice"][field] = []
+    require(validate(malformed, "invoice"), "Unhashable template values must fail without crashing.")
+
+for currency in ["JPY", "KWD", "eur", {}, "INVALID"]:
+    unsupported = copy.deepcopy(EXAMPLE)
+    unsupported["offer"]["currency"] = currency
+    unsupported["invoice"]["currency"] = currency
+    require(any("currency" in error for error in validate(unsupported, "invoice")),
+            "Unknown or unsupported minor-unit precision must fail.")
+
+extra_cents = copy.deepcopy(EXAMPLE)
+extra_cents["invoice"]["line_items"][0]["unit_price"] = "1000.001"
+require(any("two decimal places" in error for error in validate(extra_cents, "invoice")),
+        "Money input must never be silently rounded.")
+
+fractional = copy.deepcopy(EXAMPLE)
+fractional["invoice"]["line_items"] = [
+    {"description": "Synthetic fractional service", "quantity": "0.005", "unit_price": "1.00", "amount": "0.01"}
+]
+for section in ["offer", "invoice"]:
+    fractional[section].update(subtotal="0.01", tax_rate="50", tax_amount="0.01", total="0.02")
+with localcontext() as ctx:
+    ctx.rounding = ROUND_DOWN
+    ctx.prec = 6
+    ctx.traps[Inexact] = True
+    ctx.traps[Rounded] = True
+    require(not validate(fractional, "invoice"),
+            "Half-cent line and tax results must round half up, independent of caller decimal context.")
+require("| 0.005 | EUR 1.00 | EUR 0.01 |" in context(fractional, "invoice")["invoice_items"],
+        "Fractional quantities and decimal strings must render exactly.")
+
+precise_rate = copy.deepcopy(EXAMPLE)
+for section in ["offer", "invoice"]:
+    precise_rate[section].update(tax_rate="0.125", tax_amount="1.25", total="1001.25")
+require(not validate(precise_rate, "invoice"), "Rates must retain more than two decimal places.")
+require(context(precise_rate, "invoice")["invoice_tax_rate"] == "0.125", "Rendered rate must match arithmetic.")
+
+invoice_terms = copy.deepcopy(EXAMPLE)
+invoice_terms["invoice"]["payment_terms"] = "Approved invoice milestone terms"
+require(not validate(invoice_terms, "invoice"), "Independently approved invoice terms are supported.")
+invoice_context = context(invoice_terms, "invoice")
+require(invoice_context["payment_terms"] == "Approved invoice milestone terms", "Invoice must use its own terms.")
+require(context(invoice_terms, "offer")["payment_terms"] == EXAMPLE["offer"]["payment_terms"],
+        "Offer must retain its own terms.")
+# Test selection directly; the separate validation gate still rejects mismatched currencies.
+invoice_terms["invoice"]["currency"] = "USD"
+require(context(invoice_terms, "invoice")["currency"] == "USD", "Invoice context must use its own currency.")
+
+# Exercise the actual CLI boundary, including exact JSON decimal parsing and no writes on failure.
+with tempfile.TemporaryDirectory(prefix="ana-invoice-test-") as temporary:
+    work = Path(temporary)
+    record_path = work / "synthetic.json"
+    output_path = work / "invoice.md"
+    renderer = ROOT / "scripts" / "render_documents.py"
+    validator = ROOT / "scripts" / "validate_engagement.py"
+    record_path.write_text(json.dumps(fractional), encoding="utf-8")
+    result = subprocess.run([sys.executable, str(renderer), str(record_path), "--document", "invoice", "--out", str(output_path)],
+                            capture_output=True, text=True)
+    require(result.returncode == 0, f"Valid decimal-string invoice must render: {result.stderr}")
+    require("EUR 0.02" in output_path.read_text(encoding="utf-8"), "CLI must render the validated total.")
+    output_path.unlink()
+    for invalid_json in ["{", "null", '{"invoice": []}']:
+        record_path.write_text(invalid_json, encoding="utf-8")
+        for command in [
+            [sys.executable, str(validator), str(record_path), "--stage", "invoice"],
+            [sys.executable, str(renderer), str(record_path), "--document", "invoice", "--out", str(output_path)],
+        ]:
+            result = subprocess.run(command, capture_output=True, text=True)
+            require(result.returncode != 0 and "Traceback" not in result.stderr,
+                    "Invalid CLI input must fail with a useful message, without a traceback.")
+            require(not output_path.exists(), "Rejected records must produce no draft artifact.")
 
 print("Ana HR engagement, recruiting, privacy, and money gate tests passed.")

@@ -98,3 +98,7 @@ Avoid client names in a broad cross-client board. Use the legal client name only
 | Kickoff scheduling | Calendar only after explicit request | Exact attendee/time, fresh Ana authorization |
 
 No tool may search Drive or Canva broadly for an unspecified master. Missing exact source or copy permission is `TEMPLATE_BLOCKED`.
+
+## Company knowledge and operating state
+
+Maintain a source registry and one owned task/decision view within the company-approved workspace. The [company knowledge contract](../plugins/ana-hr-operations/skills/ana-agency-control/references/company-knowledge.md) defines current answers, talent-list intake, source ownership and update rules. General knowledge contains reusable methods and references; live candidate records remain restricted in the authoritative system. Use the [agency control planner](AGENCY-CONTROL-PRD.md) to rehearse metadata/workflow routing before connecting any source.

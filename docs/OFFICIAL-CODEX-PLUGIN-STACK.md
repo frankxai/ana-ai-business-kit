@@ -121,3 +121,7 @@ Scheduled tasks can use plugins and skills, but they do not make a sensitive wor
 - [Build and share skills](https://learn.chatgpt.com/docs/build-skills)
 - [Codex Security plugin](https://learn.chatgpt.com/docs/security/plugin)
 - [GitHub permission and fork visibility](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks)
+
+## Extended agency stack — September 2026 research
+
+Official Recruit CRM and Ashby MCP offerings, Notion knowledge/agent capabilities, native Google/Microsoft meeting features, and n8n/Trigger.dev execution boundaries are evaluated in [current connector research](CONNECTOR-RESEARCH-2026-09-09.md). Their documented availability does not mean they are installed or authorized in Ana's company. Preserve the existing ATS and office suite; the [agency control layer](AGENCY-CONTROL-PRD.md) adds workflow contracts and a planning candidate.

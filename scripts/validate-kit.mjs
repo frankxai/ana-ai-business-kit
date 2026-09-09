@@ -52,7 +52,7 @@ for (const required of ['PRACTITIONER REVIEW REQUIRED', 'Never diagnose', 'priva
 
 const pluginManifest = JSON.parse(await readFile(resolve(pluginRoot, '.codex-plugin', 'plugin.json'), 'utf8'));
 if (pluginManifest.name !== 'ana-hr-operations') failures.push('Plugin name must match its folder.');
-if (!/^0\.2\.0(?:\+codex\.[0-9A-Za-z.-]+)?$/.test(pluginManifest.version)) failures.push('Plugin version must preserve the 0.2.0 base version and optional Codex cachebuster.');
+if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/.test(pluginManifest.version)) failures.push('Plugin version must use semantic versioning.');
 if (!pluginManifest.skills) failures.push('Plugin skills path is required.');
 
 const marketplace = JSON.parse(await readFile(resolve(root, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
@@ -167,12 +167,16 @@ for (const relativePath of [
   'scripts/validate_engagement.py',
   'scripts/render_documents.py',
   'scripts/test_engagement.py',
+  'scripts/billing_review.py',
+  'scripts/test_billing_review.py',
   'scripts/test_sops.py',
   'assets/client-kickoff.md',
   'assets/job-description.md',
   'assets/offer.md',
   'assets/invoice.md',
   'assets/engagement.example.json',
+  'assets/billing-event.example.json',
+  'assets/billing-source.example.md',
   'assets/daily-operations-board.md',
   'assets/recruiting-weekly-status.md',
   'assets/template-registry.example.json',
@@ -183,6 +187,7 @@ for (const relativePath of [
   'references/google-docs-template.md',
   'references/hr-quality-and-privacy.md',
   'references/pricing-and-invoice.md',
+  'references/billing-review.md',
   'references/team-adoption-and-template-ops.md',
   'references/sops/SOP-00-multi-client-control.md',
   'references/sops/SOP-01-first-client-call.md',
@@ -201,6 +206,26 @@ for (const relativePath of [
 }
 
 for (const [skillName, resources] of Object.entries({
+  'ana-agency-control': [
+    'SKILL.md',
+    'agents/openai.yaml',
+    'references/company-knowledge.md',
+    'references/agent-team.md',
+    'references/async-decisions.md',
+    'references/planner-contract.md',
+    'assets/agency-control.example.json',
+    'scripts/agency_control.py',
+    'scripts/test_agency_control.py',
+  ],
+  'ana-team-practice': [
+    'SKILL.md',
+    'agents/openai.yaml',
+    'references/session-workflow.md',
+    'assets/team-practice.example.json',
+    'assets/handoff-rehearsal.md',
+    'scripts/team_practice.py',
+    'scripts/test_team_practice.py',
+  ],
   'ana-research-library': [
     'SKILL.md',
     'agents/openai.yaml',
