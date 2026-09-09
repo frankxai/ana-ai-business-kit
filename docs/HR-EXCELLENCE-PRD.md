@@ -40,7 +40,7 @@ flowchart TD
   P["Personal reflection practice"] --> V["Separate private records"]
 ```
 
-Current implementation is file-based: skills, JSON contracts, local validators, and reviewed documents. It does not implement the approval service, multi-tenant state, MCP server, or billing adapter shown as target architecture.
+Current implementation uses skills, JSON contracts, local validators, reviewed documents, and a single-agency SQLite billing preparation ledger. It does not implement the approval service, multi-tenant state, MCP server, or billing adapter shown as target architecture.
 
 Reuse the current Codex distribution first. Generate Claude/Hermes host wrappers from the same contracts only after host-specific fixture runs. A Codex plugin is not proof of ChatGPT app compatibility. Any ChatGPT app requires a separate host integration and end-to-end validation.
 
@@ -86,7 +86,7 @@ Issuer identity, tax fields, numbering, and credit documents belong to the juris
 | F09 | Template fidelity | Exact approved master copied; document readback and human visual review recorded |
 | F10 | Method release quality | Claim-source mapping, owner approval, EN/ES review, participant materials, and facilitator rehearsal complete |
 
-This candidate implements F01–F04 only. Existing instructions support parts of F08–F10; no live acceptance is asserted. F05–F07 block connected accounting or hosted multi-agency launch.
+This candidate implements F01–F04 plus local preparation subsets of F05–F06: registered-source digest matching, artifact/revision-bound manual acknowledgment, one event/number reservation within one ledger, and transaction-safe preparation retries. The local acknowledgment is explicitly unauthenticated; no provider API, authenticated approval, cumulative budget, or cross-ledger duplicate control is implemented. Existing instructions support parts of F08–F10; no live acceptance is asserted. Full F05–F07 continue to block connected accounting or hosted multi-agency launch.
 
 ## Operational standards
 
@@ -98,7 +98,7 @@ Keep invoice arithmetic deterministic. Use models for extraction and drafting on
 
 ## Delivery sequence and stop rules
 
-1. **Candidate:** invoice fixes, team-practice draft, tests, audit, PRD, scorecard. No live integrations.
+1. **Candidate:** invoice fixes, local event/revision review ledger, team-practice draft, tests, audit, PRD, scorecard, and executable rehearsal instructions. No live integrations.
 2. **Internal proof:** Ana supplies sanitized templates and approves policy. Run one fictional rehearsal, then three authorized real engagements with manual finance entry. Baseline work time before comparison.
 3. **Commercial proof:** two paid partner agencies complete the same bounded workflow. Collect correction rate, operator effort, review time, and support load. Add no connector for one customer's bespoke need.
 4. **Reusable product:** owner-approved premium facilitator assets and installation curriculum; exact license and seller terms reviewed. Publish only claims supported by permissioned receipts.
@@ -107,3 +107,5 @@ Keep invoice arithmetic deterministic. Use models for extraction and drafting on
 Pause expansion when correction rate rises, a privacy boundary fails, paid demand does not recur, or owner support exceeds the scorecard budget. Keep a validated previous plugin version available; rollback source changes through a reviewed revert. Accounting rollback must reconcile provider state and use the provider's valid correction process, never delete financial history to hide an error.
 
 Research: [audit and source ledger](AUDIT-2026-09-09.md). Measurement: [excellence scorecard](EXCELLENCE-SCORECARD.md).
+
+Internal execution: [pilot runbook](PILOT-RUNBOOK.md), [blank observation template](templates/pilot-draft-observations.csv), and [local billing review contract](../plugins/ana-hr-operations/skills/ana-hr-operations/references/billing-review.md).

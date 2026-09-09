@@ -1,0 +1,14 @@
+{
+  "schema_version": "billing-event/v1",
+  "agency_alias": "AGENCY-DEMO",
+  "event_id": "EVENT-DEMO-001",
+  "engagement_id": "ANA-DEMO-001",
+  "source_reference": "SOURCE-DEMO-001",
+  "source_sha256": "4e13fa173baab4b94c813d95afe49930036a43521456dd7ba03b4c19779bb2eb",
+  "source_review_reference": "REVIEW-SOURCE-DEMO",
+  "evidence_reference": "DELIVERY-DEMO-001",
+  "currency": "EUR",
+  "billable_subtotal": "1000.00",
+  "finance_destination_reference": "FINANCE-DEMO",
+  "policy_version": "POLICY-DEMO-v1"
+}

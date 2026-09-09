@@ -109,6 +109,17 @@ def context(record: dict, document: str | None = None) -> dict[str, str]:
     }
 
 
+def render(record: dict, document: str) -> str:
+    """Render the same validated review draft for CLI and local ledger callers."""
+    if document not in DOCUMENT_STAGES:
+        raise ValueError("Unknown document type.")
+    errors = validate(record, DOCUMENT_STAGES[document])
+    if errors:
+        raise ValueError("Cannot render:\n- " + "\n- ".join(errors))
+    asset = Path(__file__).resolve().parent.parent / "assets" / DOCUMENT_ASSETS[document]
+    return Template(asset.read_text(encoding="utf-8")).safe_substitute(context(record, document))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("record", type=Path)
@@ -120,12 +131,10 @@ def main() -> int:
         record = json.loads(args.record.read_text(encoding="utf-8"), parse_float=Decimal)
     except (OSError, ValueError) as exc:
         raise SystemExit(f"Cannot read engagement record: {exc}") from None
-    errors = validate(record, DOCUMENT_STAGES[args.document])
-    if errors:
-        raise SystemExit("Cannot render:\n- " + "\n- ".join(errors))
-
-    asset = Path(__file__).resolve().parent.parent / "assets" / DOCUMENT_ASSETS[args.document]
-    rendered = Template(asset.read_text(encoding="utf-8")).safe_substitute(context(record, args.document))
+    try:
+        rendered = render(record, args.document)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from None
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(rendered, encoding="utf-8")
     print(f"Rendered review draft: {args.out}")

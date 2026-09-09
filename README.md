@@ -118,7 +118,7 @@ scripts/                         # validation and reproducible packaging
 
 ## Current development
 
-Plugin `0.3.0-rc.1` adds stricter invoice arithmetic and a team-practice draft workflow. It is a development candidate; live billing, hosted MCP, and commercial launch remain separate milestones. See [audit and research](docs/AUDIT-2026-09-09.md), [product requirements](docs/HR-EXCELLENCE-PRD.md), and [success metrics](docs/EXCELLENCE-SCORECARD.md). The legacy download manifest remains version 1.1.0.
+Plugin `0.3.0-rc.2` adds stricter invoice arithmetic, a team-practice draft workflow, and a local billing ledger with source matching, revision-specific review acknowledgments, and duplicate reservation checks. It is a development candidate; live billing, hosted MCP, and commercial launch remain separate milestones. See [audit and research](docs/AUDIT-2026-09-09.md), [product requirements](docs/HR-EXCELLENCE-PRD.md), and [success metrics](docs/EXCELLENCE-SCORECARD.md). Use the [pilot runbook](docs/PILOT-RUNBOOK.md) to rehearse and collect actual evidence. Local acknowledgments are not authenticated approvals. The legacy download manifest remains version 1.1.0.
 
 ## For maintainers
 

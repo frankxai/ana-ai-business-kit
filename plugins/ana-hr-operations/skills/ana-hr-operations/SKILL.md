@@ -13,6 +13,7 @@ Operate one structured engagement per client and role. Capture facts once, execu
 - Read `references/record-contract.md` when creating or changing an engagement record.
 - Read `references/google-docs-template.md` for any Google Docs template, copy, write, or verification task.
 - Read `references/pricing-and-invoice.md` before creating an offer, price calculation, invoice, or send draft.
+- Read `references/billing-review.md` when rehearsing source-linked billing events, local duplicate reservations, or review matching against an exact invoice revision. Local ledger acknowledgment never authenticates an approver or authorizes issue/send.
 - Read the exact SOP selected by `references/sop-index.md` before taking stage actions. Do not improvise a different stage sequence.
 
 ## SOP routing

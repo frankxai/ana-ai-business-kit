@@ -40,6 +40,10 @@ The local validator supports EUR, USD, GBP, CAD, AUD, NZD, CHF, SEK, NOK, and DK
 
 This is a single-tax-rate draft workflow. It does not establish applicable taxes, tax jurisdictions, invoice-number uniqueness, payment settlement, mixed tax treatment, credit notes, discounts as negative lines, or verified approval identity. Those require the approved finance system and human review.
 
+## Local event and revision evidence
+
+The optional [billing review ledger](billing-review.md) records immutable event/source references, checks one full-event subtotal, reserves an invoice number inside one local ledger, and binds a manual review acknowledgment to the exact generated artifact and engagement revision. It does not authenticate the source or reviewer, coordinate different ledgers, enforce cumulative contract budgets, or perform accounting. Use the guide and fictional exercise before considering it within an approved private preparation workflow. The finance destination alias is separate from the invoice payment-instructions profile.
+
 ## Send gate
 
 Before preparing a sendable email, require `approvals.invoice` and `approvals.send` with named approver, timestamp, channel, and exact recipient. Re-read the attachment and totals immediately before handoff.

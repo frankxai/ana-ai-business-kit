@@ -31,3 +31,7 @@ Use `not_measured`, `insufficient_sample`, `pass`, `fail`, or `paused` explicitl
 ## Cadence
 
 The coordinator maintains the daily exception queue. Ana or her delegate reviews material decisions in one weekly batch. Monthly, the product owner reviews adoption, margin, support burden, and which unproven feature to stop. Customer follow-up and metrics collection require agreed purpose, access, and retention.
+
+## Collect the first observations
+
+Use the [pilot runbook](PILOT-RUNBOOK.md) and [blank draft observation CSV](templates/pilot-draft-observations.csv). Retain all attempts under a stable artifact ID, include rework in preparation totals, match baseline/pilot task complexity, and report missing counts. Local ledger acknowledgments do not count as authenticated approval coverage. No observations are populated by the software tests.
