@@ -1,0 +1,4 @@
+interface:
+  display_name: "Team Practice Design"
+  short_description: "Voluntary team practice with workflow evidence"
+  default_prompt: "Use $team-practice-design to draft a voluntary AI workflow practice with private reflection and aggregate quality measures."
