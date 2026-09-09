@@ -90,3 +90,7 @@ Before a workflow version is used with live client material, the fictional relea
 - no candidate or finance data in GitHub or the cross-client board;
 - a named Ana approval before price, invoice, publication, or external handoff;
 - a concise receipt after every SOP.
+
+## Source-linked control and specialist preparation
+
+The [agency control extension](AGENCY-CONTROL-PRD.md) gives these human remits bounded preparation specialists, a current-source work brief, and asynchronous decision packets. Preparation stays with the coordinator/talent/document operators; accountable decisions stay with the appropriate owner or client. The current helper produces a plan, not running agents or source authorization. Use its [team contract](../plugins/ana-hr-operations/skills/ana-agency-control/references/agent-team.md) for actual host handoffs.

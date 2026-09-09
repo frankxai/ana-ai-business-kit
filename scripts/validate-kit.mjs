@@ -206,6 +206,17 @@ for (const relativePath of [
 }
 
 for (const [skillName, resources] of Object.entries({
+  'ana-agency-control': [
+    'SKILL.md',
+    'agents/openai.yaml',
+    'references/company-knowledge.md',
+    'references/agent-team.md',
+    'references/async-decisions.md',
+    'references/planner-contract.md',
+    'assets/agency-control.example.json',
+    'scripts/agency_control.py',
+    'scripts/test_agency_control.py',
+  ],
   'ana-team-practice': [
     'SKILL.md',
     'agents/openai.yaml',

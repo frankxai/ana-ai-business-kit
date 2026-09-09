@@ -35,3 +35,7 @@ The coordinator maintains the daily exception queue. Ana or her delegate reviews
 ## Collect the first observations
 
 Use the [pilot runbook](PILOT-RUNBOOK.md) and [blank draft observation CSV](templates/pilot-draft-observations.csv). Retain all attempts under a stable artifact ID, include rework in preparation totals, match baseline/pilot task complexity, and report missing counts. Local ledger acknowledgments do not count as authenticated approval coverage. No observations are populated by the software tests.
+
+## Agency coordination extension
+
+Measure actual internal status-meeting minutes, team attendee-minutes, Ana owner time, preparation/follow-up, added async work/rework, median/p90 decision latency, current-source answer quality, and commitment reliability. Proposed targets and denominators are in the [agency control PRD](AGENCY-CONTROL-PRD.md) and [meeting protocol](../plugins/ana-hr-operations/skills/ana-agency-control/references/async-decisions.md). The [blank coordination CSV](templates/coordination-observations.csv) contains no observations. Meeting opportunities from the planner are modeled gross counts, not actual savings.

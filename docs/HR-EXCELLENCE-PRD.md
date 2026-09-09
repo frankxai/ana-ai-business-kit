@@ -109,3 +109,7 @@ Pause expansion when correction rate rises, a privacy boundary fails, paid deman
 Research: [audit and source ledger](AUDIT-2026-09-09.md). Measurement: [excellence scorecard](EXCELLENCE-SCORECARD.md).
 
 Internal execution: [pilot runbook](PILOT-RUNBOOK.md), [blank observation template](templates/pilot-draft-observations.csv), and [local billing review contract](../plugins/ana-hr-operations/skills/ana-hr-operations/references/billing-review.md).
+
+## Company knowledge and agency coordination extension
+
+The [agency control PRD](AGENCY-CONTROL-PRD.md) extends this foundation to company knowledge, restricted talent-source references, new service/employment offers, specialist work packets, and asynchronous meeting/decision workflows. Candidate records remain in their authoritative restricted system. The local planner implements metadata/dependency/source checks only; actual retrieval, authenticated worker execution and provider actions require the connected acceptance gates. [Verified connector research](CONNECTOR-RESEARCH-2026-09-09.md) favors existing native tools before a custom MCP.

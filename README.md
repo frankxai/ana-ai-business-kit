@@ -19,10 +19,11 @@ AI works backstage: it prepares, reconciles, and checks. Ana's team owns deliver
 | Research and team practice | Evidence library, applicability notes, workshop/research draft | Ana decides what is appropriate to use or teach |
 | Content | Accurate, approval-gated draft using approved sources | Ana approves publication and any send |
 
-The plugin includes five complementary skills:
+The plugin includes six complementary skills:
 
 | Skill | Job |
 | --- | --- |
+| `ana-agency-control` | Source-aware company work brief, specialist handoff packets, recruiting/offer decision queues, and meeting-reduction proposals |
 | `ana-hr-operations` | Consistent client delivery, recruiting operations, documents, commercial preparation, and handoffs |
 | `ana-template-studio` | Validated content-pack-to-Google-Docs/Canva execution, candidate selection, readback, visual checks, and approval cards |
 | `ana-team-practice` | Internal drafts for voluntary working-agreement sessions and 30-day follow-through; human review remains required |
@@ -118,7 +119,7 @@ scripts/                         # validation and reproducible packaging
 
 ## Current development
 
-Plugin `0.3.0-rc.2` adds stricter invoice arithmetic, a team-practice draft workflow, and a local billing ledger with source matching, revision-specific review acknowledgments, and duplicate reservation checks. It is a development candidate; live billing, hosted MCP, and commercial launch remain separate milestones. See [audit and research](docs/AUDIT-2026-09-09.md), [product requirements](docs/HR-EXCELLENCE-PRD.md), and [success metrics](docs/EXCELLENCE-SCORECARD.md). Use the [pilot runbook](docs/PILOT-RUNBOOK.md) to rehearse and collect actual evidence. Local acknowledgments are not authenticated approvals. The legacy download manifest remains version 1.1.0.
+Plugin `0.3.0-rc.3` adds stricter invoice arithmetic, a team-practice draft workflow, and a local billing ledger with source matching, revision-specific review acknowledgments, and duplicate reservation checks. It is a development candidate; live billing, hosted MCP, and commercial launch remain separate milestones. See [audit and research](docs/AUDIT-2026-09-09.md), [product requirements](docs/HR-EXCELLENCE-PRD.md), and [success metrics](docs/EXCELLENCE-SCORECARD.md). Use the [pilot runbook](docs/PILOT-RUNBOOK.md) to rehearse and collect actual evidence. The [agency control increment](docs/AGENCY-CONTROL-PRD.md) adds a source-aware planner and connected-team contracts; live retrieval and worker execution remain separate gates. See [current connector research](docs/CONNECTOR-RESEARCH-2026-09-09.md). Local acknowledgments are not authenticated approvals. The legacy download manifest remains version 1.1.0.
 
 ## For maintainers
 
