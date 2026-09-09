@@ -5,10 +5,11 @@ from __future__ import annotations
 
 import argparse
 import json
+from decimal import Decimal
 from pathlib import Path
 from string import Template
 
-from validate_engagement import validate
+from validate_engagement import object_block, round_money, validate
 
 
 DOCUMENT_STAGES = {
@@ -29,22 +30,32 @@ def bullets(values) -> str:
     return "\n".join(f"- {value}" for value in values) if values else "- [Complete before approval]"
 
 
+def decimal_text(value) -> str:
+    text = format(Decimal(str(value)), "f")
+    return text.rstrip("0").rstrip(".") if "." in text else text
+
+
+def amount_text(value) -> str:
+    return format(round_money(Decimal(str(value))), ".2f")
+
+
 def line_items(values, currency: str) -> str:
     rows = ["| Description | Quantity | Unit price | Amount |", "| --- | ---: | ---: | ---: |"]
     for item in values:
         rows.append(
-            f"| {item['description']} | {item['quantity']} | {currency} {item['unit_price']:.2f} | {currency} {item['amount']:.2f} |"
+            f"| {item['description']} | {decimal_text(item['quantity'])} | {currency} {amount_text(item['unit_price'])} | {currency} {amount_text(item['amount'])} |"
         )
     return "\n".join(rows)
 
 
-def context(record: dict) -> dict[str, str]:
+def context(record: dict, document: str | None = None) -> dict[str, str]:
     client = record["client"]
     kickoff = record["kickoff"]
     privacy = record.get("privacy") or {}
-    role = record.get("role", {})
-    offer = record.get("offer", {})
-    invoice = record.get("invoice", {})
+    role = object_block(record, "role")
+    offer = object_block(record, "offer") if document in {None, "offer", "invoice"} else {}
+    invoice = object_block(record, "invoice") if document in {None, "invoice"} else {}
+    commercial = invoice if document == "invoice" else offer
     return {
         "engagement_id": record["engagement_id"],
         "client_name": client["legal_name"],
@@ -79,21 +90,21 @@ def context(record: dict) -> dict[str, str]:
         "deliverables": bullets(offer.get("deliverables", [])),
         "exclusions": bullets(offer.get("exclusions", [])),
         "offer_timeline": offer.get("timeline", "[Timeline]"),
-        "currency": offer.get("currency", invoice.get("currency", "EUR")),
-        "offer_subtotal": f"{offer.get('subtotal', 0):.2f}",
-        "offer_tax_rate": f"{offer.get('tax_rate', 0):.2f}",
-        "offer_tax_amount": f"{offer.get('tax_amount', 0):.2f}",
-        "offer_total": f"{offer.get('total', 0):.2f}",
-        "payment_terms": offer.get("payment_terms", invoice.get("payment_terms", "[Payment terms]")),
+        "currency": commercial.get("currency", "[Currency]"),
+        "offer_subtotal": amount_text(offer.get("subtotal", 0)),
+        "offer_tax_rate": decimal_text(offer.get("tax_rate", 0)),
+        "offer_tax_amount": amount_text(offer.get("tax_amount", 0)),
+        "offer_total": amount_text(offer.get("total", 0)),
+        "payment_terms": commercial.get("payment_terms", "[Payment terms]"),
         "valid_until": offer.get("valid_until", "[Validity date]"),
         "invoice_number": invoice.get("invoice_number", "[Invoice number]"),
         "issue_date": invoice.get("issue_date", "[Issue date]"),
         "due_date": invoice.get("due_date", "[Due date]"),
         "invoice_items": line_items(invoice.get("line_items", []), invoice.get("currency", "EUR")),
-        "invoice_subtotal": f"{invoice.get('subtotal', 0):.2f}",
-        "invoice_tax_rate": f"{invoice.get('tax_rate', 0):.2f}",
-        "invoice_tax_amount": f"{invoice.get('tax_amount', 0):.2f}",
-        "invoice_total": f"{invoice.get('total', 0):.2f}",
+        "invoice_subtotal": amount_text(invoice.get("subtotal", 0)),
+        "invoice_tax_rate": decimal_text(invoice.get("tax_rate", 0)),
+        "invoice_tax_amount": amount_text(invoice.get("tax_amount", 0)),
+        "invoice_total": amount_text(invoice.get("total", 0)),
         "payment_details_reference": invoice.get("payment_details_reference", "[Approved finance-system reference]"),
     }
 
@@ -105,13 +116,16 @@ def main() -> int:
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
 
-    record = json.loads(args.record.read_text(encoding="utf-8"))
+    try:
+        record = json.loads(args.record.read_text(encoding="utf-8"), parse_float=Decimal)
+    except (OSError, ValueError) as exc:
+        raise SystemExit(f"Cannot read engagement record: {exc}") from None
     errors = validate(record, DOCUMENT_STAGES[args.document])
     if errors:
         raise SystemExit("Cannot render:\n- " + "\n- ".join(errors))
 
     asset = Path(__file__).resolve().parent.parent / "assets" / DOCUMENT_ASSETS[args.document]
-    rendered = Template(asset.read_text(encoding="utf-8")).safe_substitute(context(record))
+    rendered = Template(asset.read_text(encoding="utf-8")).safe_substitute(context(record, args.document))
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(rendered, encoding="utf-8")
     print(f"Rendered review draft: {args.out}")

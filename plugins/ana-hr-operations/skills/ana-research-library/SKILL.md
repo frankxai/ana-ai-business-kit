@@ -73,3 +73,5 @@ Return:
 - explicitly prohibited uses;
 - entry validation result;
 - curator, reviewer/approval need, next review date, and next action.
+
+For a voluntary working-agreement session with approved team-level facts, route the reviewed evidence to `ana-team-practice`. It creates a proposed agenda and follow-through draft; it does not collect individual responses or approve delivery.

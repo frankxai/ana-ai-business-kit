@@ -52,7 +52,7 @@ for (const required of ['PRACTITIONER REVIEW REQUIRED', 'Never diagnose', 'priva
 
 const pluginManifest = JSON.parse(await readFile(resolve(pluginRoot, '.codex-plugin', 'plugin.json'), 'utf8'));
 if (pluginManifest.name !== 'ana-hr-operations') failures.push('Plugin name must match its folder.');
-if (!/^0\.2\.0(?:\+codex\.[0-9A-Za-z.-]+)?$/.test(pluginManifest.version)) failures.push('Plugin version must preserve the 0.2.0 base version and optional Codex cachebuster.');
+if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/.test(pluginManifest.version)) failures.push('Plugin version must use semantic versioning.');
 if (!pluginManifest.skills) failures.push('Plugin skills path is required.');
 
 const marketplace = JSON.parse(await readFile(resolve(root, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
@@ -201,6 +201,15 @@ for (const relativePath of [
 }
 
 for (const [skillName, resources] of Object.entries({
+  'ana-team-practice': [
+    'SKILL.md',
+    'agents/openai.yaml',
+    'references/session-workflow.md',
+    'assets/team-practice.example.json',
+    'assets/handoff-rehearsal.md',
+    'scripts/team_practice.py',
+    'scripts/test_team_practice.py',
+  ],
   'ana-research-library': [
     'SKILL.md',
     'agents/openai.yaml',

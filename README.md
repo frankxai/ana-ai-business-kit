@@ -19,12 +19,13 @@ AI works backstage: it prepares, reconciles, and checks. Ana's team owns deliver
 | Research and team practice | Evidence library, applicability notes, workshop/research draft | Ana decides what is appropriate to use or teach |
 | Content | Accurate, approval-gated draft using approved sources | Ana approves publication and any send |
 
-The plugin includes four complementary skills:
+The plugin includes five complementary skills:
 
 | Skill | Job |
 | --- | --- |
 | `ana-hr-operations` | Consistent client delivery, recruiting operations, documents, commercial preparation, and handoffs |
 | `ana-template-studio` | Validated content-pack-to-Google-Docs/Canva execution, candidate selection, readback, visual checks, and approval cards |
+| `ana-team-practice` | Internal drafts for voluntary working-agreement sessions and 30-day follow-through; human review remains required |
 | `ana-research-library` | Evidence capture and a safe research library for HR, recruiting, team practice, and voluntary workshop preparation |
 | `ana-approved-content` | Approval-gated, source-backed content drafts; it never publishes or sends |
 
@@ -114,6 +115,10 @@ scripts/                         # validation and reproducible packaging
 - Do not invent prices, tax treatment, credentials, claims, outcomes, testimonials, or client policy.
 - Use ethical, transparent persuasion: accurate context, clear scope, a truthful next step, and no false urgency or guarantee.
 - Confirm the company's data-processing, retention, access, and deletion rules before using live candidate or employee data with an AI service.
+
+## Current development
+
+Plugin `0.3.0-rc.1` adds stricter invoice arithmetic and a team-practice draft workflow. It is a development candidate; live billing, hosted MCP, and commercial launch remain separate milestones. See [audit and research](docs/AUDIT-2026-09-09.md), [product requirements](docs/HR-EXCELLENCE-PRD.md), and [success metrics](docs/EXCELLENCE-SCORECARD.md). The legacy download manifest remains version 1.1.0.
 
 ## For maintainers
 

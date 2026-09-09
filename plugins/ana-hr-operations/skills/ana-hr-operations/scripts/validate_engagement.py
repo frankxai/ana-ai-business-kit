@@ -7,7 +7,7 @@ import argparse
 import json
 import sys
 from datetime import date
-from decimal import Decimal, InvalidOperation
+from decimal import Context, Decimal, DecimalException, ROUND_HALF_UP, localcontext
 from pathlib import Path
 
 
@@ -159,6 +159,11 @@ TEAM_ROLES = {
     "document_client_experience_operator",
 }
 TEMPLATE_PLATFORMS = {"google-docs", "canva"}
+# This draft renderer uses two-decimal units; other currencies need a minor-unit adapter.
+SUPPORTED_CURRENCIES = {"EUR", "USD", "GBP", "CAD", "AUD", "NZD", "CHF", "SEK", "NOK", "DKK"}
+CENT = Decimal("0.01")
+ARITHMETIC_CONTEXT = Context(prec=64, rounding=ROUND_HALF_UP)
+
 TEMPLATE_STATUSES = {
     "TEMPLATE_BLOCKED",
     "DRAFT_CONTENT_READY",
@@ -183,20 +188,58 @@ def is_present(value) -> bool:
     return value is not None and value != "" and value != [] and value != {}
 
 
-def money(value, label: str, errors: list[str]) -> Decimal:
+def decimal_value(value, label: str, errors: list[str]) -> Decimal | None:
+    """Read bounded, finite, non-negative decimals without rounding input."""
     try:
-        return Decimal(str(value)).quantize(Decimal("0.01"))
-    except (InvalidOperation, TypeError, ValueError):
-        errors.append(f"{label} must be a decimal amount.")
-        return Decimal("0.00")
+        if isinstance(value, bool) or not isinstance(value, (str, int, float, Decimal)):
+            raise ValueError
+        result = Decimal(str(value))
+        if not result.is_finite() or result < 0:
+            raise ValueError
+        # 28 significant digits and at most 28 integer/fractional places keep
+        # products exact inside our explicit 64-digit arithmetic context.
+        parts = result.as_tuple()
+        digits = list(parts.digits)
+        exponent = parts.exponent
+        while digits and digits[-1] == 0:
+            digits.pop()
+            exponent += 1
+        if result and (len(digits) > 28 or result.adjusted() > 27 or exponent < -28):
+            errors.append(f"{label} exceeds supported decimal precision (28 significant digits and 28 places).")
+            return None
+        return result if result else Decimal("0")
+    except (DecimalException, TypeError, ValueError):
+        errors.append(f"{label} must be a finite, non-negative decimal value.")
+        return None
+
+
+def round_money(value: Decimal) -> Decimal:
+    with localcontext(ARITHMETIC_CONTEXT):
+        return value.quantize(CENT, rounding=ROUND_HALF_UP)
+
+
+def money(value, label: str, errors: list[str]) -> Decimal | None:
+    result = decimal_value(value, label, errors)
+    if result is None:
+        return None
+    rounded = round_money(result)
+    if result != rounded:
+        errors.append(f"{label} must have at most two decimal places; input amounts are never silently rounded.")
+        return None
+    return rounded
+
+
+def object_block(record: dict, key: str) -> dict:
+    value = record.get(key)
+    return value if isinstance(value, dict) else {}
 
 
 def find_forbidden_keys(value, path: str = "") -> list[str]:
     found: list[str] = []
     if isinstance(value, dict):
         for key, child in value.items():
-            child_path = f"{path}.{key}" if path else key
-            if key.lower() in FORBIDDEN_RECORD_KEYS:
+            child_path = f"{path}.{key}" if path else str(key)
+            if str(key).lower() in FORBIDDEN_RECORD_KEYS:
                 found.append(child_path)
             found.extend(find_forbidden_keys(child, child_path))
     elif isinstance(value, list):
@@ -215,6 +258,13 @@ def iso_date(value, label: str, errors: list[str]) -> date | None:
 
 def validate(record: dict, stage: str, require_template: bool = False) -> list[str]:
     errors: list[str] = []
+    if not isinstance(record, dict):
+        return ["Engagement record must be a JSON object."]
+    if not isinstance(stage, str) or stage not in STAGE_DEPENDENCIES:
+        return ["Unknown engagement stage."]
+    for section in {field.split(".")[0] for fields in STAGE_FIELDS.values() for field in fields if "." in field} | {"template"}:
+        if section in record and not isinstance(record[section], dict):
+            errors.append(f"{section} must be an object.")
     required_stages = list(STAGE_DEPENDENCIES[stage])
     if stage == "send":
         artifact_type = str(get_path(record, "handoff.artifact_type") or "")
@@ -248,9 +298,9 @@ def validate(record: dict, stage: str, require_template: bool = False) -> list[s
                     errors.append(f"template.document_routes.{document_type}.template_id is required.")
                 platform = route.get("platform")
                 status = route.get("status")
-                if platform not in TEMPLATE_PLATFORMS:
+                if not isinstance(platform, str) or platform not in TEMPLATE_PLATFORMS:
                     errors.append(f"template.document_routes.{document_type}.platform must be google-docs or canva.")
-                if status not in TEMPLATE_STATUSES:
+                if not isinstance(status, str) or status not in TEMPLATE_STATUSES:
                     errors.append(f"template.document_routes.{document_type}.status is not a recognized template status.")
                 if not isinstance(route.get("visual_check_required"), bool):
                     errors.append(f"template.document_routes.{document_type}.visual_check_required must be boolean.")
@@ -263,6 +313,15 @@ def validate(record: dict, stage: str, require_template: bool = False) -> list[s
         for dotted in STAGE_FIELDS[required_stage]:
             if not is_present(get_path(record, dotted)):
                 errors.append(f"Missing {dotted} for {required_stage}.")
+
+    for dotted in [
+        "kickoff.success_outcomes", "kickoff.decision_makers", "role.outcomes",
+        "role.responsibilities", "role.must_have", "role.nice_to_have",
+        "offer.deliverables", "offer.exclusions",
+    ]:
+        value = get_path(record, dotted)
+        if value is not None and (not isinstance(value, list) or not all(isinstance(item, str) for item in value)):
+            errors.append(f"{dotted} must be a list of strings.")
 
     if require_template:
         url = str(get_path(record, "template.google_doc_url") or "")
@@ -284,35 +343,58 @@ def validate(record: dict, stage: str, require_template: bool = False) -> list[s
 
     if "offer" in required_stages:
         for section in ["offer"] + (["invoice"] if "invoice" in required_stages else []):
-            block = record.get(section, {})
+            block = object_block(record, section)
+            currency = block.get("currency")
+            if not isinstance(currency, str) or currency not in SUPPORTED_CURRENCIES:
+                errors.append(f"{section}.currency must be a supported two-decimal currency: {', '.join(sorted(SUPPORTED_CURRENCIES))}.")
             subtotal = money(block.get("subtotal"), f"{section}.subtotal", errors)
-            tax_rate = money(block.get("tax_rate"), f"{section}.tax_rate", errors)
+            tax_rate = decimal_value(block.get("tax_rate"), f"{section}.tax_rate", errors)
             tax_amount = money(block.get("tax_amount"), f"{section}.tax_amount", errors)
             total = money(block.get("total"), f"{section}.total", errors)
-            expected_tax = (subtotal * tax_rate / Decimal("100")).quantize(Decimal("0.01"))
-            if tax_amount != expected_tax:
-                errors.append(f"{section}.tax_amount must equal subtotal × tax_rate (expected {expected_tax}).")
-            if total != subtotal + tax_amount:
-                errors.append(f"{section}.total must equal subtotal + tax_amount (expected {subtotal + tax_amount}).")
+            with localcontext(ARITHMETIC_CONTEXT):
+                if subtotal is not None and tax_rate is not None and tax_amount is not None:
+                    expected_tax = round_money(subtotal * tax_rate / Decimal("100"))
+                    if tax_amount != expected_tax:
+                        errors.append(f"{section}.tax_amount must equal subtotal × tax_rate (expected {expected_tax}).")
+                if subtotal is not None and tax_amount is not None and total is not None:
+                    if total != subtotal + tax_amount:
+                        errors.append(f"{section}.total must equal subtotal + tax_amount (expected {subtotal + tax_amount}).")
 
     if "invoice" in required_stages:
-        items = record.get("invoice", {}).get("line_items", [])
+        invoice = object_block(record, "invoice")
+        items = invoice.get("line_items")
         item_total = Decimal("0.00")
+        valid_items = isinstance(items, list) and bool(items)
+        if not valid_items:
+            errors.append("invoice.line_items must be a non-empty list of objects.")
+            items = []
         for index, item in enumerate(items):
-            quantity = money(item.get("quantity"), f"invoice.line_items[{index}].quantity", errors)
-            unit_price = money(item.get("unit_price"), f"invoice.line_items[{index}].unit_price", errors)
-            amount = money(item.get("amount"), f"invoice.line_items[{index}].amount", errors)
-            expected_amount = (quantity * unit_price).quantize(Decimal("0.01"))
-            if amount != expected_amount:
-                errors.append(f"invoice.line_items[{index}].amount must equal quantity × unit_price (expected {expected_amount}).")
-            item_total += amount
-        invoice_subtotal = money(record.get("invoice", {}).get("subtotal"), "invoice.subtotal", errors)
-        if item_total != invoice_subtotal:
+            label = f"invoice.line_items[{index}]"
+            if not isinstance(item, dict):
+                errors.append(f"{label} must be an object.")
+                valid_items = False
+                continue
+            if not isinstance(item.get("description"), str) or not item["description"].strip():
+                errors.append(f"{label}.description must be a non-empty string.")
+            quantity = decimal_value(item.get("quantity"), f"{label}.quantity", errors)
+            unit_price = money(item.get("unit_price"), f"{label}.unit_price", errors)
+            amount = money(item.get("amount"), f"{label}.amount", errors)
+            with localcontext(ARITHMETIC_CONTEXT):
+                if quantity is not None and unit_price is not None and amount is not None:
+                    expected_amount = round_money(quantity * unit_price)
+                    if amount != expected_amount:
+                        errors.append(f"{label}.amount must equal quantity × unit_price (expected {expected_amount}).")
+                if amount is not None:
+                    item_total += amount
+                else:
+                    valid_items = False
+        invoice_subtotal = money(invoice.get("subtotal"), "invoice.subtotal", errors)
+        if valid_items and invoice_subtotal is not None and item_total != invoice_subtotal:
             errors.append(f"Invoice line items must total invoice.subtotal (expected {item_total}).")
-        if record.get("invoice", {}).get("currency") != record.get("offer", {}).get("currency"):
+        if invoice.get("currency") != object_block(record, "offer").get("currency"):
             errors.append("Invoice currency must match the approved offer currency.")
-        issue_date = iso_date(record.get("invoice", {}).get("issue_date"), "invoice.issue_date", errors)
-        due_date = iso_date(record.get("invoice", {}).get("due_date"), "invoice.due_date", errors)
+        issue_date = iso_date(invoice.get("issue_date"), "invoice.issue_date", errors)
+        due_date = iso_date(invoice.get("due_date"), "invoice.due_date", errors)
         if issue_date and due_date and due_date < issue_date:
             errors.append("invoice.due_date must not be before invoice.issue_date.")
 
@@ -326,7 +408,11 @@ def main() -> int:
     parser.add_argument("--require-template", action="store_true")
     args = parser.parse_args()
 
-    record = json.loads(args.record.read_text(encoding="utf-8"))
+    try:
+        record = json.loads(args.record.read_text(encoding="utf-8"), parse_float=Decimal)
+    except (OSError, ValueError) as exc:
+        print(f"Cannot read engagement record: {exc}", file=sys.stderr)
+        return 1
     errors = validate(record, args.stage, args.require_template)
     if errors:
         print("Engagement validation failed:", file=sys.stderr)
