@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agency Productization"
+  short_description: "Reusable agency kits with clear rights and scope"
+  default_prompt: "Use $agency-productization to turn reviewed repeat delivery into a bounded reusable kit with evidence, support limits and rights."

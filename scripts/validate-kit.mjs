@@ -77,6 +77,7 @@ for (const guide of [
   'docs/HR-AGENCY-ADAPTATION.md',
   'docs/WHO-READS-WHAT.md',
   'docs/TEMPLATE-STUDIO-V1.2.md',
+  'docs/TEAM-PRACTICE-AND-PRODUCTS.md',
 ]) {
   try {
     const guideText = await readFile(resolve(root, guide), 'utf8');
@@ -217,6 +218,24 @@ for (const [skillName, resources] of Object.entries({
     'assets/content-brief.example.json',
     'scripts/validate_content_brief.py',
     'scripts/test_approved_content.py',
+  ],
+  'team-practice-design': [
+    'SKILL.md',
+    'agents/openai.yaml',
+    'references/practice-contract.md',
+    'assets/practice.example.json',
+    'assets/practice-plan.md',
+    'scripts/validate_practice.py',
+    'scripts/test_practice.py',
+  ],
+  'agency-productization': [
+    'SKILL.md',
+    'agents/openai.yaml',
+    'references/product-contract.md',
+    'assets/product.example.json',
+    'assets/product-brief.md',
+    'scripts/validate_product.py',
+    'scripts/test_product.py',
   ],
   'ana-template-studio': [
     'SKILL.md',

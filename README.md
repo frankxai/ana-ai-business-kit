@@ -19,7 +19,7 @@ AI works backstage: it prepares, reconciles, and checks. Ana's team owns deliver
 | Research and team practice | Evidence library, applicability notes, workshop/research draft | Ana decides what is appropriate to use or teach |
 | Content | Accurate, approval-gated draft using approved sources | Ana approves publication and any send |
 
-The plugin includes four complementary skills:
+The plugin includes six complementary skills:
 
 | Skill | Job |
 | --- | --- |
@@ -27,6 +27,10 @@ The plugin includes four complementary skills:
 | `ana-template-studio` | Validated content-pack-to-Google-Docs/Canva execution, candidate selection, readback, visual checks, and approval cards |
 | `ana-research-library` | Evidence capture and a safe research library for HR, recruiting, team practice, and voluntary workshop preparation |
 | `ana-approved-content` | Approval-gated, source-backed content drafts; it never publishes or sends |
+| `team-practice-design` | Voluntary team/AI workflow practice, participant-only reflection, aggregate task outcomes and quality baselines |
+| `agency-productization` | Reusable agency products with delivery evidence, adaptation rights, scoped support, cost and operator-hour limits |
+
+Use [Team practice and reusable agency products](docs/TEAM-PRACTICE-AND-PRODUCTS.md) for the evidence-to-practice-to-product route. These skills prepare internal drafts; existing commercial, document, and content approvals remain in charge.
 
 ## Pair the method with official Codex plugins
 
@@ -98,7 +102,7 @@ The archives and SHA-256 checksums are created in `dist/` and are intentionally 
 ## Repository map
 
 ```text
-plugins/ana-hr-operations/       # installable plugin: HR operations + research + approved content skills
+plugins/ana-hr-operations/       # installable plugin: six HR, research, document, team and product skills
 packages/ana-operator-kit/       # public-safe practitioner ZIP source; real work remains private
 packages/ana-client-session-kit/ # client-safe ZIP source
 docs/                            # team roles, Drive, Canva, release rehearsal, updates, adaptation guides
