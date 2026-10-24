@@ -5,3 +5,5 @@ client-records/
 candidate-records/
 *.private.json
 __pycache__/
+*.sqlite3
+*.sqlite3-*

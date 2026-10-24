@@ -47,3 +47,7 @@ Run when an approved deposit, milestone, retainer, success fee, or completed ser
 - `MONEY_MISMATCH`: line, subtotal, tax, total, or currency fails reconciliation.
 - `PAYMENT_REFERENCE_BLOCKED`: approved finance reference is unavailable.
 - `INVOICE_APPROVAL_PENDING`: Ana has not approved the final invoice draft.
+
+## Optional local rehearsal evidence
+
+Follow [billing review](../billing-review.md) to register the exact fictional source, reserve an event/number, export a revision, and record a manual acknowledgment after review. Changed or reverted content must be prepared and reviewed again. This does not replace source acceptance, the finance approver, exact-master visual review, or the separate send gate. The ledger always reports that authentication and external send permission are absent.

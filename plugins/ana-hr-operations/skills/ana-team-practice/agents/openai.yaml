@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ana Team Practice"
+  short_description: "Draft team agreements with evidence and clear ownership"
+  default_prompt: "Use $ana-team-practice to prepare a voluntary team working-agreement session and a 30-day follow-through plan for human review."

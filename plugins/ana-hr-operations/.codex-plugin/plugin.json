@@ -1,7 +1,7 @@
 {
   "name": "ana-hr-operations",
-  "version": "0.2.0+codex.20260714123709",
-  "description": "Extend Ana's established HR delivery method across client work, recruiting, research, Google Docs and Canva template execution, and commercial administration\u2014with human approval at every decision boundary.",
+  "version": "0.3.0-rc.3",
+  "description": "Extend Ana's established HR delivery method across client work, recruiting, research, Google Docs and Canva template execution, and commercial administration—with human approval at every decision boundary.",
   "author": {
     "name": "FrankX",
     "url": "https://www.frankx.ai"
@@ -18,7 +18,8 @@
     "canva",
     "research-library",
     "approval-gated-content",
-    "template-studio"
+    "template-studio",
+    "team-practice"
   ],
   "skills": "./skills/",
   "interface": {
@@ -34,7 +35,7 @@
     "websiteURL": "https://github.com/frankxai/ana-ai-business-kit",
     "defaultPrompt": [
       "Run Ana's manager morning control and approval queue.",
-      "Run the 20\u201330 minute first-client-call SOP with a template route.",
+      "Run the 20–30 minute first-client-call SOP with a template route.",
       "Run Template Studio on a practice offer or invoice, then stop for Ana's approval."
     ]
   }
