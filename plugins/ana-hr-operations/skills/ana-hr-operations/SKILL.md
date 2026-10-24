@@ -31,6 +31,8 @@ Operate one structured engagement per client and role. Capture facts once, execu
 - Use the four-role contract in `references/team-adoption-and-template-ops.md`; individual team members prepare within their role, while Ana retains the manager/approval routes.
 - Use `manager morning control`, `approval review`, or `quality and exceptions review` as read-only manager controls. Present a decision card; do not treat the request itself as approval.
 - Use `$ana-research-library` for source capture, HR/recruiting research, team-practice research, or voluntary workshop research. It never turns research into a hiring or diagnostic signal.
+- Use `$team-practice-design` for a voluntary team-working practice or approved AI adoption pilot with private reflection and aggregate workflow evidence.
+- Use `$agency-productization` to draft a reusable product from reviewed repeat delivery; its commercial handoff returns to SOP-04 and SOP-06.
 - Use `$ana-approved-content` only to draft source-backed educational/marketing content that remains approval-gated and unpublished.
 - Use `$ana-template-studio` after a stage validates and a kickoff, job description, offer, invoice, presentation, or handoff artifact must be created or checked in Google Docs or Canva.
 

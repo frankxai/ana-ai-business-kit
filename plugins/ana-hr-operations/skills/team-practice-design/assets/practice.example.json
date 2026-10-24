@@ -1,0 +1,78 @@
+{
+  "schema": "team-practice/v1",
+  "demo_only": true,
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "practice_id": "SYNTHETIC-PRACTICE-001",
+  "workflow": "Approved meeting-action draft with human readback",
+  "scope": {
+    "included": "One synthetic action-summary workflow in one practice session",
+    "excluded": "Employment decisions, individual assessment, therapy and event operations",
+    "facilitator": "Fictional facilitator",
+    "sponsor": "Fictional sponsor"
+  },
+  "participation": {
+    "eligible": 10,
+    "invited": 8,
+    "consenting": 6,
+    "voluntary": true,
+    "reflection_optional": true,
+    "alternative": "Practise the action-summary rubric without personal reflection"
+  },
+  "reflection": {
+    "storage": "participant_only",
+    "collected": false,
+    "employer_access": false,
+    "ai_access": false
+  },
+  "reporting": {
+    "audience": "employer_aggregate",
+    "consenting": 6,
+    "minimum_group_size": 5,
+    "suppressed": false,
+    "fields": [
+      "task_count",
+      "quality_pass_count",
+      "total_operator_minutes"
+    ],
+    "individual_assessment": false,
+    "task_data_scope": "report_consented_only"
+  },
+  "boundaries": {
+    "clinical_claims": false,
+    "employee_profiling": false,
+    "emotion_inference": false,
+    "employment_decisions": false
+  },
+  "outcome": {
+    "task_definition": "A synthetic action summary checked against the same five-item rubric",
+    "quality_rubric": "All actions source-backed, owner and date present or explicitly unresolved, no invented facts, correct access scope",
+    "baseline": {
+      "window_start": "2026-09-01",
+      "window_end": "2026-09-07",
+      "completed": 40,
+      "quality_passed": 32,
+      "operator_minutes": 800
+    },
+    "pilot": null
+  },
+  "targets": {
+    "minimum_quality_rate": 0.8,
+    "maximum_minutes_per_unit": 18,
+    "operator_hours_ceiling": 12,
+    "tool_spend_ceiling": 25,
+    "currency": "EUR"
+  },
+  "evidence": [
+    {
+      "reference": "SYNTHETIC-RESEARCH-001",
+      "class": "practice_hypothesis",
+      "statement": "A shared readback rubric may reduce missed action owners.",
+      "limitations": "Synthetic rehearsal hypothesis; no efficacy or neuroscience claim."
+    }
+  ],
+  "review": {
+    "owner": "Fictional practitioner",
+    "reviewed_at": "2026-09-09",
+    "next_review_due": "2026-09-23"
+  }
+}

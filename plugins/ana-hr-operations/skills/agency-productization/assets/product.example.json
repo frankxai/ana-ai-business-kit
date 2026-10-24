@@ -1,0 +1,97 @@
+{
+  "schema": "agency-product/v1",
+  "demo_only": true,
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "product_id": "SYNTHETIC-PRODUCT-001",
+  "workflow": "Approved meeting-action draft with human readback",
+  "buyer": "agency_operators",
+  "job": "Repeat an approved client workflow with less preparation and consistent quality",
+  "ownership": {
+    "product_owner": "Fictional product lead",
+    "adaptation_owner": "Fictional agency lead",
+    "approval_owner": "Fictional practice owner"
+  },
+  "delivery_evidence": [
+    {
+      "reference": "SYNTHETIC-DELIVERY-001",
+      "reviewed": true,
+      "workflow": "Approved meeting-action draft with human readback",
+      "completed": 20,
+      "quality_passed": 18
+    },
+    {
+      "reference": "SYNTHETIC-DELIVERY-002",
+      "reviewed": true,
+      "workflow": "Approved meeting-action draft with human readback",
+      "completed": 20,
+      "quality_passed": 19
+    }
+  ],
+  "scope": {
+    "included": [
+      "Practice facilitator run sheet",
+      "Synthetic rehearsal cases",
+      "Client preparation draft"
+    ],
+    "excluded": [
+      "Clinical services",
+      "Employee assessments",
+      "Unlimited customization",
+      "Accommodation or event operations"
+    ],
+    "acceptance": "Owner approves source fidelity, task rubric and audience separation",
+    "implementation_hours_ceiling": 8,
+    "tool_spend_ceiling": 25,
+    "currency": "EUR"
+  },
+  "artifacts": [
+    {
+      "name": "Facilitator run sheet",
+      "audience": "operator_only"
+    },
+    {
+      "name": "Client preparation draft",
+      "audience": "client_review_required"
+    }
+  ],
+  "rights": {
+    "public_base_license": "CC-BY-4.0",
+    "attribution": "Credit the Ana AI Business Kit contributors, link CC BY 4.0, and mark adaptations.",
+    "exclusive_public_base_rights": false,
+    "ana_identity_included": false,
+    "third_party_review": "No third-party additions in this synthetic rehearsal",
+    "licensed_additions": []
+  },
+  "support": {
+    "starts_on": "2026-09-10",
+    "ends_on": "2026-10-10",
+    "hours_ceiling": 2,
+    "updates_end_on": "2026-12-10"
+  },
+  "outcomes": {
+    "eligible_operators": 5,
+    "active_operators": 0,
+    "quality_rubric": "Source fidelity and explicit action owner/date under the shared readback rubric",
+    "baseline_completed": 20,
+    "baseline_quality_passed": 16,
+    "minimum_quality_rate": 0.8,
+    "maximum_operator_hours_per_engagement": 8
+  },
+  "boundaries": {
+    "clinical_claims": false,
+    "employee_profiling": false,
+    "private_reflection_included": false,
+    "identity_endorsement_claimed": false
+  },
+  "routes": {
+    "offer": "SOP-04",
+    "invoice": "SOP-06",
+    "content": "ana-approved-content",
+    "templates": "ana-template-studio"
+  },
+  "review": {
+    "owner": "Fictional product reviewer",
+    "reviewed_at": "2026-09-09",
+    "next_review_due": "2026-09-23"
+  }
+}

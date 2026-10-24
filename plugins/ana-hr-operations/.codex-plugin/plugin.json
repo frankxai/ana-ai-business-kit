@@ -1,7 +1,7 @@
 {
   "name": "ana-hr-operations",
-  "version": "0.2.0+codex.20260714123709",
-  "description": "Extend Ana's established HR delivery method across client work, recruiting, research, Google Docs and Canva template execution, and commercial administration\u2014with human approval at every decision boundary.",
+  "version": "0.2.0+codex.20260909165505",
+  "description": "Extend human-led HR delivery across client work, recruiting, research, approved documents, voluntary team practices, and reusable agency products with explicit ownership and review.",
   "author": {
     "name": "FrankX",
     "url": "https://www.frankx.ai"
@@ -18,13 +18,15 @@
     "canva",
     "research-library",
     "approval-gated-content",
-    "template-studio"
+    "template-studio",
+    "team-practice",
+    "agency-productization"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Ana HR Operations",
     "shortDescription": "Extend Ana's established, human-led HR delivery method.",
-    "longDescription": "Carry approved client work through recruiting operations, interconnected Google Docs and Canva template jobs, commercial preparation, research, and content while Ana's team owns delivery and named humans retain every decision and external send.",
+    "longDescription": "Carry approved client work through HR operations, Google Docs and Canva template jobs, research, voluntary team and AI practices, and reusable agency product drafts. Named practitioners retain commercial, employment and external communication decisions.",
     "developerName": "FrankX",
     "category": "Productivity",
     "capabilities": [
